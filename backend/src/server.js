@@ -1,10 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const dotEnv=require('dotenv');
+dotEnv.config();
 
 const app = express();
 const PORT = 4000;
-const URI =
-  "mongodb+srv://akashkajale125:akash12345@real-estate.f1vmfti.mongodb.net/Users?retryWrites=true&w=majority";
+const URI = process.env.secrete_uri;
 
 // Database connection
 const connectDB = async () => {
