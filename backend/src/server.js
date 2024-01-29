@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const dotEnv=require('dotenv');
+const dotEnv = require("dotenv");
+const authRoutes = require('./Routes/authRoutes.js')
 dotEnv.config();
 
 const app = express();
@@ -21,6 +22,9 @@ connectDB();
 
 // Middleware
 app.use(express.json());
+
+// Routes
+app.use("/auth", authRoutes);
 
 // Start the server
 app.listen(PORT, () => {
