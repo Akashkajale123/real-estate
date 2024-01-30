@@ -1,11 +1,10 @@
 import React from 'react'
+import SignIN from './components/auth/SignIN'
 
 const App = () => {
   return (
     <div>
-      <h1>Akash kajale</h1>
-      <h1>Akash kajale</h1>
-      <h1>Akash kajale</h1>
+      <SignIN/>
     </div>
   )
 }
