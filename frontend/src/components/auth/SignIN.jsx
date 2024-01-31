@@ -32,7 +32,8 @@ const SignIn = () => {
         <h1 id="logo">LOGO</h1>
         <p id="para_line">Enter your credentials to access your account</p>
         <form onSubmit={handleSubmit}>
-  <input
+<div className="inputs-box">
+<input
     type="text"
     id="email_id"
     name="email"
@@ -53,6 +54,7 @@ const SignIn = () => {
       {showPassword ? <FaEyeSlash /> : <FaEye />}
     </span>
   </div>
+</div>
 
 <button id='btn'>Sign In</button>
 </form>
