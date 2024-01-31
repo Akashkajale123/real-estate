@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from '@mui/material/Button';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./SignIN.css";
+import { Link } from "react-router-dom";
 const SignIn = () => {
   const [data, setData] = useState({
     email: "",
@@ -59,11 +60,12 @@ const SignIn = () => {
 <button id='btn'>Sign In</button>
 </form>
 
-        <h2 id="signup">SignUp</h2>
+       <Link to='/signup' style={{ textDecoration: "none" }}> <h2 id="signup">SignUp</h2></Link>
       </div>
       <div className="signup_link">
         <p>
-          Don't have an account? <span>Sign Up</span>
+          Don't have an account? 
+          <Link to='/signup' style={{ textDecoration: "none" }}><span>Sign Up</span></Link>
         </p>
       </div>
     </div>
