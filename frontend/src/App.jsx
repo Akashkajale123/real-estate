@@ -1,10 +1,15 @@
 import React from 'react'
-import SignIN from './components/auth/SignIN'
+import SignIn from './components/auth/SignIn'
+// import SignUp from './components/auth/SignUp'
+
+
 
 const App = () => {
   return (
     <div>
-      <SignIN/>
+    <SignIn/>
+        
+        
       
     </div>
   )
