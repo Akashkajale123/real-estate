@@ -1,52 +1,59 @@
-.main-box{
-    width: 1605px;
-height: 1444px;
-flex-shrink: 0;
-/* border: 1px solid black; */
-display: flex;
+.main-box {
+  width: 1605px;
+  height: 1444px;
+  flex-shrink: 0;
+  /* border: 1px solid black; */
+  display: flex;
 }
-.sidebar{
-    width: 320px;
-    height: 100%;
-    flex-shrink: 0;
-    background-color: #E1F9F4;
-/* border: 1px solid black; */
+.sidebar {
+  width: 320px;
+  height: 100%;
+  flex-shrink: 0;
+  background-color: #e1f9f4;
+  /* border: 1px solid black; */
 }
-.right{
-     display: flex; 
-     flex-direction: column;
-    
-     
-   
-} 
-.top-bar{
-    height: 128px;
-    width:1285px ;
-    
-   background-color: #FAFBFC;
-    /* border: 1px solid black */
+.right {
+  display: flex;
+  flex-direction: column;
 }
-.main-content{
-    height: 1313px;
-    width: 1285px;
-    background-color: #FAFBFC;
-    /* border: 1px solid black */
-    
+.top-bar {
+  height: 128px;
+  width: 1285px;
+  background-color: #fafbfc;
+  /* border: 1px solid black; */
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
 }
-.logo{
-    color: #1A1B1C;
-font-family: "Source Sans Pro";
-font-size: 35px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
-margin: 45px 0px 0px 107px;
+.userid {
+  margin-left: 10px;
+}
+.user {
+  margin-right: 20px;
+}
+
+
+.logo {
+  color: #1a1b1c;
+  font-family: "Source Sans Pro";
+  font-size: 35px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 45px 0px 0px 107px;
 }
 ul {
-    list-style-type: none;
-    display: flex;
-    flex-direction: column;
-     
-  }
- 
-  
+  color: #2289ff;
+  font-family: "Source Sans Pro";
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 35px;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+
