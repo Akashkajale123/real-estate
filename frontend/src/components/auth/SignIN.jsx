@@ -57,7 +57,7 @@ const SignIn = () => {
   </div>
 </div>
 
-<button id='btn'>Sign In</button>
+<Link to='/home'><button id='btn'>Sign In</button></Link>
 </form>
 
        <Link to='/signup' style={{ textDecoration: "none" }}> <h2 id="signup">SignUp</h2></Link>
