@@ -1,10 +1,9 @@
-.sidebar {
+.sidebar{
+    margin: 0;
     width: 320px;
-    height: 100%;
-    flex-shrink: 0;
-    background-color: #e1f9f4;
-    /* border: 1px solid black; */
-  }
+    height: 100vh;
+    background-color:#E1F9F4 ;
+}
   
 .logo {
     color: #1a1b1c;

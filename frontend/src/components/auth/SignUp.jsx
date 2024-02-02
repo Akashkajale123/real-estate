@@ -9,15 +9,18 @@ const SignUp = () => {
         <p id="para_line">Create New Account</p>
         <div className="inputs">
             <input  type="text" 
-            placeholder="Mail ID"/>
+            placeholder="Mail ID"
+            id="mail-id"/>
             <input type="password"
-            placeholder="Password" />
+            placeholder="Password" 
+            id="password"/>
             <input type="password"
-            placeholder="Confirm Password" />
-            <button>Sign up</button>
+            placeholder="Confirm Password" 
+            id="confirm-password"/>
+            <button id="btn">Sign up</button>
         </div>
       </div>
-     <Link style={{ textDecoration: "none" }} to="/"> <h2>Sign in</h2></Link>
+     <Link style={{ textDecoration: "none" }} to="/"> <h2 id="sign-in-link">Sign in</h2></Link>
       
     </div>
   );

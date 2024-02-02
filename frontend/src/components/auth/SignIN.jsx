@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Button from '@mui/material/Button';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./SignIN.css";
 import { Link } from "react-router-dom";
@@ -57,7 +56,7 @@ const SignIn = () => {
   </div>
 </div>
 
-<Link to='/home'><button id='btn'>Sign In</button></Link>
+<Link to='/property-list'><button id='btn'>Sign In</button></Link>
 </form>
 
        <Link to='/signup' style={{ textDecoration: "none" }}> <h2 id="signup">SignUp</h2></Link>
@@ -65,7 +64,7 @@ const SignIn = () => {
       <div className="signup_link">
         <p>
           Don't have an account? 
-          <Link to='/signup' style={{ textDecoration: "none" }}><span>Sign Up</span></Link>
+          <Link to='/signup' style={{ textDecoration: "none" }}><span id='signup-btn'> Sign Up</span></Link>
         </p>
       </div>
     </div>

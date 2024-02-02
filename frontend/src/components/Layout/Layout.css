@@ -1,0 +1,9 @@
+/* Example CSS */
+.sidebar-navbar-container {
+    display: flex;
+  }
+  
+  .sidebar-navbar-container .main-content {
+    flex-grow: 1; /* Main content takes up remaining space */
+  }
+  

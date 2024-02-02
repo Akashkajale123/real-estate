@@ -1,8 +1,8 @@
 import React from 'react'
-
+import './Sidebar.css'
 const Sidebar = () => {
   return (
-    <div>
+
       <aside className="sidebar">
         <h1 className="logo">Logo</h1>
         <ul>
@@ -28,7 +28,7 @@ const Sidebar = () => {
 </svg></span>Tariff Plan</li>
         </ul>
       </aside>
-    </div>
+    
   )
 }
 

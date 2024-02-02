@@ -1,41 +1,32 @@
+// App.js
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'; // Correct import statement
-import Home from './components/pages/Home';
-import Page1 from './components/pages/Page1';
-import Page2 from './components/pages/Page2';
-import Sidebar from './Sidebar';
-import Header from './Header';
-import HomePage from './HomePage';
-import './Style.css'
-import SignUp from './components/auth/SignUp';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Layout from './components/Layout/Loyout'; // Import the Layout component
 import SignIN from './components/auth/SignIN';
+import SignUp from './components/auth/SignUp';
+import PropertyList from './Pages/PropertyList';
+import BasicInfo from './Pages/BasicInfo';
+import PropertyDetails from './Pages/PropertyDetails';
+import GeneralInfo from './Pages/GeneralInfo';
+import LocationInfo from './Pages/LocationInfo';
 
-const App = () => {
-  const location = useLocation();
-  const { pathname } = location;
-
-  // Define routes where sidebar and header should not be displayed
-  const noSidebarRoutes = ['/', '/signup'];
-
-  // Check if the current route is one of the no-sidebar routes
-  const displaySidebar = !noSidebarRoutes.includes(pathname);
+function App() {
   return (
-    <>
-      <div className="app">
-      {displaySidebar && <Sidebar />}
-        <div className="main-content">
-        {displaySidebar && <Header />}
-          <Routes>
-            <Route path="/home" element={<HomePage/>} />
-            <Route path="/page1" element={<Page1/>} />
-            <Route path="/page2" element={<Page2 />} />
-            <Route path="/" element={<SignIN />} />
-            <Route path="/signup" element={<SignUp />} />
-          </Routes>
-        </div>
-      </div>
-    </>
+    
+      
+      <Layout>
+        <Routes>
+          <Route path="/" exact element={<SignIN/>} />
+          <Route path="/signup" element={<SignUp/>} />
+          <Route path="/property-list" element={<PropertyList/>} />
+          <Route path="/basic-info" element={<BasicInfo/>} />
+          <Route path="/property-details" element={<PropertyDetails/>} />
+          <Route path="/general-info" element={<GeneralInfo/>} />
+          <Route path="/location-info" element={<LocationInfo/>} />
+        </Routes>
+      </Layout>
+ 
   );
-};
+}
 
 export default App;
