@@ -4,17 +4,7 @@ aside {
   flex-shrink: 0;
   background-color: #e1f9f4;
 }
-.logo {
-  margin-top: 45px;
-  color: #1a1b1c;
-  font-family: "Source Sans Pro";
-  font-size: 35px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  display: flex;
-  justify-content: center;
-}
+
 #sidebar-conatiner{
     width: 172px;
     height: 385px;
