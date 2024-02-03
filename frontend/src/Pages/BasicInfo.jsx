@@ -1,10 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import './BasicInfo.css'
 const BasicInfo = () => {
   return (
     <div>
-      <h1>basic info page</h1>
-      <Link to='/property-details'><button>navigate to property details page</button></Link>
+      <h2 id='headline'>Add new Property</h2>
+      <div className="pages-container">
+            <div className="basic-info">Basic Info</div>
+            <div className="property-details">Property  Detail</div>
+            <div className="general-info">General Info</div>
+            <div className="location-info">Location Info</div>
+      </div>
     </div>
   )
 }

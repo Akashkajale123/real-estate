@@ -1,35 +1,49 @@
-.sidebar{
-    margin: 0;
-    width: 320px;
-    height: 100vh;
-    background-color:#E1F9F4 ;
+aside {
+  width: 320px;
+  height: 150vh;
+  flex-shrink: 0;
+  background-color: #e1f9f4;
 }
-  
 .logo {
-    color: #1a1b1c;
-    font-family: "Source Sans Pro";
-    font-size: 35px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    margin: 45px 0px 0px 107px;
-  }
-  ul {
-    color: #2289ff;
+  margin-top: 45px;
+  color: #1a1b1c;
+  font-family: "Source Sans Pro";
+  font-size: 35px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  display: flex;
+  justify-content: center;
+}
+#sidebar-conatiner{
+    width: 172px;
+    height: 385px;
+    position: relative;
+    border: 1px solid black;
+    margin:81px 0px 0px 96px;
+}
+/* }
+#property{
+    color: #2289FF;
+font-family: "Source Sans Pro";
+font-size: 22px;
+font-style: normal;
+font-weight: 400;
+line-height: 35px; /* 159.091% */
+/* }
+li{
+    list-style-type: none;
+}
+.ul-container{
+    width: 172px;
+    height: 385px;
+    margin-top: 81px;
+    color: #AAA;
     font-family: "Source Sans Pro";
     font-size: 22px;
     font-style: normal;
     font-weight: 400;
     line-height: 35px;
-    list-style-type: none;
-    display: flex;
-    flex-direction: column;
-    
-  }
-  li{
-      
-      margin-top: 20px;
-  }
-  #icon{
-      padding-right: 20px;
-  }
+}
+
+ */ 

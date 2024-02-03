@@ -1,20 +1,23 @@
-import React from 'react'
+import React from 'react';
 import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { BsFillPersonFill } from 'react-icons/bs';
+import './Header.css';
+import LogoutDropdown from './LogoutDropdown';
 
 const Header = () => {
   return (
-    
-        <Navbar bg="light" data-bs-theme="light" >
-        <Container height="300px">
-          
-          <h2 >USER ID : 06PPD125</h2>
-          <h2>User Name</h2>
-        </Container>
-      </Navbar>
-   
-  )
-}
+    <Navbar bg="light" expand="lg" style={{ height: '127px' }}>
+      <Container className="justify-content-between h-100">
+        <Navbar.Brand>USER ID : 06PPD125</Navbar.Brand>
+        <Navbar.Brand id='user'><span style={{ marginRight: '10px',  fontSize:'25px',paddingBottom:'10px'}}> 
+        <BsFillPersonFill /> 
+      </span> User Name
+        <LogoutDropdown/>
+        </Navbar.Brand>
+      </Container>
+    </Navbar>
+  );
+};
 
 export default Header;
