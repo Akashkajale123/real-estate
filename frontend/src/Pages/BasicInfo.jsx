@@ -1,16 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './BasicInfo.css'
+import BasicInfoFrom from '../components/forms/BasicInfoFrom'
 const BasicInfo = () => {
   return (
     <div>
-      <h2 id='headline'>Add new Property</h2>
-      <div className="pages-container">
-            <div className="basic-info">Basic Info</div>
-            <div className="property-details">Property  Detail</div>
-            <div className="general-info">General Info</div>
-            <div className="location-info">Location Info</div>
-      </div>
+        <div style={{width: 1201, height: 656, background: 'white', boxShadow: '10px 14px 70px rgba(0, 0, 0, 0.03)', borderRadius: 20,border:'1px solid black',marginTop:'20px'}} >
+            <BasicInfoFrom/>
+        </div>
     </div>
   )
 }

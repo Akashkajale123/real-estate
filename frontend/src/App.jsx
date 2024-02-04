@@ -9,6 +9,7 @@ import BasicInfo from './Pages/BasicInfo';
 import PropertyDetails from './Pages/PropertyDetails';
 import GeneralInfo from './Pages/GeneralInfo';
 import LocationInfo from './Pages/LocationInfo';
+import HorizantleButtons from './components/Layout/HorizantleButtons';
 
 function App() {
   return (
@@ -19,10 +20,35 @@ function App() {
           <Route path="/" exact element={<SignIN/>} />
           <Route path="/signup" element={<SignUp/>} />
           <Route path="/property-list" element={<PropertyList/>} />
-          <Route path="/basic-info" element={<BasicInfo/>} />
-          <Route path="/property-details" element={<PropertyDetails/>} />
-          <Route path="/general-info" element={<GeneralInfo/>} />
-          <Route path="/location-info" element={<LocationInfo/>} />
+          <Route path="/basic-info" element={
+            <div>
+               <HorizantleButtons/>
+              <BasicInfo/>
+             
+            </div>
+          } />
+          <Route path="/property-details" element={
+             <div>
+               <HorizantleButtons/>
+             <PropertyDetails/>
+            
+           </div>
+          } />
+          <Route path="/general-info" element={
+             <div>
+             <HorizantleButtons/>
+           <GeneralInfo/>
+          
+         </div>
+          } />
+          <Route path="/location-info" element={
+             <div>
+             <HorizantleButtons/>
+           <LocationInfo/>
+          
+         </div>
+          } />
+          
         </Routes>
       </Layout>
  
