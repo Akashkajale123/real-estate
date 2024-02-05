@@ -54,13 +54,13 @@ const PropertyDetailsForm = () => {
        <div className="input" id='row1'>
        <div >
           <label htmlFor="length">Length</label>
-          <Field type="number" id="length" name="length" />
+          <Field type="number" id="length" name="length" placeholder='Example: 1000'/>
           <ErrorMessage name="length" component="div" className="error" />
         </div>
 
         <div>
             <label htmlFor="breath">Breath</label>
-            <Field type="number" id="breath" name="breath" />
+            <Field type="number" id="breath" name="breath" placeholder='Example: 1000' />
             <ErrorMessage name="breath" component="div" className="error" />
           </div>
        </div>
@@ -68,7 +68,7 @@ const PropertyDetailsForm = () => {
          <div className="input">
          <div>
             <label htmlFor="totalArea">Total Area</label>
-            <Field type="number" id="totalArea" name="totalArea" />
+            <Field type="number" id="totalArea" name="totalArea" placeholder='Example: 7500'/>
             <ErrorMessage name="totalArea" component="div" className="error" />
           </div>
 
