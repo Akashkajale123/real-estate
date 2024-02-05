@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom'
-
+import './BasicInfoFrom.css'
 const validationSchema = Yup.object().shape({
   propertyType: Yup.string().required('Property type is required'),
   negotiable: Yup.string().required('Negotiable is required'),
@@ -41,7 +41,8 @@ const BasicInfoForm = () => {
       >
         {({ errors, touched }) => (
           <Form>
-            <div>
+           <div   className='input' id='row1'>
+           <div id='pro-type'>
               <label htmlFor="propertyType">Property Type</label>
               <Field as="select" id="propertyType" name="propertyType">
                 <option value="">Select Property Type</option>
@@ -52,7 +53,7 @@ const BasicInfoForm = () => {
               </Field>
               <ErrorMessage name="propertyType" component="div" className="error" />
             </div>
-            <div>
+            <div >
               <label htmlFor="negotiable">Negotiable</label>
               <Field as="select" id="negotiable" name="negotiable">
                 <option value="">Select Negotiable</option>
@@ -61,7 +62,9 @@ const BasicInfoForm = () => {
               </Field>
               <ErrorMessage name="negotiable" component="div" className="error" />
             </div>
-            <div>
+           </div>
+            <div  className='input'>
+            <div >
               <label htmlFor="price">Price</label>
               <Field type="number" id="price" name="price" />
               <ErrorMessage name="price" component="div" className="error" />
@@ -76,7 +79,9 @@ const BasicInfoForm = () => {
               </Field>
               <ErrorMessage name="ownership" component="div" className="error" />
             </div>
-            <div>
+            </div>
+           <div  className='input'>
+           <div>
               <label htmlFor="propertyAge">Property Age</label>
               <Field type="number" id="propertyAge" name="propertyAge" />
               <ErrorMessage name="propertyAge" component="div" className="error" />
@@ -90,8 +95,10 @@ const BasicInfoForm = () => {
               </Field>
               <ErrorMessage name="propertyApproved" component="div" className="error" />
             </div>
-            <div>
-              <label htmlFor="propertyDescription">Property Description</label>
+           </div>
+           <div  className='input' id='row4'>
+           <div>
+              <label htmlFor="propertyDescription" id='pro-desc'>Property Description</label>
               <Field as="textarea" id="propertyDescription" name="propertyDescription" />
               <ErrorMessage name="propertyDescription" component="div" className="error" />
             </div>
@@ -100,9 +107,10 @@ const BasicInfoForm = () => {
               <Field type="number" id="bankLoan" name="bankLoan" />
               <ErrorMessage name="bankLoan" component="div" className="error" />
             </div>
-            <div>
-             <Link to='/property-list'> <button type="submit">Cancle</button></Link>
-              <Link to='/property-details'><button type="button">Save & Continue</button></Link>
+           </div>
+            <div >
+             <Link to='/property-list'> <button id='btn1' type="submit">Cancle</button></Link>
+              <Link to='/property-details'><button id='btn2' type="button">Save & Continue</button></Link>
             </div>
           </Form>
         )}

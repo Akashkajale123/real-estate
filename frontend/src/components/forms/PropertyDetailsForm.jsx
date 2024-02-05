@@ -2,6 +2,7 @@ import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { Link } from 'react-router-dom'
+import './PropertyDetailsForm.css'
 
 const validationSchema = Yup.object().shape({
     length: Yup.number().positive("Length must be positive").required("Required"),
@@ -50,7 +51,8 @@ const PropertyDetailsForm = () => {
     {({ errors, touched }) => (
       <Form>
         {/* Render your form fields here */}
-        <div>
+       <div className="input" id='row1'>
+       <div >
           <label htmlFor="length">Length</label>
           <Field type="number" id="length" name="length" />
           <ErrorMessage name="length" component="div" className="error" />
@@ -61,8 +63,10 @@ const PropertyDetailsForm = () => {
             <Field type="number" id="breath" name="breath" />
             <ErrorMessage name="breath" component="div" className="error" />
           </div>
+       </div>
 
-          <div>
+         <div className="input">
+         <div>
             <label htmlFor="totalArea">Total Area</label>
             <Field type="number" id="totalArea" name="totalArea" />
             <ErrorMessage name="totalArea" component="div" className="error" />
@@ -78,7 +82,9 @@ const PropertyDetailsForm = () => {
             </Field>
             <ErrorMessage name="areaUnit" component="div" className="error" />
           </div>
+         </div>
 
+          <div className="input">
           <div>
             <label htmlFor="bhk">No of BHK</label>
             <Field as="select" id="bhk" name="bhk">
@@ -103,8 +109,10 @@ const PropertyDetailsForm = () => {
             </Field>
             <ErrorMessage name="noOfFloors" component="div" className="error" />
           </div>
+          </div>
 
-          <div>
+         <div className="input">
+         <div>
             <label htmlFor="attached">Attached</label>
             <Field as="select" id="attached" name="attached">
               <option value="">Select Attached</option>
@@ -123,8 +131,10 @@ const PropertyDetailsForm = () => {
             </Field>
             <ErrorMessage name="westernToilet" component="div" className="error" />
           </div>
+         </div>
 
-          <div>
+         <div className="input">
+         <div>
             <label htmlFor="furnished">Furnished</label>
             <Field as="select" id="furnished" name="furnished">
               <option value="">Select Furnished</option>
@@ -144,8 +154,10 @@ const PropertyDetailsForm = () => {
             </Field>
             <ErrorMessage name="carParking" component="div" className="error" />
           </div>
+         </div>
 
-          <div>
+         <div className="input">
+         <div>
             <label htmlFor="lift">Lift</label>
             <Field as="select" id="lift" name="lift">
               <option value="">Select Lift</option>
@@ -165,8 +177,10 @@ const PropertyDetailsForm = () => {
             </Field>
             <ErrorMessage name="electricity" component="div" className="error" />
           </div>
+         </div>
 
-          <div>
+         <div className='input'>
+         <div id='row7'>
             <label htmlFor="facing">Facing</label>
             <Field as="select" id="facing" name="facing">
               <option value="">Select Facing</option>
@@ -177,11 +191,12 @@ const PropertyDetailsForm = () => {
             </Field>
             <ErrorMessage name="facing" component="div" className="error" />
           </div>
+         </div>
 
 
         <div>
-        <Link to='/basic-info'><button type="button"> Previous</button></Link>
-          <Link to='/general-info'><button type="submit">Save & Continue</button></Link>
+        <Link to='/basic-info'><button id='btn1' type="button"> Previous</button></Link>
+          <Link to='/general-info'><button id='btn2' type="submit">Save & Continue</button></Link>
         </div>
       </Form>
     )}
