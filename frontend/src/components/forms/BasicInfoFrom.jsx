@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { Link } from 'react-router-dom'
 
 const validationSchema = Yup.object().shape({
   propertyType: Yup.string().required('Property type is required'),
@@ -100,8 +101,8 @@ const BasicInfoForm = () => {
               <ErrorMessage name="bankLoan" component="div" className="error" />
             </div>
             <div>
-              <button type="submit">Cancle</button>
-              <button type="button">Save & Continue</button>
+             <Link to='/property-list'> <button type="submit">Cancle</button></Link>
+              <Link to='/property-details'><button type="button">Save & Continue</button></Link>
             </div>
           </Form>
         )}
