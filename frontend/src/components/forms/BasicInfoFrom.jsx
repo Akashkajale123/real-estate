@@ -109,8 +109,8 @@ const BasicInfoForm = () => {
             </div>
            </div>
             <div >
-             <Link to='/property-list'> <button id='btn1' type="submit">Cancle</button></Link>
-              <Link to='/property-details'><button id='btn2' type="button">Save & Continue</button></Link>
+             <Link to='/property-list'> <button id='btn1' type="button">Cancle</button></Link>
+              <Link to='/property-details'><button id='btn2'   type="submit">Save & Continue</button></Link>
             </div>
           </Form>
         )}

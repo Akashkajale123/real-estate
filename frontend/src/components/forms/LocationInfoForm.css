@@ -30,7 +30,8 @@
   
   .input > div select,
   .input > div input[type="text"],
-  .input > div input[type="number"]{
+  .input > div input[type="number"],
+  .input > div input[type="email"]{
     width: 520px; /* Set width of inputs */
     height: 60px; /* Set height of inputs */
     padding: 10px; /* Add padding for better appearance */
@@ -83,11 +84,5 @@
       color: red; /* Change error message color */
       margin-top: 2px; /* Adjust spacing between input and error message */
       position: absolute;
-    }
-
-    #camera-svg{
-        position: absolute;
-        right: 30px;
-        top: 30px;
     }
   

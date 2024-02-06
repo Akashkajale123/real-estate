@@ -115,10 +115,13 @@ const GeneralInfoForm = () => {
               />
             </div>
             </div>
-            <div id="lastrow" style={{width: 105, height: 105, background: '#6AB4F8', boxShadow: '0px 10px 25px rgba(0, 0, 0, 0.13)',border:'1px solid black', borderRadius: 9999}}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="39" height="39" viewBox="0 0 39 39" fill="none" >
+            <div id="lastrow" style={{width: 105, height: 105, background: '#6AB4F8', boxShadow: '0px 10px 25px rgba(0, 0, 0, 0.13)',border:'1px solid black', borderRadius: 9999,position:'relative',marginRight:'400px'}}>
+            <input type="file" id="photoUpload" accept="image/*" style={{position: 'absolute', width: '100%', height: '100%', opacity: 0, zIndex: 1, cursor: 'pointer'}} />
+            <div style={{width:'80px', color: '#7D7D7D', fontSize: 18, fontFamily: 'Source Sans Pro', fontWeight: '400', wordWrap: 'break-word', position:'absolute', top:'35px',left:'130px'}}>Add Photo</div>
+      <span id="camera-svg">
+      <svg xmlns="http://www.w3.org/2000/svg" width="39" height="39" viewBox="0 0 39 39" fill="none" >
   <g clip-path="url(#clip0_0_433)">
-    <path d="M19.5 24.7C22.3719 24.7 24.7 22.3719 24.7 19.5C24.7 16.6281 22.3719 14.3 19.5 14.3C16.6282 14.3 14.3 16.6281 14.3 19.5C14.3 22.3719 16.6282 24.7 19.5 24.7Z" fill="white"/>
+    <path d="M19.5 24.7C22.3719 24.7 24.7 22.3719 24.7 19.5C24.7 16.6281 22.3719 14.3 19.5 14.3C16.6282 14.3 14.3 16.6281 14.3 19.5C14.3 22.3719 16.6282 24.7 19.5 24.7Z" fill="white" />
     <path d="M14.625 3.25L11.6512 6.5H6.5C4.7125 6.5 3.25 7.9625 3.25 9.75V29.25C3.25 31.0375 4.7125 32.5 6.5 32.5H32.5C34.2875 32.5 35.75 31.0375 35.75 29.25V9.75C35.75 7.9625 34.2875 6.5 32.5 6.5H27.3487L24.375 3.25H14.625ZM19.5 27.625C15.015 27.625 11.375 23.985 11.375 19.5C11.375 15.015 15.015 11.375 19.5 11.375C23.985 11.375 27.625 15.015 27.625 19.5C27.625 23.985 23.985 27.625 19.5 27.625Z" fill="white"/>
   </g>
   <defs>
@@ -127,6 +130,7 @@ const GeneralInfoForm = () => {
     </clipPath>
   </defs>
 </svg>
+      </span>
             </div>
             {/* <div  id='lastrow'>
               <label htmlFor="photo">Add Photo</label>

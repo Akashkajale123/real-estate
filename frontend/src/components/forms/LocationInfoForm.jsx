@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { Link } from 'react-router-dom'
-
+import './LocationInfoForm.css'
 const validationSchema = Yup.object().shape({
   email: Yup.string()
     .email("Invalid email address")
@@ -63,8 +63,7 @@ const LocationInfoForm = () => {
   };
 
   return (
-    <div>
-      <h1>Add Property Form</h1>
+   
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -72,7 +71,8 @@ const LocationInfoForm = () => {
       >
         {({ errors, touched, setFieldValue }) => (
           <Form>
-            <div>
+           <div className="input" id="row1">
+           <div>
               <label htmlFor="email">Email</label>
               <Field type="email" id="email" name="email" placeholder="Email" />
               <ErrorMessage name="email" component="div" className="error" />
@@ -93,7 +93,9 @@ const LocationInfoForm = () => {
               </Field>
               <ErrorMessage name="city" component="div" className="error" />
             </div>
-            <div>
+           </div>
+          <div className="input">
+          <div>
               <label htmlFor="area">Area</label>
               <Field as="select" id="area" name="area">
                 <option value="">Select Area</option>
@@ -121,7 +123,9 @@ const LocationInfoForm = () => {
               />
               <ErrorMessage name="pincode" component="div" className="error" />
             </div>
-            <div>
+          </div>
+           <div className="input">
+           <div>
               <label htmlFor="address">Address</label>
               <Field
                 type="text"
@@ -141,6 +145,8 @@ const LocationInfoForm = () => {
               />
               <ErrorMessage name="landmark" component="div" className="error" />
             </div>
+           </div>
+            <div className="input" id="row4">
             <div>
               <label htmlFor="latitude">Latitude</label>
               <Field
@@ -165,14 +171,14 @@ const LocationInfoForm = () => {
                 className="error"
               />
             </div>
+            </div>
             <div>
-             <Link to='/general-info'> <button type="button">Previous</button></Link>
-              <button type="submit">Add Property</button>
+             <Link  to='/general-info'> <button id="btn1" type="button">Previous</button></Link>
+              <button id="btn2" type="submit">Add Property</button>
             </div>
           </Form>
         )}
       </Formik>
-    </div>
   );
 };
 
