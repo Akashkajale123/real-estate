@@ -4,15 +4,17 @@ import Navbar from 'react-bootstrap/Navbar';
 import { BsFillPersonFill } from 'react-icons/bs';
 import './Header.css';
 import LogoutDropdown from './LogoutDropdown';
+import { useUser } from '../../ContextApi/UserContext';
 
 const Header = () => {
+  const {userId,userName} = useUser();
   return (
     <Navbar bg="light" expand="lg" style={{ height: '127px' }}>
       <Container className="justify-content-between h-100">
-        <Navbar.Brand>USER ID : 06PPD125</Navbar.Brand>
+        <Navbar.Brand>USER ID :- {userId}</Navbar.Brand>
         <Navbar.Brand id='user'><span style={{ marginRight: '10px',  fontSize:'25px',paddingBottom:'10px'}}> 
         <BsFillPersonFill /> 
-      </span> User Name
+      </span> {userName}
         <LogoutDropdown/>
         </Navbar.Brand>
       </Container>

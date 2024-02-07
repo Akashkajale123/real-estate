@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import axios from "axios";
 import "./SignIN.css";
+import { useUser } from "../../ContextApi/UserContext";
 
 const SignIn = () => {
-  const [showPassword, setShowPassword] = useState(false); 
+  const {setUserId,setUserName} = useUser();
+  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
+
   const initialValues = {
     email: "",
     password: "",
@@ -15,15 +21,36 @@ const SignIn = () => {
   const validationSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email address").required("Email is required"),
     password: Yup.string()
-    .matches(/^(?=.*[!@#$%^&*])/, "special character required")
-      .min(6, "at least 6 characters required")
+      .min(6, "Password must be at least 6 characters")
       .required("Password is required"),
   });
 
-  const handleSubmit = (values, { resetForm }) => {
-    // Add your login logic here using the values object
-    console.log(values);
-    resetForm();
+  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+    try {
+      const response = await axios.post("http://localhost:4000/auth/signIn", values);
+      console.log(response.data);
+      const { UserData } = response.data;
+      const userId=UserData.Id;
+      const email = UserData.email_Id;
+      const userName = email.substring(0, email.indexOf('@')); // Extract username from email
+      setUserName(userName)
+      // console.log(userName)
+      setUserId(userId);
+      setUserName
+      setSubmitting(false);
+      resetForm();
+      navigate("/property-list");
+    } catch (error) {
+      console.error("Error occurred while signing in:", error);
+      setSubmitting(false);
+      if (error.response && error.response.data && error.response.data.message) {
+        setError(error.response.data.message);
+      } else if (error.response && error.response.status === 401) {
+        setError("Email is not registered. Please sign up first.");
+      } else {
+        setError("An error occurred while signing in. Please try again.");
+      }
+    }
   };
 
   return (
@@ -36,7 +63,7 @@ const SignIn = () => {
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
-          {({ values, handleChange, handleBlur, touched, errors }) => (
+          {({ isSubmitting, values, touched, errors }) => (
             <Form>
               <div className="inputs-box">
                 <Field
@@ -49,25 +76,26 @@ const SignIn = () => {
                 <ErrorMessage name="email" component="div" className="error" />
                 <div className="password_input_container">
                   <Field
-                    type={showPassword ? "text" : "password"} // Toggle password visibility
+                    type={showPassword ? "text" : "password"}
                     name="password"
                     placeholder="Password"
-                    className={
-                      touched.password && errors.password ? "password error" : "password"
-                    }
+                    className={touched.password && errors.password ? "password error" : "password"}
                   />
-                  <span className="password_toggle" onClick={() => setShowPassword((prev) => !prev)}>
+                  <span className="password_toggle" onClick={() => setShowPassword(prev => !prev)}>
                     {showPassword ? <FaEyeSlash /> : <FaEye />}
                   </span>
                   <ErrorMessage name="password" component="div" className="error" />
                 </div>
               </div>
-            <Link to='/property-list'>  <button type="submit" id="btn">Sign In</button></Link>
+              {error && <div className="error">{error}</div>}
+              <button type="submit" id="btn" disabled={isSubmitting}>
+                {isSubmitting ? "Signing In..." : "Sign In"}
+              </button>
             </Form>
           )}
         </Formik>
         <Link to="/signup" style={{ textDecoration: "none" }}>
-          <h2 id="signup">SignUp</h2>
+          <h2 id="signup">Sign Up</h2>
         </Link>
       </div>
       <div className="signup_link">
