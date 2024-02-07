@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 const LogoutDropdown = () => {
+    const navigate=useNavigate();
   const [showDropdown, setShowDropdown] = useState(false);
 
   const handleLogout = () => {
     // Implement your logout logic here
+    localStorage.removeItem('token');
+    localStorage.removeItem('userData');
     console.log("Logging out...");
+    navigate("/");
+    
   };
   const dropdownToggleStyle = {
     fontSize: '1.5rem', // Adjust the font size to reduce the arrow size

@@ -65,7 +65,7 @@ const SignUp = () => {
           )}
         </Formik>
       </div>
-      <Link style={{ textDecoration: "none" }} to="/signin">
+      <Link style={{ textDecoration: "none" }} to="/">
         <h2 id="sign-in-link">Sign in</h2>
       </Link>
     </div>

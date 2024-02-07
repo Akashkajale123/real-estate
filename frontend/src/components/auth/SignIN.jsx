@@ -21,7 +21,6 @@ const SignIn = () => {
   const validationSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email address").required("Email is required"),
     password: Yup.string()
-      .min(6, "Password must be at least 6 characters")
       .required("Password is required"),
   });
 
@@ -29,14 +28,17 @@ const SignIn = () => {
     try {
       const response = await axios.post("http://localhost:4000/auth/signIn", values);
       console.log(response.data);
-      const { UserData } = response.data;
+      const { UserData,Token } = response.data;
       const userId=UserData.Id;
       const email = UserData.email_Id;
       const userName = email.substring(0, email.indexOf('@')); // Extract username from email
       setUserName(userName)
       // console.log(userName)
       setUserId(userId);
-      setUserName
+      console.log(Token)
+      localStorage.setItem("token",Token);
+      localStorage.setItem("userData", UserData);
+      
       setSubmitting(false);
       resetForm();
       navigate("/property-list");
