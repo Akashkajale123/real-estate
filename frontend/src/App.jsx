@@ -10,6 +10,7 @@ import PropertyDetails from './Pages/PropertyDetails';
 import GeneralInfo from './Pages/GeneralInfo';
 import LocationInfo from './Pages/LocationInfo';
 import HorizantleButtons from './components/Layout/HorizantleButtons';
+import LogIn from './components/auth/LogIn';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" exact element={<SignIN/>} />
+        
           <Route path="/signup" element={<SignUp/>} />
           <Route path="/property-list" element={<PropertyList/>} />
           <Route path="/basic-info" element={

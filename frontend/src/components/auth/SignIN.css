@@ -102,24 +102,15 @@ letter-spacing: 0.25px;
 
 .password_input_container {
   position: relative;
+  margin-bottom: 20px;
 }
 
 .password {
   margin-top: 25px;
-  padding-right: 5px; /* Adjust as needed to accommodate the eye icon */
+  padding-right: 30px; /* Adjust as needed to accommodate the eye icon */
 }
 
-.password_toggle {
-  position: absolute;
-  width: 20px;
-height: 14.294px;
-flex-shrink: 0;
-  top: 50%;
-  right: 20px; /* Adjust as needed to position the eye icon */
-  transform: translateY(-50%);
-  cursor: pointer;
-  margin-top: 10px;
-}
+
 form{
   display: flex;
   flex-direction: column;
@@ -149,3 +140,25 @@ margin-top: 50px;
 #email_id{
   margin-top: 30px;
 }
+.password_toggle {
+  position: absolute;
+  width: 20px;
+  height: 14.294px;
+  flex-shrink: 0;
+  top: 50%;
+  right: 10px; /* Adjust as needed */
+  transform: translateY(-50%);
+  cursor: pointer;
+  margin-top: 10px;
+}
+.input .error {
+  color: red;
+  font-size: 14px;
+  margin-top: 3px; /* Adjust spacing as needed */
+  position: absolute; /* Position the error messages absolutely */
+  bottom: -20px; /* Adjust vertical position */
+}
+
+
+
+
