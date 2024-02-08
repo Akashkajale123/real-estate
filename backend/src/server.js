@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotEnv = require("dotenv");
 const authRoutes = require('./Routes/authRoutes.js')
+const propertyRoutes = require('./Routes/propertyRoutes.js')
 const cors = require('cors');
 dotEnv.config();
 
@@ -31,6 +32,9 @@ app.use(cors());
 
 // Routes
 app.use("/auth", authRoutes);
+
+// Property Routes
+app.use('/property',propertyRoutes);
 
 // Start the server
 app.listen(PORT, () => {

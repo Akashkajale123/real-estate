@@ -1,8 +1,8 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { Link } from 'react-router-dom'
-import './LocationInfoForm.css'
+import { Link } from "react-router-dom";
+import "./LocationInfoForm.css";
 const validationSchema = Yup.object().shape({
   email: Yup.string()
     .email("Invalid email address")
@@ -38,53 +38,26 @@ const LocationInfoForm = () => {
   const handleSubmit = (values) => {
     // Handle form submission here
     console.log(values);
-  };
-
-  const handleCityChange = (event, setFieldValue) => {
-    const selectedCity = event.target.value;
-    // Reset area field when city changes
-    setFieldValue("area", "");
-
-    // Set area options based on the selected city
-    switch (selectedCity) {
-      case "pune":
-        setFieldValue("area", "");
-        break;
-      case "mumbai":
-        setFieldValue("area", "");
-        break;
-      case "banglore":
-        setFieldValue("area", "");
-        break;
-      // Add cases for other cities
-      default:
-        break;
-    }
+    
   };
 
   return (
-   
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      >
-        {({ errors, touched, setFieldValue }) => (
-          <Form>
-           <div className="input" id="row1">
-           <div>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={handleSubmit}
+    >
+      {({ errors, touched, setFieldValue }) => (
+        <Form>
+          <div className="input" id="row1">
+            <div>
               <label htmlFor="email">Email</label>
               <Field type="email" id="email" name="email" placeholder="Email" />
               <ErrorMessage name="email" component="div" className="error" />
             </div>
             <div>
               <label htmlFor="city">City</label>
-              <Field
-                as="select"
-                id="city"
-                name="city"
-                onChange={(e) => handleCityChange(e, setFieldValue)}
-              >
+              <Field as="select" id="city" name="city">
                 <option value="">Select City</option>
                 <option value="pune">Pune</option>
                 <option value="mumbai">Mumbai</option>
@@ -93,23 +66,15 @@ const LocationInfoForm = () => {
               </Field>
               <ErrorMessage name="city" component="div" className="error" />
             </div>
-           </div>
+          </div>
           <div className="input">
-          <div>
+            <div>
               <label htmlFor="area">Area</label>
               <Field as="select" id="area" name="area">
                 <option value="">Select Area</option>
-                {/* Render area options based on the selected city */}
-                {/* For Pune */}
-                {/* {values.city === 'pune' && (
-                <>
-                  <option value="pimpri">Pimpri</option>
-                  <option value="chinchwad">Chinchwad</option>
-                  <option value="pune city">Pune City</option>
-                  <option value="katraj">Katraj</option>
-                </>
-              )} */}
-                {/* Add similar conditional rendering for other cities */}
+                <option value="shivajinagar">Shivajinagar</option>
+                <option value="Pimpri">Pimpri</option>
+                <option value="Chinchwad">Chinchwad</option>
               </Field>
               <ErrorMessage name="area" component="div" className="error" />
             </div>
@@ -124,8 +89,8 @@ const LocationInfoForm = () => {
               <ErrorMessage name="pincode" component="div" className="error" />
             </div>
           </div>
-           <div className="input">
-           <div>
+          <div className="input">
+            <div>
               <label htmlFor="address">Address</label>
               <Field
                 type="text"
@@ -145,8 +110,8 @@ const LocationInfoForm = () => {
               />
               <ErrorMessage name="landmark" component="div" className="error" />
             </div>
-           </div>
-            <div className="input" id="row4">
+          </div>
+          <div className="input" id="row4">
             <div>
               <label htmlFor="latitude">Latitude</label>
               <Field
@@ -171,15 +136,21 @@ const LocationInfoForm = () => {
                 className="error"
               />
             </div>
-            </div>
-            <div>
-             <Link  to='/general-info'> <button id="btn1" type="button">Previous</button></Link>
-              <button id="btn2" type="submit">Add Property</button>
-            </div>
-          </Form>
-        )}
-      </Formik>
+          </div>
+          <div>
+            <Link to="/general-info">
+              {" "}
+              <button id="btn1" type="button">
+                Previous
+              </button>
+            </Link>
+            <button id="btn2" type="submit">
+              Add Property
+            </button>
+          </div>
+        </Form>
+      )}
+    </Formik>
   );
 };
-
 export default LocationInfoForm;
