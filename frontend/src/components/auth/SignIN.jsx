@@ -32,10 +32,10 @@ const SignIn = () => {
       const userId=UserData.Id;
       const email = UserData.email_Id;
       const userName = email.substring(0, email.indexOf('@')); // Extract username from email
-      setUserName(userName)
+      setUserName(userName);
       // console.log(userName)
       setUserId(userId);
-      console.log(Token)
+      console.log(Token);
       localStorage.setItem("token",Token);
       localStorage.setItem("userData", UserData);
       

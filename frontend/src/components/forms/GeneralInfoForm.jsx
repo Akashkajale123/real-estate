@@ -1,13 +1,12 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import './GeneralInfoForm.css'
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
     .min(3, "Name must be at least 3 characters")
-    .max(15, "Name must not exceed 15 characters")
     .required("Name is required"),
   mobile: Yup.string()
     .matches(/^[0-9]{10}$/, "Invalid mobile number")
@@ -29,9 +28,11 @@ const initialValues = {
 };
 
 const GeneralInfoForm = () => {
+    const navigate = useNavigate();
   const handleSubmit = (values) => {
     // Handle form submission here
     console.log(values);
+    navigate('/location-info');
   };
   return (
     
@@ -139,7 +140,7 @@ const GeneralInfoForm = () => {
             <div>
               
              <Link to='/property-details'> <button id="btn1" type="button">Previous</button></Link>
-              <Link to='/location-info'><button id="btn2" type="submit">Save & Continue</button></Link>
+              <button id="btn2" type="submit">Save & Continue</button>
             </div>
           </Form>
         )}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { Link } from 'react-router-dom'
+import { Link,useNavigate } from 'react-router-dom'
 import './BasicInfoFrom.css'
 const validationSchema = Yup.object().shape({
   propertyType: Yup.string().required('Property type is required'),
@@ -26,10 +26,12 @@ const initialValues = {
 };
 
 const BasicInfoForm = () => {
+    const navigate = useNavigate();
   const handleSubmit = (values, { resetForm }) => {
     // Handle form submission here
     console.log(values);
     resetForm();
+    navigate("/property-details");
   };
 
   return (
@@ -110,7 +112,7 @@ const BasicInfoForm = () => {
            </div>
             <div >
              <Link to='/property-list'> <button id='btn1' type="button">Cancle</button></Link>
-              <Link to='/property-details'><button id='btn2'   type="submit">Save & Continue</button></Link>
+             <button id='btn2'   type="submit">Save & Continue</button>
             </div>
           </Form>
         )}
