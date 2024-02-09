@@ -24,6 +24,7 @@ const createProperty = async (req, res) => {
   }
 };
 
+
 module.exports = {
   createProperty
 };

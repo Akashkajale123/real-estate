@@ -41,7 +41,7 @@
     border-radius: 8px;
     background: #fff;
     box-shadow: 10px 14px 70px 0px rgba(0, 0, 0, 0.03);
-    position: relative; /* Add relative positioning to the input field */
+    position: relative; 
   }
   
   /* Placeholder styling for input fields */

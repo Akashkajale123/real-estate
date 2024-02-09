@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Link,useNavigate } from 'react-router-dom'
 import './BasicInfoFrom.css'
+import { useUser } from "../../ContextApi/UserContext";
 const validationSchema = Yup.object().shape({
   propertyType: Yup.string().required('Property type is required'),
   negotiable: Yup.string().required('Negotiable is required'),
@@ -26,12 +27,15 @@ const initialValues = {
 };
 
 const BasicInfoForm = () => {
+    const {updateFormDataArray,formDataArray} =useUser();
     const navigate = useNavigate();
   const handleSubmit = (values, { resetForm }) => {
     // Handle form submission here
+    updateFormDataArray(values);
     console.log(values);
     resetForm();
     navigate("/property-details");
+    console.log(formDataArray);
   };
 
   return (

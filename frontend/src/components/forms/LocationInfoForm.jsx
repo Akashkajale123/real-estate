@@ -1,8 +1,11 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useUser } from "../../ContextApi/UserContext";
 import "./LocationInfoForm.css";
+
 const validationSchema = Yup.object().shape({
   email: Yup.string()
     .email("Invalid email address")
@@ -34,11 +37,23 @@ const initialValues = {
   latitude: "",
   longitude: "",
 };
+
 const LocationInfoForm = () => {
-  const handleSubmit = (values) => {
-    // Handle form submission here
-    console.log(values);
-    
+    const {updateFormDataArray,formDataArray} =useUser();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (values) => {
+    try {
+        updateFormDataArray(values);
+        console.log(formDataArray)
+      const response=await axios.post("http://localhost:4000/property/properties", formDataArray);
+      formDataArray("");
+      console.log(response)
+      navigate("/property-list");
+      console
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (
@@ -62,7 +77,6 @@ const LocationInfoForm = () => {
                 <option value="pune">Pune</option>
                 <option value="mumbai">Mumbai</option>
                 <option value="banglore">Banglore</option>
-                {/* Add other city options here */}
               </Field>
               <ErrorMessage name="city" component="div" className="error" />
             </div>
@@ -139,7 +153,6 @@ const LocationInfoForm = () => {
           </div>
           <div>
             <Link to="/general-info">
-              {" "}
               <button id="btn1" type="button">
                 Previous
               </button>
@@ -153,4 +166,5 @@ const LocationInfoForm = () => {
     </Formik>
   );
 };
+
 export default LocationInfoForm;

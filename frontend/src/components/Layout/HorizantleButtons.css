@@ -21,6 +21,7 @@ margin: 40px 0px 0px 40px;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    position: relative;
 }
 .number{
     /* position:relative; */
@@ -30,6 +31,16 @@ margin: 40px 0px 0px 40px;
     border-radius: 18px;
     text-align: center;
 
+
+}
+.blue-box{
+    width: 200px;
+    height: 70px;
+    position: absolute;
+    border: 1px solid black;
+    border-radius: 35px;
+    background-color: #6AB4F8;
+    left: 60px;
 
 }
 
