@@ -1,0 +1,14 @@
+/* Example CSS */
+
+.sidebar-navbar-container {
+  width: 1605px;
+  height: 1080px;
+  flex-shrink: 0;
+  display: flex;
+ 
+}
+
+.sidebar-navbar-container .main-content {
+  flex-grow: 1; /* Main content takes up remaining space */
+}
+

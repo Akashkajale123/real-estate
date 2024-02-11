@@ -1,0 +1,23 @@
+aside {
+  width: 320px;
+  height: 140vh;
+  flex-shrink: 0;
+  background-color: #e1f9f4;
+}
+
+#sidebar-conatiner{
+    width: 172px;
+    height: 385px;
+    position: relative;
+    /* border: 1px solid black; */
+    margin:81px 0px 0px 96px;
+}
+#house_icon{
+    position: absolute;
+    right: 50px;
+}
+#gray-sidebar-icon span {
+    position: absolute;
+    right: 120px;
+}
+

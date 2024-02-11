@@ -1,0 +1,86 @@
+.main-content{
+    background-color: #FAFBFC;
+}
+.search{
+    margin:61px 0px 0px 42px;
+
+}
+#search-input{
+    height: 64px;
+    width: 377px;
+    border-radius: 32px;
+
+}
+#search-input::placeholder{
+    padding: 10px;
+}
+#vertical-line{
+    position: relative;
+    right: 77px;
+}
+#glass{
+    position: relative;
+    right: 60px;
+}
+#add-property-btn {
+  width: 182px;
+  height: 64px;
+  flex-shrink: 0;
+  background-color: #6ab4f8;
+  border-radius: 32px;
+  color: #fff;
+  font-family: "Source Sans Pro";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  filter: drop-shadow(0px 13px 25px rgba(0, 0, 0, 0.15));
+  margin:61px 0px 0px 600px;
+}
+.search-input-and-btn{
+    display: flex;
+
+}
+table {
+    
+    margin:0px 42px;
+    margin-top: 60px;
+    width: 1201px; /* Set the width of the table */
+    border-collapse: collapse; /* Collapse borders to prevent double borders */
+}
+
+thead tr th {
+    color: #284E91;
+    font-family: "Source Sans Pro";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding: 10px; /* Add padding for better spacing */
+    background-color: #FAFBFC;
+}
+
+tbody tr {
+    background-color: #FAFBFC; /* Set background color for each row */
+}
+tbody tr td {
+    color: #284E91;
+    font-family: "Source Sans Pro";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding: 10px; /* Add padding for better spacing */
+    background-color:#FFFFFF;
+}
+
+/* Adjust the width of each table header cell */
+thead tr th:nth-child(1) { width: 150px; }
+thead tr th:nth-child(2) { width: 150px; }
+thead tr th:nth-child(3) { width: 200px; }
+thead tr th:nth-child(4) { width: 150px; }
+thead tr th:nth-child(5) { width: 150px; }
+thead tr th:nth-child(6) { width: 100px; }
+thead tr th:nth-child(7) { width: 100px; }
+thead tr th:nth-child(8) { width: 100px; }
+thead tr th:nth-child(9) { width: 100px; }

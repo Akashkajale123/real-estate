@@ -1,0 +1,140 @@
+.signup_page {
+  width: 1440px;
+  height: 1024px;
+  background: #e1f9f4;
+  border: 1px solid blue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+.form_box {
+  width: 564px;
+  height: 583px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#logo {
+  color: #4c57b6;
+  font-family: "Open Sans";
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0.25px;
+  margin-top: 80px;
+}
+#para_line {
+  color: #000000;
+  text-align: center;
+  font-family: "Open Sans";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0.25px;
+  opacity: 0.6;
+  margin-top: 30px;
+}
+.inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+input {
+  width: 450px;
+  height: 54px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  border: 1px solid #e2e2e2;
+  background: var(--Colors-Neutral-White, #fff);
+}
+input::placeholder {
+  color: #000;
+  font-family: "Open Sans";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 120% */
+  letter-spacing: 0.25px;
+  opacity: 0.4;
+}
+button {
+  margin-top: 30px;
+  width: 450px;
+  height: 54px;
+  flex-shrink: 0;
+  background-color: #4c57b6;
+  color: #fff;
+  font-family: "Open Sans";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 18px; /* 120% */
+  letter-spacing: 0.25px;
+}
+#sign-in-link {
+    color: var(--352-d-66, #352d66);
+    text-align: center;
+    font-family: "Open Sans";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 22px; /* 122.222% */
+    letter-spacing: 0.25px;
+    margin-top: 40px;
+}
+/* #mail-id{
+    margin-top: 30px;
+    border-radius: 5px;
+}
+#confirm-password ,#password{
+    margin-top: 35px;
+    border-radius: 5px;
+    position: relative;
+} */
+#btn{
+    margin-top: 35px;
+    border-radius: 5px;
+}
+.email_input{
+  margin-top: 30px;
+  border-radius: 5px;
+  position: relative;
+  
+}
+.email-error{
+  position: absolute;
+  color: red;
+  bottom: -25px;
+}
+               
+.password-input{
+  position: relative;
+  margin-top: 35px;
+  border-radius: 5px;
+}
+.password-error{
+  position: absolute;
+  color: red;
+  bottom: -25px;
+
+}
+.conf-pass-input{
+  position: relative;
+  margin-top: 35px;
+  border-radius: 5px; 
+}
+.conf-pass-error{
+  position: absolute;
+  bottom: -25px;
+  color: red;
+}
+.error-message{
+  color: red;
+}
