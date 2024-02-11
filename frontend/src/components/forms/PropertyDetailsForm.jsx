@@ -3,7 +3,6 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { Link, useNavigate } from 'react-router-dom'
 import './PropertyDetailsForm.css'
-import { useUser } from "../../ContextApi/UserContext";
 const validationSchema = Yup.object().shape({
     length: Yup.number().positive("Length must be positive").required("Required"),
     breath: Yup.number().positive("Breath must be positive").required("Required"),
@@ -37,11 +36,9 @@ const validationSchema = Yup.object().shape({
   };
 
 const PropertyDetailsForm = () => {
-    const {updateFormDataArray} =useUser();
     const navigate = useNavigate();
     const handleSubmit = (values) => {
         // Handle form submission here
-        updateFormDataArray(values);
         console.log(values);
             navigate("/general-info")
         // You can call onNext() to proceed to the next step or save the data.

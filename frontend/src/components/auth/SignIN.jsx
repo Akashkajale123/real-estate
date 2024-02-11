@@ -68,14 +68,16 @@ const SignIn = () => {
           {({ isSubmitting, values, touched, errors }) => (
             <Form>
               <div className="inputs-box">
-                <Field
+             <div className="email-input">
+             <Field
                   type="text"
                   id="email_id"
                   name="email"
                   placeholder="User ID"
                   className={touched.email && errors.email ? "error" : ""}
                 />
-                <ErrorMessage name="email" component="div" className="error" />
+                <ErrorMessage name="email" component="div" className="email-error" />
+             </div>
                 <div className="password_input_container">
                   <Field
                     type={showPassword ? "text" : "password"}
@@ -86,10 +88,10 @@ const SignIn = () => {
                   <span className="password_toggle" onClick={() => setShowPassword(prev => !prev)}>
                     {showPassword ? <FaEyeSlash /> : <FaEye />}
                   </span>
-                  <ErrorMessage name="password" component="div" className="error" />
+                  <ErrorMessage name="password" component="div" className="error-password" />
                 </div>
+                {error && <div className="server-error">{error}</div>}
               </div>
-              {error && <div className="error">{error}</div>}
               <button type="submit" id="btn" disabled={isSubmitting}>
                 {isSubmitting ? "Signing In..." : "Sign In"}
               </button>

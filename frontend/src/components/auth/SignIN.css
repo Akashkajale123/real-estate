@@ -18,6 +18,7 @@
    display: flex;
   flex-direction: column;
   align-items: center; 
+  /* position: relative; */
 }
 
 #logo {
@@ -135,6 +136,7 @@ margin-top: 50px;
 }
 .inputs-box{
   margin-top: 30px;
+  position: relative;
 }
    
 #email_id{
@@ -151,13 +153,32 @@ margin-top: 50px;
   cursor: pointer;
   margin-top: 10px;
 }
-.input .error {
-  color: red;
-  font-size: 14px;
-  margin-top: 3px; /* Adjust spacing as needed */
-  position: absolute; /* Position the error messages absolutely */
-  bottom: -20px; /* Adjust vertical position */
+.email-input{
+  position: relative;
 }
+.email-error{
+  color: red;
+  position: absolute;
+  bottom: -25px;
+}
+.password_input_container{
+  margin-top: 15px;
+  position: relative;
+  /* background-color: lightgray; */
+}
+.error-password{
+position: absolute;
+bottom: -25px;
+color: red;
+
+}
+.server-error{
+  color: red;
+  position: absolute;
+  left:100px;
+  bottom: -20px;
+}
+
 
 
 

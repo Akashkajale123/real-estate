@@ -3,7 +3,6 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
 import './GeneralInfoForm.css'
-import { useUser } from "../../ContextApi/UserContext";
 const validationSchema = Yup.object().shape({
   name: Yup.string()
     .min(3, "Name must be at least 3 characters")
@@ -28,11 +27,9 @@ const initialValues = {
 };
 
 const GeneralInfoForm = () => {
-    const {updateFormDataArray} =useUser();
     const navigate = useNavigate();
   const handleSubmit = (values) => {
     // Handle form submission here
-    updateFormDataArray()
     console.log(values);
     navigate('/location-info');
   };

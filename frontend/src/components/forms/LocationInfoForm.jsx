@@ -3,7 +3,6 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useUser } from "../../ContextApi/UserContext";
 import "./LocationInfoForm.css";
 
 const validationSchema = Yup.object().shape({
@@ -39,18 +38,15 @@ const initialValues = {
 };
 
 const LocationInfoForm = () => {
-    const {updateFormDataArray,formDataArray} =useUser();
   const navigate = useNavigate();
 
   const handleSubmit = async (values) => {
     try {
-        updateFormDataArray(values);
-        console.log(formDataArray)
-      const response=await axios.post("http://localhost:4000/property/properties", formDataArray);
-      formDataArray("");
-      console.log(response)
+      console.log(values)
+      const response=await axios.post("http://localhost:4000/property/properties", values);
+      console.log(response.data)
+     
       navigate("/property-list");
-      console
     } catch (error) {
       console.error("Error:", error);
     }

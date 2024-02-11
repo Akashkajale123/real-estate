@@ -27,15 +27,13 @@ const initialValues = {
 };
 
 const BasicInfoForm = () => {
-    const {updateFormDataArray,formDataArray} =useUser();
     const navigate = useNavigate();
   const handleSubmit = (values, { resetForm }) => {
     // Handle form submission here
-    updateFormDataArray(values);
+
     console.log(values);
     resetForm();
     navigate("/property-details");
-    console.log(formDataArray);
   };
 
   return (

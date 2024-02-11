@@ -8,7 +8,7 @@ import "./SignUp.css";
 const validationSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email address").required("Email is required"),
   password: Yup.string()
-    .matches(/^(?=.*[!@#$%^&*])/, "at least one special character required")
+    .matches(/^(?=.*[!@#$%^&*₹])/, "at least one special character required")
     .min(6, "at least 6 characters required")
     .required("Password is required"),
   confirmPassword: Yup.string()
@@ -52,12 +52,18 @@ const SignUp = () => {
           {() => (
             <Form>
               <div className="inputs">
+                <div className="email_input">
                 <Field type="text" name="email" placeholder="Mail ID" id="mail-id" />
-                <ErrorMessage name="email" component="div" className="error" />
-                <Field type="password" name="password" placeholder="Password" id="password" />
-                <ErrorMessage name="password" component="div" className="error" />
+                <ErrorMessage name="email" component="div" className="email-error" />
+                </div>
+               <div className="password-input">
+               <Field type="password" name="password" placeholder="Password" id="password" />
+                <ErrorMessage name="password" component="div" className="password-error" />
+               </div>
+                <div className="conf-pass-input">
                 <Field type="password" name="confirmPassword" placeholder="Confirm Password" id="confirm-password" />
-                <ErrorMessage name="confirmPassword" component="div" className="error" />
+                <ErrorMessage name="confirmPassword" component="div" className="conf-pass-error" />
+                </div>
                 <button type="submit" id="btn">Sign up</button>
                 {errorMessage && <div className="error-message">{errorMessage}</div>} {/* Render error message if it exists */}
               </div>
