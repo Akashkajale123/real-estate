@@ -5,18 +5,11 @@ import Layout from "./components/Layout/Loyout"; // Import the Layout component
 import SignIN from "./components/auth/SignIN";
 import SignUp from "./components/auth/SignUp";
 import PropertyList from "./Pages/PropertyList";
-import BasicInfo from "./Pages/BasicInfo";
-import PropertyDetails from "./Pages/PropertyDetails";
-import GeneralInfo from "./Pages/GeneralInfo";
-import LocationInfo from "./Pages/LocationInfo";
-import HorizantleButtons from "./components/Layout/HorizantleButtons";
-import LogIn from "./components/auth/LogIn";
-import { UserProvider } from "./ContextApi/UserContext";
-import MultiStepForm from "./MultiStepForm";
+import MultiStepForm from "./Pages/MultiStepForm";
 
 function App() {
   return (
-    <UserProvider>
+    <Router>
       <Layout>
         <Routes>
           <Route path="/" exact element={<SignIN />} />
@@ -26,7 +19,7 @@ function App() {
          <Route path="/property-form" element={<MultiStepForm/>} />
         </Routes>
       </Layout>
-    </UserProvider>
+    </Router>
   );
 }
 

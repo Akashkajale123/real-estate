@@ -4,10 +4,10 @@ import Navbar from 'react-bootstrap/Navbar';
 import { BsFillPersonFill } from 'react-icons/bs';
 import './Header.css';
 import LogoutDropdown from './LogoutDropdown';
-import { useUser } from '../../ContextApi/UserContext';
+import { useUserData } from '../../ContextApi/UserContext';
 
 const Header = () => {
-  const {userId,userName} = useUser();
+  const {userId,userName} = useUserData();
   return (
     <Navbar bg="light" expand="lg" style={{ height: '127px' }}>
       <Container className="justify-content-between h-100">

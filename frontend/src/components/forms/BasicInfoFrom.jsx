@@ -1,9 +1,9 @@
-import {React,useContext} from 'react';
+import {React} from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import './BasicInfoFrom.css'
-
-import { useUser } from '../../ContextApi/UserContext';
+import {  useUserData } from '../../ContextApi/UserContext';
+import { Link } from 'react-router-dom';
 const validationSchema = Yup.object().shape({
   propertyType: Yup.string().required('Property type is required'),
   negotiable: Yup.string().required('Negotiable is required'),
@@ -27,16 +27,16 @@ const initialValues = {
 };
 
 const BasicInfoForm = () => {
-  const {nextStep} = useContext(useUser);
-  const handleSubmit = (values, { resetForm }) => {
+  const {nextStep,setFormData} = useUserData();
+  const handleSubmit = (values) => {
+    setFormData(values);
     // Handle form submission here
 
     console.log(values);
-    resetForm();
   };
 
   return (
-    <div>
+    <div style={{width: 1201, height: 656, background: 'white', boxShadow: '10px 14px 70px rgba(0, 0, 0, 0.03)', borderRadius: 20,margin:'61px 0 0 40px'}} >
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -112,7 +112,7 @@ const BasicInfoForm = () => {
             </div>
            </div>
             <div >
-             <button id='btn1' type="button">Cancle</button>
+            <Link to="/property-list"><button id='btn1' type="button">Cancle</button></Link> 
              <button id='btn2'   type="submit" onClick={nextStep}>Save & Continue</button>
             </div>
           </Form>

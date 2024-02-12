@@ -2,6 +2,7 @@ import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import './PropertyDetailsForm.css'
+import { useUserData } from '../../ContextApi/UserContext';
 const validationSchema = Yup.object().shape({
     length: Yup.number().positive("Length must be positive").required("Required"),
     breath: Yup.number().positive("Breath must be positive").required("Required"),
@@ -35,12 +36,15 @@ const validationSchema = Yup.object().shape({
   };
 
 const PropertyDetailsForm = () => {
+  const {prevStep,nextStep,setFormData} = useUserData();
     const handleSubmit = (values) => {
         // Handle form submission here
+        setFormData(values);
         console.log(values);
         // You can call onNext() to proceed to the next step or save the data.
       };
   return (
+    <div style={{width: 1201, height: 1012, background: 'white', boxShadow: '10px 14px 70px rgba(0, 0, 0, 0.03)', borderRadius: 20,margin:'61px 0 0 40px'}}>
     <Formik
     initialValues={initialValues}
     validationSchema={validationSchema}
@@ -193,12 +197,13 @@ const PropertyDetailsForm = () => {
 
 
         <div>
-        <button id='btn1' type="button"> Previous</button>
-          <button id='btn2' type="submit">Save & Continue</button>
+        <button id='btn1' type="button" onClick={prevStep}> Previous</button>
+          <button id='btn2' type="submit" onClick={nextStep}>Save & Continue</button>
         </div>
       </Form>
     )}
   </Formik>
+  </div>
   )
 }
 

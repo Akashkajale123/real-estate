@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import "./LocationInfoForm.css";
+import { useUserData } from "../../ContextApi/UserContext";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -37,19 +38,14 @@ const initialValues = {
 };
 
 const LocationInfoForm = () => {
-
+  const {prevStep,nextStep,setFormData} = useUserData();
   const handleSubmit = async (values) => {
-    try {
-      console.log(values)
-      const response=await axios.post("http://localhost:4000/property/properties", values);
-      console.log(response.data)
-     
-    } catch (error) {
-      console.error("Error:", error);
-    }
+    setFormData(values);
+    console.log(values);
   };
 
   return (
+    <div style={{width: 1201, height: 656, background: 'white', boxShadow: '10px 14px 70px rgba(0, 0, 0, 0.03)', borderRadius: 20,margin:'48px 0px 0px 40px'}}>
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
@@ -145,7 +141,7 @@ const LocationInfoForm = () => {
             </div>
           </div>
           <div>
-              <button id="btn1" type="button">
+              <button id="btn1" type="button" onClick={prevStep}>
                 Previous
               </button>
             <button id="btn2" type="submit">
@@ -155,6 +151,7 @@ const LocationInfoForm = () => {
         </Form>
       )}
     </Formik>
+    </div>
   );
 };
 
