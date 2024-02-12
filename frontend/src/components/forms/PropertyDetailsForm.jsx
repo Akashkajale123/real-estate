@@ -1,7 +1,6 @@
 import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { Link, useNavigate } from 'react-router-dom'
 import './PropertyDetailsForm.css'
 const validationSchema = Yup.object().shape({
     length: Yup.number().positive("Length must be positive").required("Required"),
@@ -36,11 +35,9 @@ const validationSchema = Yup.object().shape({
   };
 
 const PropertyDetailsForm = () => {
-    const navigate = useNavigate();
     const handleSubmit = (values) => {
         // Handle form submission here
         console.log(values);
-            navigate("/general-info")
         // You can call onNext() to proceed to the next step or save the data.
       };
   return (
@@ -196,7 +193,7 @@ const PropertyDetailsForm = () => {
 
 
         <div>
-        <Link to='/basic-info'><button id='btn1' type="button"> Previous</button></Link>
+        <button id='btn1' type="button"> Previous</button>
           <button id='btn2' type="submit">Save & Continue</button>
         </div>
       </Form>

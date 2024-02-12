@@ -1,7 +1,6 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./LocationInfoForm.css";
 
@@ -38,7 +37,6 @@ const initialValues = {
 };
 
 const LocationInfoForm = () => {
-  const navigate = useNavigate();
 
   const handleSubmit = async (values) => {
     try {
@@ -46,7 +44,6 @@ const LocationInfoForm = () => {
       const response=await axios.post("http://localhost:4000/property/properties", values);
       console.log(response.data)
      
-      navigate("/property-list");
     } catch (error) {
       console.error("Error:", error);
     }
@@ -148,11 +145,9 @@ const LocationInfoForm = () => {
             </div>
           </div>
           <div>
-            <Link to="/general-info">
               <button id="btn1" type="button">
                 Previous
               </button>
-            </Link>
             <button id="btn2" type="submit">
               Add Property
             </button>

@@ -1,7 +1,6 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { Link, useNavigate } from "react-router-dom";
 import './GeneralInfoForm.css'
 const validationSchema = Yup.object().shape({
   name: Yup.string()
@@ -27,11 +26,9 @@ const initialValues = {
 };
 
 const GeneralInfoForm = () => {
-    const navigate = useNavigate();
   const handleSubmit = (values) => {
     // Handle form submission here
     console.log(values);
-    navigate('/location-info');
   };
   return (
     
@@ -132,13 +129,10 @@ const GeneralInfoForm = () => {
 </svg>
       </span>
             </div>
-            {/* <div  id='lastrow'>
-              <label htmlFor="photo">Add Photo</label>
-              <Field type="file" id="photo" name="photo" />
-            </div> */}
+            
             <div>
               
-             <Link to='/property-details'> <button id="btn1" type="button">Previous</button></Link>
+             <button id="btn1" type="button">Previous</button>
               <button id="btn2" type="submit">Save & Continue</button>
             </div>
           </Form>

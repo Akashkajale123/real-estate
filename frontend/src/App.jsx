@@ -12,6 +12,7 @@ import LocationInfo from "./Pages/LocationInfo";
 import HorizantleButtons from "./components/Layout/HorizantleButtons";
 import LogIn from "./components/auth/LogIn";
 import { UserProvider } from "./ContextApi/UserContext";
+import MultiStepForm from "./MultiStepForm";
 
 function App() {
   return (
@@ -22,42 +23,7 @@ function App() {
 
           <Route path="/signup" element={<SignUp />} />
           <Route path="/property-list" element={<PropertyList />} />
-          <Route
-            path="/basic-info"
-            element={
-              <div>
-                <HorizantleButtons />
-                <BasicInfo />
-              </div>
-            }
-          />
-          <Route
-            path="/property-details"
-            element={
-              <div>
-                <HorizantleButtons />
-                <PropertyDetails />
-              </div>
-            }
-          />
-          <Route
-            path="/general-info"
-            element={
-              <div>
-                <HorizantleButtons />
-                <GeneralInfo />
-              </div>
-            }
-          />
-          <Route
-            path="/location-info"
-            element={
-              <div>
-                <HorizantleButtons />
-                <LocationInfo />
-              </div>
-            }
-          />
+         <Route path="/property-form" element={<MultiStepForm/>} />
         </Routes>
       </Layout>
     </UserProvider>
