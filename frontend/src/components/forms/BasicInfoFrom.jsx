@@ -1,9 +1,9 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { Link,useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './BasicInfoFrom.css'
-import { useUser } from "../../ContextApi/UserContext";
+import { FormData } from '../../ContextApi/FormContext';
 const validationSchema = Yup.object().shape({
   propertyType: Yup.string().required('Property type is required'),
   negotiable: Yup.string().required('Negotiable is required'),
@@ -26,12 +26,14 @@ const initialValues = {
   bankLoan: '',
 };
 
+
 const BasicInfoForm = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const { formData, setFormData } = FormData();
+
   const handleSubmit = (values, { resetForm }) => {
     // Handle form submission here
-
-    console.log(values);
+    setFormData({ ...formData, basicInfo: values });
     resetForm();
     navigate("/property-details");
   };
@@ -45,76 +47,76 @@ const BasicInfoForm = () => {
       >
         {({ errors, touched }) => (
           <Form>
-           <div   className='input' id='row1'>
-           <div id='pro-type'>
-              <label htmlFor="propertyType">Property Type</label>
-              <Field as="select" id="propertyType" name="propertyType">
-                <option value="">Select Property Type</option>
-                <option value="house">House</option>
-                <option value="plot">Plot</option>
-                <option value="flat">Flat</option>
-                <option value="shop">Shop</option>
-              </Field>
-              <ErrorMessage name="propertyType" component="div" className="error" />
+            <div className='input' id='row1'>
+              <div id='pro-type'>
+                <label htmlFor="propertyType">Property Type</label>
+                <Field as="select" id="propertyType" name="propertyType">
+                  <option value="">Select Property Type</option>
+                  <option value="house">House</option>
+                  <option value="plot">Plot</option>
+                  <option value="flat">Flat</option>
+                  <option value="shop">Shop</option>
+                </Field>
+                <ErrorMessage name="propertyType" component="div" className="error" />
+              </div>
+              <div >
+                <label htmlFor="negotiable">Negotiable</label>
+                <Field as="select" id="negotiable" name="negotiable">
+                  <option value="">Select Negotiable</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </Field>
+                <ErrorMessage name="negotiable" component="div" className="error" />
+              </div>
+            </div>
+            <div className='input'>
+              <div >
+                <label htmlFor="price">Price</label>
+                <Field type="number" id="price" name="price" />
+                <ErrorMessage name="price" component="div" className="error" />
+              </div>
+              <div>
+                <label htmlFor="ownership">Ownership</label>
+                <Field as="select" id="ownership" name="ownership">
+                  <option value="">Select Ownership</option>
+                  <option value="first owner">First Owner</option>
+                  <option value="second owner">Second Owner</option>
+                  <option value="third owner">Third Owner</option>
+                </Field>
+                <ErrorMessage name="ownership" component="div" className="error" />
+              </div>
+            </div>
+            <div className='input'>
+              <div>
+                <label htmlFor="propertyAge">Property Age</label>
+                <Field type="number" id="propertyAge" name="propertyAge" />
+                <ErrorMessage name="propertyAge" component="div" className="error" />
+              </div>
+              <div>
+                <label htmlFor="propertyApproved">Property Approved</label>
+                <Field as="select" id="propertyApproved" name="propertyApproved">
+                  <option value="">Property Approved</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </Field>
+                <ErrorMessage name="propertyApproved" component="div" className="error" />
+              </div>
+            </div>
+            <div className='input' id='row4'>
+              <div>
+                <label htmlFor="propertyDescription" id='pro-desc'>Property Description</label>
+                <Field as="textarea" id="propertyDescription" name="propertyDescription" />
+                <ErrorMessage name="propertyDescription" component="div" className="error" />
+              </div>
+              <div>
+                <label htmlFor="bankLoan">Bank Loan</label>
+                <Field type="number" id="bankLoan" name="bankLoan" />
+                <ErrorMessage name="bankLoan" component="div" className="error" />
+              </div>
             </div>
             <div >
-              <label htmlFor="negotiable">Negotiable</label>
-              <Field as="select" id="negotiable" name="negotiable">
-                <option value="">Select Negotiable</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-              </Field>
-              <ErrorMessage name="negotiable" component="div" className="error" />
-            </div>
-           </div>
-            <div  className='input'>
-            <div >
-              <label htmlFor="price">Price</label>
-              <Field type="number" id="price" name="price" />
-              <ErrorMessage name="price" component="div" className="error" />
-            </div>
-            <div>
-              <label htmlFor="ownership">Ownership</label>
-              <Field as="select" id="ownership" name="ownership">
-                <option value="">Select Ownership</option>
-                <option value="first owner">First Owner</option>
-                <option value="second owner">Second Owner</option>
-                <option value="third owner">Third Owner</option>
-              </Field>
-              <ErrorMessage name="ownership" component="div" className="error" />
-            </div>
-            </div>
-           <div  className='input'>
-           <div>
-              <label htmlFor="propertyAge">Property Age</label>
-              <Field type="number" id="propertyAge" name="propertyAge" />
-              <ErrorMessage name="propertyAge" component="div" className="error" />
-            </div>
-            <div>
-              <label htmlFor="propertyApproved">Property Approved</label>
-              <Field as="select" id="propertyApproved" name="propertyApproved">
-                <option value="">Property Approved</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-              </Field>
-              <ErrorMessage name="propertyApproved" component="div" className="error" />
-            </div>
-           </div>
-           <div  className='input' id='row4'>
-           <div>
-              <label htmlFor="propertyDescription" id='pro-desc'>Property Description</label>
-              <Field as="textarea" id="propertyDescription" name="propertyDescription" />
-              <ErrorMessage name="propertyDescription" component="div" className="error" />
-            </div>
-            <div>
-              <label htmlFor="bankLoan">Bank Loan</label>
-              <Field type="number" id="bankLoan" name="bankLoan" />
-              <ErrorMessage name="bankLoan" component="div" className="error" />
-            </div>
-           </div>
-            <div >
-             <Link to='/property-list'> <button id='btn1' type="button">Cancle</button></Link>
-             <button id='btn2'   type="submit">Save & Continue</button>
+              <Link to='/property-list'> <button id='btn1' type="button">Cancle</button></Link>
+              <button id='btn2' type="submit">Save & Continue</button>
             </div>
           </Form>
         )}
