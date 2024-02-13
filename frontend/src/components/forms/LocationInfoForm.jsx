@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./LocationInfoForm.css";
+import { useUserData } from "../../ContextApi/UserContext";
+
 import { FormData } from "../../ContextApi/FormContext";
 
 const validationSchema = Yup.object().shape({
@@ -39,24 +40,17 @@ const initialValues = {
 };
 
 const LocationInfoForm = () => {
-  const navigate = useNavigate();
-  const { formData, setFormData } = FormData();
 
+  const {prevStep,nextStep} = useUserData();
+  const {formData,setFormData}=FormData();
   const handleSubmit = async (values) => {
-    try {
-      // await setFormData({ ...formData, location: values });
-      console.log({ ...formData, location: values })
-      const response = await axios.post("http://localhost:4000/property/properties", { ...formData, location: values });
-      console.log(response.data)
+    setFormData(...formData,values);
+    console.log(formData);
 
-
-      navigate("/property-list");
-    } catch (error) {
-      console.error("Error:", error);
-    }
   };
 
   return (
+    <div style={{width: 1201, height: 656, background: 'white', boxShadow: '10px 14px 70px rgba(0, 0, 0, 0.03)', borderRadius: 20,margin:'48px 0px 0px 40px'}}>
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
@@ -152,11 +146,9 @@ const LocationInfoForm = () => {
             </div>
           </div>
           <div>
-            <Link to="/general-info">
-              <button id="btn1" type="button">
+              <button id="btn1" type="button" onClick={prevStep}>
                 Previous
               </button>
-            </Link>
             <button id="btn2" type="submit">
               Add Property
             </button>
@@ -164,6 +156,7 @@ const LocationInfoForm = () => {
         </Form>
       )}
     </Formik>
+    </div>
   );
 };
 

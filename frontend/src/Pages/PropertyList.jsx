@@ -22,7 +22,7 @@ placeholder="Search PPD ID"
 </svg></span>
 </div>
 
-   <Link to='/basic-info'> <button id="add-property-btn"> <BiPlus /> Add Property</button></Link>
+   <Link to='/property-form'> <button id="add-property-btn"> <BiPlus /> Add Property</button></Link>
    
    </div>
    <table>

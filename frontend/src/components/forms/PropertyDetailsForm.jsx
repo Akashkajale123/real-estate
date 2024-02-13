@@ -1,8 +1,10 @@
 import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { Link, useNavigate } from 'react-router-dom'
 import './PropertyDetailsForm.css'
+
+import { useUserData } from '../../ContextApi/UserContext';
+
 import { FormData } from '../../ContextApi/FormContext';
 const validationSchema = Yup.object().shape({
   length: Yup.number().positive("Length must be positive").required("Required"),
@@ -37,16 +39,18 @@ const initialValues = {
 };
 
 const PropertyDetailsForm = () => {
-  const navigate = useNavigate();
-  const { formData, setFormData } = FormData();
-  const handleSubmit = (values) => {
-    // Handle form submission here
-    setFormData({ ...formData, propertyDetails: values });
 
-    navigate("/general-info")
-    // You can call onNext() to proceed to the next step or save the data.
-  };
+  const {prevStep,nextStep} = useUserData();
+  const {formData,setFormData}=FormData();
+    const handleSubmit = (values) => {
+        // Handle form submission here
+        setFormData(...formData,values);
+        // console.log(formData);
+        // You can call onNext() to proceed to the next step or save the data.
+      };
+
   return (
+    <div style={{width: 1201, height: 1012, background: 'white', boxShadow: '10px 14px 70px rgba(0, 0, 0, 0.03)', borderRadius: 20,margin:'61px 0 0 40px'}}>
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
@@ -198,13 +202,16 @@ const PropertyDetailsForm = () => {
           </div>
 
 
-          <div>
-            <Link to='/basic-info'><button id='btn1' type="button"> Previous</button></Link>
-            <button id='btn2' type="submit">Save & Continue</button>
-          </div>
-        </Form>
-      )}
-    </Formik>
+
+        <div>
+        <button id='btn1' type="button" onClick={prevStep}> Previous</button>
+          <button id='btn2' type="submit" onClick={nextStep}>Save & Continue</button>
+        </div>
+      </Form>
+    )}
+  </Formik>
+  </div>
+
   )
 }
 

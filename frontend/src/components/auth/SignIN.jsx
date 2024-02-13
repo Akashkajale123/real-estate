@@ -5,10 +5,10 @@ import * as Yup from "yup";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import axios from "axios";
 import "./SignIN.css";
-import { useUser } from "../../ContextApi/UserContext";
+import { useUserData } from "../../ContextApi/UserContext";
 
 const SignIn = () => {
-  const {setUserId,setUserName} = useUser();
+  const {setUserId,setUserName} = useUserData();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
