@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./LocationInfoForm.css";
+import { FormData } from "../../ContextApi/FormContext";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -39,13 +40,16 @@ const initialValues = {
 
 const LocationInfoForm = () => {
   const navigate = useNavigate();
+  const { formData, setFormData } = FormData();
 
   const handleSubmit = async (values) => {
     try {
-      console.log(values)
-      const response=await axios.post("http://localhost:4000/property/properties", values);
+      // await setFormData({ ...formData, location: values });
+      console.log({ ...formData, location: values })
+      const response = await axios.post("http://localhost:4000/property/properties", { ...formData, location: values });
       console.log(response.data)
-     
+
+
       navigate("/property-list");
     } catch (error) {
       console.error("Error:", error);
