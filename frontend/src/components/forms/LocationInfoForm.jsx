@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
@@ -41,121 +41,127 @@ const initialValues = {
 
 const LocationInfoForm = () => {
 
-  const {prevStep,nextStep} = useUserData();
-  const {formData,setFormData}=FormData();
-  const handleSubmit = async (values) => {
-    setFormData(...formData,values);
-    console.log(formData);
+  const { prevStep } = useUserData();
+  const { formData, setFormData, submitForm } = FormData();
 
+  const [submitted, isSubmitted] = useState(false);
+
+  const handleSubmit = async (values) => {
+    await setFormData({ ...formData, ...values });
+    isSubmitted(true);
   };
 
+  useEffect(() => {
+    submitted && submitForm()
+  }, [submitForm, submitted])
+
   return (
-    <div style={{width: 1201, height: 656, background: 'white', boxShadow: '10px 14px 70px rgba(0, 0, 0, 0.03)', borderRadius: 20,margin:'48px 0px 0px 40px'}}>
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={handleSubmit}
-    >
-      {({ errors, touched, setFieldValue }) => (
-        <Form>
-          <div className="input" id="row1">
-            <div>
-              <label htmlFor="email">Email</label>
-              <Field type="email" id="email" name="email" placeholder="Email" />
-              <ErrorMessage name="email" component="div" className="error" />
+    <div style={{ width: 1201, height: 656, background: 'white', boxShadow: '10px 14px 70px rgba(0, 0, 0, 0.03)', borderRadius: 20, margin: '48px 0px 0px 40px' }}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
+        {({ errors, touched, setFieldValue }) => (
+          <Form>
+            <div className="input" id="row1">
+              <div>
+                <label htmlFor="email">Email</label>
+                <Field type="email" id="email" name="email" placeholder="Email" />
+                <ErrorMessage name="email" component="div" className="error" />
+              </div>
+              <div>
+                <label htmlFor="city">City</label>
+                <Field as="select" id="city" name="city">
+                  <option value="">Select City</option>
+                  <option value="pune">Pune</option>
+                  <option value="mumbai">Mumbai</option>
+                  <option value="banglore">Banglore</option>
+                </Field>
+                <ErrorMessage name="city" component="div" className="error" />
+              </div>
+            </div>
+            <div className="input">
+              <div>
+                <label htmlFor="area">Area</label>
+                <Field as="select" id="area" name="area">
+                  <option value="">Select Area</option>
+                  <option value="shivajinagar">Shivajinagar</option>
+                  <option value="Pimpri">Pimpri</option>
+                  <option value="Chinchwad">Chinchwad</option>
+                </Field>
+                <ErrorMessage name="area" component="div" className="error" />
+              </div>
+              <div>
+                <label htmlFor="pincode">Pincode</label>
+                <Field
+                  type="text"
+                  id="pincode"
+                  name="pincode"
+                  placeholder="Pincode"
+                />
+                <ErrorMessage name="pincode" component="div" className="error" />
+              </div>
+            </div>
+            <div className="input">
+              <div>
+                <label htmlFor="address">Address</label>
+                <Field
+                  type="text"
+                  id="address"
+                  name="address"
+                  placeholder="Address"
+                />
+                <ErrorMessage name="address" component="div" className="error" />
+              </div>
+              <div>
+                <label htmlFor="landmark">Landmark</label>
+                <Field
+                  type="text"
+                  id="landmark"
+                  name="landmark"
+                  placeholder="Landmark"
+                />
+                <ErrorMessage name="landmark" component="div" className="error" />
+              </div>
+            </div>
+            <div className="input" id="row4">
+              <div>
+                <label htmlFor="latitude">Latitude</label>
+                <Field
+                  type="text"
+                  id="latitude"
+                  name="latitude"
+                  placeholder="Latitude"
+                />
+                <ErrorMessage name="latitude" component="div" className="error" />
+              </div>
+              <div>
+                <label htmlFor="longitude">Longitude</label>
+                <Field
+                  type="text"
+                  id="longitude"
+                  name="longitude"
+                  placeholder="Longitude"
+                />
+                <ErrorMessage
+                  name="longitude"
+                  component="div"
+                  className="error"
+                />
+              </div>
             </div>
             <div>
-              <label htmlFor="city">City</label>
-              <Field as="select" id="city" name="city">
-                <option value="">Select City</option>
-                <option value="pune">Pune</option>
-                <option value="mumbai">Mumbai</option>
-                <option value="banglore">Banglore</option>
-              </Field>
-              <ErrorMessage name="city" component="div" className="error" />
-            </div>
-          </div>
-          <div className="input">
-            <div>
-              <label htmlFor="area">Area</label>
-              <Field as="select" id="area" name="area">
-                <option value="">Select Area</option>
-                <option value="shivajinagar">Shivajinagar</option>
-                <option value="Pimpri">Pimpri</option>
-                <option value="Chinchwad">Chinchwad</option>
-              </Field>
-              <ErrorMessage name="area" component="div" className="error" />
-            </div>
-            <div>
-              <label htmlFor="pincode">Pincode</label>
-              <Field
-                type="text"
-                id="pincode"
-                name="pincode"
-                placeholder="Pincode"
-              />
-              <ErrorMessage name="pincode" component="div" className="error" />
-            </div>
-          </div>
-          <div className="input">
-            <div>
-              <label htmlFor="address">Address</label>
-              <Field
-                type="text"
-                id="address"
-                name="address"
-                placeholder="Address"
-              />
-              <ErrorMessage name="address" component="div" className="error" />
-            </div>
-            <div>
-              <label htmlFor="landmark">Landmark</label>
-              <Field
-                type="text"
-                id="landmark"
-                name="landmark"
-                placeholder="Landmark"
-              />
-              <ErrorMessage name="landmark" component="div" className="error" />
-            </div>
-          </div>
-          <div className="input" id="row4">
-            <div>
-              <label htmlFor="latitude">Latitude</label>
-              <Field
-                type="text"
-                id="latitude"
-                name="latitude"
-                placeholder="Latitude"
-              />
-              <ErrorMessage name="latitude" component="div" className="error" />
-            </div>
-            <div>
-              <label htmlFor="longitude">Longitude</label>
-              <Field
-                type="text"
-                id="longitude"
-                name="longitude"
-                placeholder="Longitude"
-              />
-              <ErrorMessage
-                name="longitude"
-                component="div"
-                className="error"
-              />
-            </div>
-          </div>
-          <div>
               <button id="btn1" type="button" onClick={prevStep}>
                 Previous
               </button>
-            <button id="btn2" type="submit">
-              Add Property
-            </button>
-          </div>
-        </Form>
-      )}
-    </Formik>
+              <button id="btn2" type="submit">
+                Add Property
+              </button>
+            </div>
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 };

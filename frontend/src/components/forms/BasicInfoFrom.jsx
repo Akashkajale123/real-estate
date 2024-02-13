@@ -1,9 +1,9 @@
-import {React} from 'react';
+import { React } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import './BasicInfoFrom.css'
-import {  useUserData } from '../../ContextApi/UserContext';
-import {FormData} from "../../ContextApi/FormContext";
+import { useUserData } from '../../ContextApi/UserContext';
+import { FormData } from "../../ContextApi/FormContext";
 import { Link } from 'react-router-dom';
 
 const validationSchema = Yup.object().shape({
@@ -31,16 +31,18 @@ const initialValues = {
 
 const BasicInfoForm = () => {
 
-  const {nextStep} = useUserData();
-  const {formData, setFormData}=FormData();
+  const { nextStep } = useUserData();
+  const { formData, setFormData } = FormData();
   const handleSubmit = (values) => {
-    setFormData(...formData,values);
-    // Handle form submission here
+      console.log(values);
+      setFormData({...formData, ...values});
+      nextStep();
+    // Prevent default form submission behavior
 
     // console.log(values);
   }
   return (
-    <div style={{width: 1201, height: 656, background: 'white', boxShadow: '10px 14px 70px rgba(0, 0, 0, 0.03)', borderRadius: 20,margin:'61px 0 0 40px'}} >
+    <div style={{ width: 1201, height: 656, background: 'white', boxShadow: '10px 14px 70px rgba(0, 0, 0, 0.03)', borderRadius: 20, margin: '61px 0 0 40px' }} >
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -117,8 +119,8 @@ const BasicInfoForm = () => {
             </div>
             <div >
 
-            <Link to="/property-list"><button id='btn1' type="button">Cancle</button></Link> 
-             <button id='btn2'   type="submit" onClick={nextStep}>Save & Continue</button>
+              <Link to="/property-list"><button id='btn1' type="button">Cancle</button></Link>
+              <button id='btn2' type="submit">Save & Continue</button>
 
             </div>
           </Form>
