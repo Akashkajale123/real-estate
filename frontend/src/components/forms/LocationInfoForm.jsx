@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import "./LocationInfoForm.css";
 import { useUserData } from "../../ContextApi/UserContext";
+
 import { FormData } from "../../ContextApi/FormContext";
 
 const validationSchema = Yup.object().shape({
@@ -39,11 +40,13 @@ const initialValues = {
 };
 
 const LocationInfoForm = () => {
+
   const {prevStep,nextStep} = useUserData();
   const {formData,setFormData}=FormData();
   const handleSubmit = async (values) => {
     setFormData(...formData,values);
     console.log(formData);
+
   };
 
   return (

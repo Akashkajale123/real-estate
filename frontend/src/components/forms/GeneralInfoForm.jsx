@@ -2,7 +2,9 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import './GeneralInfoForm.css'
+
 import { useUserData } from "../../ContextApi/UserContext";
+
 import { FormData } from "../../ContextApi/FormContext";
 const validationSchema = Yup.object().shape({
   name: Yup.string()
@@ -27,15 +29,22 @@ const initialValues = {
   photo: null,
 };
 
+// Handle form submission here
+
 const GeneralInfoForm = () => {
+
   const {prevStep,nextStep} = useUserData();
   const {formData, setFormData}=FormData();
   const handleSubmit = (values) => {
     // Handle form submission here
     setFormData(...formData,values);
     // console.log(formData);
+
   };
+
+
   return (
+
     
      <div style={{width: 1201, height: 656, background: 'white', boxShadow: '10px 14px 70px rgba(0, 0, 0, 0.03)', borderRadius: 20,margin:'47px 0px 0px 40px'}} >
       <Formik
@@ -47,6 +56,7 @@ const GeneralInfoForm = () => {
           <Form>
            <div className="input" id="row1">
            <div>
+
               <label htmlFor="name">Name</label>
               <Field type="text" id="name" name="name" placeholder="Owner" />
               <ErrorMessage name="name" component="div" className="error" />
@@ -61,8 +71,8 @@ const GeneralInfoForm = () => {
               />
               <ErrorMessage name="mobile" component="div" className="error" />
             </div>
-           </div>
-            <div className="input">
+          </div>
+          <div className="input">
             <div>
               <label htmlFor="postedBy">Posted By</label>
               <Field as="select" id="postedBy" name="postedBy">
@@ -84,8 +94,8 @@ const GeneralInfoForm = () => {
               </Field>
               <ErrorMessage name="saleType" component="div" className="error" />
             </div>
-            </div>
-            <div className="input">
+          </div>
+          <div className="input">
             <div>
               <label htmlFor="featuredPackage">Featured Package</label>
               <Field as="select" id="featuredPackage" name="featuredPackage">
@@ -116,6 +126,7 @@ const GeneralInfoForm = () => {
                 className="error"
               />
             </div>
+
             </div>
             <div id="lastrow" style={{width: 105, height: 105, background: '#6AB4F8', boxShadow: '0px 10px 25px rgba(0, 0, 0, 0.13)',border:'1px solid black', borderRadius: 9999,position:'relative',marginRight:'400px'}}>
             <input type="file" id="photoUpload" accept="image/*" style={{position: 'absolute', width: '100%', height: '100%', opacity: 0, zIndex: 1, cursor: 'pointer'}} />
@@ -144,6 +155,7 @@ const GeneralInfoForm = () => {
         )}
       </Formik>
       </div>
+
   );
 };
 
