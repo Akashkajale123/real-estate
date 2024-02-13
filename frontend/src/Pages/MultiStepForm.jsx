@@ -47,7 +47,7 @@ const MultiStepForm = () => {
 
   return (
     <div>
-      <Formik initialValues={{}} onSubmit={(handleSubmit) => {}} validateOnMount>
+      <Formik initialValues={{}} onSubmit={handleSubmit} validateOnMount>
         <Form>
           <div style={{ marginBottom: '20px' }}>
             Step {step} of 4 - Progress: {Math.floor(((step - 1) / 3) * 100)}%
