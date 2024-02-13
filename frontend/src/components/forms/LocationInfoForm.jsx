@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import axios from "axios";
 import "./LocationInfoForm.css";
 import { useUserData } from "../../ContextApi/UserContext";
+import { FormData } from "../../ContextApi/FormContext";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -38,10 +39,11 @@ const initialValues = {
 };
 
 const LocationInfoForm = () => {
-  const {prevStep,nextStep,setFormData} = useUserData();
+  const {prevStep,nextStep} = useUserData();
+  const {formData,setFormData}=FormData();
   const handleSubmit = async (values) => {
-    setFormData(values);
-    console.log(values);
+    setFormData(...formData,values);
+    console.log(formData);
   };
 
   return (

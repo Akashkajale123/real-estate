@@ -6,18 +6,21 @@ import SignIN from "./components/auth/SignIN";
 import SignUp from "./components/auth/SignUp";
 import PropertyList from "./Pages/PropertyList";
 import MultiStepForm from "./Pages/MultiStepForm";
+import { FormProvider } from "./ContextApi/FormContext";
 
 function App() {
   return (
     <Router>
       <Layout>
-        <Routes>
-          <Route path="/" exact element={<SignIN />} />
+        <FormProvider>
+          <Routes>
+            <Route path="/" exact element={<SignIN />} />
 
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/property-list" element={<PropertyList />} />
-         <Route path="/property-form" element={<MultiStepForm/>} />
-        </Routes>
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/property-list" element={<PropertyList />} />
+            <Route path="/property-form" element={<MultiStepForm />} />
+          </Routes>
+        </FormProvider>
       </Layout>
     </Router>
   );
