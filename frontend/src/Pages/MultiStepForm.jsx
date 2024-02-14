@@ -5,23 +5,28 @@ import PropertyDetailsForm from '../components/forms/PropertyDetailsForm';
 import GeneralInfoForm from '../components/forms/GeneralInfoForm';
 import LocationInfoForm from '../components/forms/LocationInfoForm';
 import { useUserData } from '../ContextApi/UserContext';
+import { useNavigate } from 'react-router-dom';
+
 
 const MultiStepForm = () => {
   const { step, setStep, formData, setFormData } = useUserData();
 
   const handleSubmit = (values, actions) => {
+    const navigate = useNavigate();
     // Merge current form data with previous form data
     const newFormData = { ...formData, ...values };
     setFormData(newFormData);
     console.log(formData)
     if (step === 4) {
+    
       // Submit the final form data
       console.log('Final form data:', newFormData);
       // Perform any additional actions like API call here
       setStep(1);
       setFormData({});
+     
       
-    } else {
+    }else {
       // Move to the next step
       setStep(step + 1);
     }
