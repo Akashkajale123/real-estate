@@ -34,7 +34,7 @@ const BasicInfoForm = () => {
   const { nextStep } = useUserData();
   const { formData, setFormData } = FormData();
   const handleSubmit = (values) => {
-      console.log(values);
+      // console.log(values);
       setFormData({...formData, ...values});
       nextStep();
     // Prevent default form submission behavior
@@ -119,7 +119,7 @@ const BasicInfoForm = () => {
             </div>
             <div >
 
-              <Link to="/property-list"><button id='btn1' type="button">Cancle</button></Link>
+              <Link to="/property-list"><button id='btn1' type="button">Cancel</button></Link>
               <button id='btn2' type="submit">Save & Continue</button>
 
             </div>

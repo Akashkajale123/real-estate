@@ -41,34 +41,43 @@ const initialValues = {
 };
 
 const LocationInfoForm = () => {
+  const navigate = useNavigate();
+  const { prevStep, step, setStep, userId } = useUserData();
+  const { formData, setFormData } = FormData();
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(null);
 
-const navigate=useNavigate();
-  const { prevStep,step,nextStep } = useUserData();
-  const { formData, setFormData, submitForm } = FormData();
-
-  const [submitted, isSubmitted] = useState(false);
-
-  const handleSubmit = async (values,actions) => {
-    await setFormData({ ...formData, ...values });
-    actions.isSubmitted(true);
- console.log(formData)
-     // Simulating a successful submission
-     setTimeout(() => {
-      alert('Property successfully added!');
-      navigate('/property-list');
-      setSubmitting(false);
-    }, 1000);
- 
-    
-
-    
-
-
-  };
 
   useEffect(() => {
-    submitted && submitForm()
-  }, [submitForm, submitted])
+    const submitForm = async () => {
+      console.log(formData)
+      try {
+       
+        const response = await axios.post(`http://localhost:4000/property/addproperty/${userId}`, formData);
+        console.log(response.data);
+        alert('Property successfully added!');
+        navigate('/property-list');
+        setFormData({});
+        setStep(1);
+        setSubmitted(false); // Reset submitted state
+        setError(null); // Reset error state
+      } catch (error) {
+        console.error('Error adding property:', error);
+        setError(error);
+        setSubmitted(false); // Reset submitted state
+      }
+    };
+
+    if (submitted) {
+      submitForm();
+    }
+  }, [formData, submitted, setFormData, navigate, setStep, userId]);
+
+  const handleSubmit = (values, actions) => {
+    setFormData({ ...formData, ...values });
+    setSubmitted(true);
+    actions.setSubmitting(true);
+  };
 
   return (
     <div style={{ width: 1201, height: 656, background: 'white', boxShadow: '10px 14px 70px rgba(0, 0, 0, 0.03)', borderRadius: 20, margin: '48px 0px 0px 40px' }}>
@@ -173,6 +182,7 @@ const navigate=useNavigate();
               <button id="btn2" type="submit">
                 Add Property
               </button>
+              {error && <div style={{color:'red'}}>{error.message}</div>}
             </div>
           </Form>
         )}

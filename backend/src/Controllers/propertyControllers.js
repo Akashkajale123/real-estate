@@ -25,5 +25,17 @@ const User = require('../Models/User.js')
   }
 };
 
+exports.getAllProperties=async(req,res)=>{
+  try {
+    // Retrieve all properties from the database
+    const properties = await Property.find();
+    res.status(200).json(properties);
+  } catch (error) {
+    console.error('Error getting properties:', error);
+    res.status(500).json({ message: 'Failed to get properties' });
+  }
+}
+
+
 
 

@@ -1,52 +1,21 @@
 import React from 'react';
-import { Formik, Form } from 'formik';
 import BasicInfoForm from '../components/forms/BasicInfoFrom';
 import PropertyDetailsForm from '../components/forms/PropertyDetailsForm';
 import GeneralInfoForm from '../components/forms/GeneralInfoForm';
 import LocationInfoForm from '../components/forms/LocationInfoForm';
 import { useUserData } from '../ContextApi/UserContext';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
 
 const MultiStepForm = () => {
-  const { step, setStep, formData, setFormData } = useUserData();
-  const navigate = useNavigate();
-  const {userId} = useUserData();
-  const handleSubmit =async (values, actions) => {
+  const { step, setStep} = useUserData();
+  const handleSubmit = () => {
   
-    // Merge current form data with previous form data
-    const newFormData = { ...formData, ...values };
-    setFormData(newFormData);
-    console.log(formData)
-    if (step === 4) {
-      // Submit the final form data
-      
-      console.log('Final form data:', newFormData);
-      // Perform any additional actions like API call here
-      try {
-        // Perform the Axios POST request to the API endpoint
-        const response=await axios.post(`http://localhost:4000/property/addproperty/${userId}`, newFormData);
-        console.log(response)
+    // if (step === 4) {
+    //     setFormData({});
+    //     setStep(1);
 
-        // Reset form data and step
-        setFormData({});
-        setStep(1);
+    // }
 
-        // Redirect to property list page
-        navigate('/property-list');
-      } catch (error) {
-        console.error('Error saving property:', error);
-        // Handle any errors, show error message or log them
-      }
-    } else {
-      // Move to the next step
-      setStep(step + 1);
-    }
-
-    // Reset form state
-    actions.setSubmitting(false);
-    actions.resetForm();
   };
 
   const getFormStep = (step) => {
