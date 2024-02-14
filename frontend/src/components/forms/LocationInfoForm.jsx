@@ -41,29 +41,29 @@ const initialValues = {
 };
 
 const LocationInfoForm = () => {
-<<<<<<< HEAD
+
 const navigate=useNavigate();
-  const { prevStep,step } = useUserData();
-  const { formData, setFormData, submitForm } = FormData();
-=======
-
-  const { prevStep } = useUserData();
+  const { prevStep,step,nextStep } = useUserData();
   const { formData, setFormData, submitForm } = FormData();
 
->>>>>>> d3230bf297c501f7dc2b20e9c1c0132a34d2f472
   const [submitted, isSubmitted] = useState(false);
 
-  const handleSubmit = async (values) => {
+  const handleSubmit = async (values,actions) => {
     await setFormData({ ...formData, ...values });
-    isSubmitted(true);
-<<<<<<< HEAD
-    if(step>4){
-      navigate("/property-list");
-    }
+    actions.isSubmitted(true);
+ console.log(formData)
+     // Simulating a successful submission
+     setTimeout(() => {
+      alert('Property successfully added!');
+      navigate('/property-list');
+      setSubmitting(false);
+    }, 1000);
+ 
     
 
-=======
->>>>>>> d3230bf297c501f7dc2b20e9c1c0132a34d2f472
+    
+
+
   };
 
   useEffect(() => {
