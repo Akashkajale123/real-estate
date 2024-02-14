@@ -9,8 +9,12 @@ const FormContext = createContext();
 export const FormProvider = ({ children }) => {
     const [formData, setFormData] = useState([]);
 
+    const submitForm = () => {
+        console.log(formData);
+    }
+
     return (
-        <FormContext.Provider value={{ formData, setFormData }}>
+        <FormContext.Provider value={{ formData, setFormData, submitForm }}>
             {children}
         </FormContext.Provider>
     );
