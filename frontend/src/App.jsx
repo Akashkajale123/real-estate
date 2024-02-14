@@ -18,6 +18,7 @@ function App() {
 
             <Route path="/signup" element={<SignUp />} />
             <Route path="/property-list" element={<PropertyList />} />
+
             <Route path="/property-form" element={<MultiStepForm />} />
           </Routes>
         </FormProvider>

@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import axios from "axios";
 import "./LocationInfoForm.css";
 import { useUserData } from "../../ContextApi/UserContext";
+
 import { FormData } from "../../ContextApi/FormContext";
 import { useNavigate } from 'react-router-dom';
 
@@ -40,19 +41,29 @@ const initialValues = {
 };
 
 const LocationInfoForm = () => {
+<<<<<<< HEAD
 const navigate=useNavigate();
   const { prevStep,step } = useUserData();
   const { formData, setFormData, submitForm } = FormData();
+=======
+
+  const { prevStep } = useUserData();
+  const { formData, setFormData, submitForm } = FormData();
+
+>>>>>>> d3230bf297c501f7dc2b20e9c1c0132a34d2f472
   const [submitted, isSubmitted] = useState(false);
 
   const handleSubmit = async (values) => {
     await setFormData({ ...formData, ...values });
     isSubmitted(true);
+<<<<<<< HEAD
     if(step>4){
       navigate("/property-list");
     }
     
 
+=======
+>>>>>>> d3230bf297c501f7dc2b20e9c1c0132a34d2f472
   };
 
   useEffect(() => {
