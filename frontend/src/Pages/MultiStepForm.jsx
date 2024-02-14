@@ -13,13 +13,14 @@ const MultiStepForm = () => {
     // Merge current form data with previous form data
     const newFormData = { ...formData, ...values };
     setFormData(newFormData);
- console.log(formData)
+    console.log(formData)
     if (step === 4) {
       // Submit the final form data
       console.log('Final form data:', newFormData);
       // Perform any additional actions like API call here
       setStep(1);
       setFormData({});
+      
     } else {
       // Move to the next step
       setStep(step + 1);
@@ -47,15 +48,15 @@ const MultiStepForm = () => {
 
   return (
     <div>
-      <Formik initialValues={{}} onSubmit={handleSubmit} validateOnMount>
-        <Form>
-          <div style={{ marginBottom: '20px' }}>
-            Step {step} of 4 - Progress: {Math.floor(((step - 1) / 3) * 100)}%
-          </div>
-          {getFormStep(step)}
-        </Form>
-      </Formik>
-    </div>
+      {/* <Formik initialValues={{}} onSubmit={handleSubmit} validateOnMount> */}
+      {/* <Form> */}
+      <div style={{ marginBottom: '20px' }}>
+        Step {step} of 4 - Progress: {Math.floor(((step - 1) / 3) * 100)}%
+      </div>
+      {getFormStep(step)}
+      {/* </Form> */}
+      {/* // </Formik> */}
+    </div >
   );
 };
 
