@@ -34,12 +34,9 @@ const BasicInfoForm = () => {
   const { nextStep } = useUserData();
   const { formData, setFormData } = FormData();
   const handleSubmit = (values) => {
-      // console.log(values);
       setFormData({...formData, ...values});
+   
       nextStep();
-    // Prevent default form submission behavior
-
-    // console.log(values);
   }
   return (
     <div style={{ width: 1201, height: 656, background: 'white', boxShadow: '10px 14px 70px rgba(0, 0, 0, 0.03)', borderRadius: 20, margin: '61px 0 0 40px' }} >
@@ -120,7 +117,7 @@ const BasicInfoForm = () => {
             <div >
 
               <Link to="/property-list"><button id='btn1' type="button">Cancel</button></Link>
-              <button id='btn2' type="submit">Save & Continue</button>
+              <button id='btn2' type="submit" >Save & Continue</button>
 
             </div>
           </Form>

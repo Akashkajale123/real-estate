@@ -4,7 +4,6 @@ import * as Yup from "yup";
 import axios from "axios";
 import "./LocationInfoForm.css";
 import { useUserData } from "../../ContextApi/UserContext";
-
 import { FormData } from "../../ContextApi/FormContext";
 import { useNavigate } from 'react-router-dom';
 
@@ -47,36 +46,27 @@ const LocationInfoForm = () => {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(null);
 
-
-  useEffect(() => {
-    const submitForm = async () => {
-      console.log(formData)
-      try {
-       
-        const response = await axios.post(`http://localhost:4000/property/addproperty/${userId}`, formData);
-        console.log(response.data);
-        alert('Property successfully added!');
-        navigate('/property-list');
-        setFormData({});
-        setStep(1);
-        setSubmitted(false); // Reset submitted state
-        setError(null); // Reset error state
-      } catch (error) {
-        console.error('Error adding property:', error);
-        setError(error);
-        setSubmitted(false); // Reset submitted state
-      }
-    };
-
-    if (submitted) {
-      submitForm();
-    }
-  }, [formData, submitted, setFormData, navigate, setStep, userId]);
-
   const handleSubmit = (values, actions) => {
     setFormData({ ...formData, ...values });
     setSubmitted(true);
     actions.setSubmitting(true);
+    // console.log(formData)
+    axios.post(`http://localhost:4000/property/addproperty/${userId}`, formData,{
+      headers: {
+        'Authorization':  localStorage.getItem("token")
+      }
+    })
+  .then(response => {
+    console.log('POST request successful!');
+    console.log('Response data:', response.data);
+    setFormData({});
+    setStep(1);
+    navigate("/property-list")
+  })
+  .catch(error => {
+    console.error('Error making POST request:', error);
+  });
+   
   };
 
   return (

@@ -10,11 +10,11 @@ const MultiStepForm = () => {
   const { step, setStep} = useUserData();
   const handleSubmit = () => {
   
-    // if (step === 4) {
-    //     setFormData({});
-    //     setStep(1);
+    if (step === 4) {
+        setFormData({});
+        setStep(1);
 
-    // }
+    }
 
   };
 

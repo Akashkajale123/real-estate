@@ -1,9 +1,28 @@
-import React from "react";
+import React, { useState ,useEffect} from "react";
 import { Link } from 'react-router-dom'
-import { BiSearch } from 'react-icons/bi';
-import "./PropertyList.css"; // Import CSS file for custom styling if needed
+import "./PropertyList.css"; 
 import { BiPlus } from 'react-icons/bi';
+import axios from "axios";
 const PropertyList = () => {
+// Define state to hold property data
+const [properties, setProperties] = useState([]);
+
+// Function to fetch property data from the backend
+const fetchPropertyData = async () => {
+  try {
+    const response = await axios.get('http://localhost:4000/property/getAllProperties');
+    setProperties(response.data); // Update state with fetched data
+  } catch (error) {
+    console.error('Error fetching property data:', error);
+  }
+};
+
+// Load property data from the backend when the component mounts
+useEffect(() => {
+  fetchPropertyData();
+}, []); // Empty dependency array ensures the effect runs only once after the initial render
+
+
   return (
 <div className="main-content">
 <div className="search-input-and-btn">
@@ -40,17 +59,21 @@ placeholder="Search PPD ID"
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>101</td>
-            <td>image</td>
-            <td>flat</td>
-            <td>9923271586</td>
-            <td>550ft</td>
-            <td>02</td>
-            <td>sold</td>
-            <td>00</td>
-            <td>action</td>
-        </tr>
+         {/* Map over properties array to render each property */}
+         {properties.map(property => (
+            <tr key={property._id}>
+              {/* Render property details */}
+              <td>{property._id}</td>
+              <td>{property.photo}</td>
+              <td>{property.propertyType}</td>
+              <td>{property.mobile}</td>
+              <td>{property.area}</td>
+              <td>{2}</td>
+              <td>{5}</td>
+              <td>{12}</td>
+              <td>Action</td>
+            </tr>
+          ))}
     </tbody>
    </table>
 </div>

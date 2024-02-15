@@ -2,9 +2,7 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import './GeneralInfoForm.css'
-
 import { useUserData } from "../../ContextApi/UserContext";
-
 import { FormData } from "../../ContextApi/FormContext";
 const validationSchema = Yup.object().shape({
   name: Yup.string()
@@ -29,17 +27,14 @@ const initialValues = {
   photo: null,
 };
 
-// Handle form submission here
 
 const GeneralInfoForm = () => {
 
   const { prevStep, nextStep } = useUserData();
   const { formData, setFormData } = FormData();
   const handleSubmit = (values) => {
-    // Handle form submission here
     setFormData({...formData, ...values});
     nextStep();
-    // console.log(formData);
 
   };
 

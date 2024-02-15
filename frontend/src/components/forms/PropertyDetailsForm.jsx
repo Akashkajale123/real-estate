@@ -2,10 +2,9 @@ import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import './PropertyDetailsForm.css'
-
 import { useUserData } from '../../ContextApi/UserContext';
-
 import { FormData } from '../../ContextApi/FormContext';
+
 const validationSchema = Yup.object().shape({
   length: Yup.number().positive("Length must be positive").required("Required"),
   breath: Yup.number().positive("Breath must be positive").required("Required"),
@@ -43,11 +42,8 @@ const PropertyDetailsForm = () => {
   const { prevStep, nextStep } = useUserData();
   const { formData, setFormData } = FormData();
   const handleSubmit = (values) => {
-    // Handle form submission here
     setFormData({ ...formData, ...values });
     nextStep();
-    // console.log(formData);
-    // You can call onNext() to proceed to the next step or save the data.
   };
 
   return (
@@ -59,7 +55,6 @@ const PropertyDetailsForm = () => {
       >
         {({ errors, touched }) => (
           <Form>
-            {/* Render your form fields here */}
             <div className="input" id='row1'>
               <div >
                 <label htmlFor="length">Length</label>
