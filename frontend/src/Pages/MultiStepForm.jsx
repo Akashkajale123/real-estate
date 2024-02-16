@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import BasicInfoForm from '../components/forms/BasicInfoFrom';
 import PropertyDetailsForm from '../components/forms/PropertyDetailsForm';
 import GeneralInfoForm from '../components/forms/GeneralInfoForm';
 import LocationInfoForm from '../components/forms/LocationInfoForm';
 import { useUserData } from '../ContextApi/UserContext';
+import ProgressBar from './ProgressBar';
 
 
 const MultiStepForm = () => {
+  
+
   const { step, setStep} = useUserData();
   const handleSubmit = () => {
   
@@ -37,9 +40,10 @@ const MultiStepForm = () => {
     <div>
       {/* <Formik initialValues={{}} onSubmit={handleSubmit} validateOnMount> */}
       {/* <Form> */}
-      <div style={{ marginBottom: '20px' }}>
+      <div style={{ marginBottom: '20px' ,marginLeft:'500px'}}>
         Step {step} of 4 - Progress: {Math.floor(((step - 1) / 3) * 100)}%
       </div>
+      <ProgressBar/>
       {getFormStep(step)}
       {/* </Form> */}
       {/* // </Formik> */}

@@ -1,16 +1,25 @@
 import React, { useState ,useEffect} from "react";
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import "./PropertyList.css"; 
 import { BiPlus } from 'react-icons/bi';
 import axios from "axios";
+import { useUserData } from "../ContextApi/UserContext";
 const PropertyList = () => {
+  const navigate = useNavigate();
 // Define state to hold property data
 const [properties, setProperties] = useState([]);
-
+const {userId}=useUserData();
 // Function to fetch property data from the backend
 const fetchPropertyData = async () => {
+  if(!userId){
+    navigate("/")
+  }
   try {
-    const response = await axios.get('http://localhost:4000/property/getAllProperties');
+    const response = await axios.get(`http://localhost:4000/property/getAllProperties/${userId}`,{
+      headers: {
+        'Authorization': localStorage.getItem("token")
+      }
+    });
     setProperties(response.data); // Update state with fetched data
   } catch (error) {
     console.error('Error fetching property data:', error);
@@ -61,19 +70,21 @@ placeholder="Search PPD ID"
     <tbody>
          {/* Map over properties array to render each property */}
          {properties.map(property => (
-            <tr key={property._id}>
+            <tr key={property._id} style={{backgroundColor:'#FFFFFF'}}>
               {/* Render property details */}
               <td>{property._id}</td>
               <td>{property.photo}</td>
               <td>{property.propertyType}</td>
               <td>{property.mobile}</td>
-              <td>{property.area}</td>
+              <td>{property.totalArea}</td>
               <td>{2}</td>
               <td>{5}</td>
               <td>{12}</td>
               <td>Action</td>
             </tr>
+            
           ))}
+          <br />
     </tbody>
    </table>
 </div>

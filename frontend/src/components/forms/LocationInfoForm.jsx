@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
@@ -46,28 +46,39 @@ const LocationInfoForm = () => {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleSubmit = (values, actions) => {
-    setFormData({ ...formData, ...values });
-    setSubmitted(true);
-    actions.setSubmitting(true);
-    // console.log(formData)
-    axios.post(`http://localhost:4000/property/addproperty/${userId}`, formData,{
-      headers: {
-        'Authorization':  localStorage.getItem("token")
-      }
-    })
-  .then(response => {
-    console.log('POST request successful!');
-    console.log('Response data:', response.data);
-    setFormData({});
-    setStep(1);
-    navigate("/property-list")
-  })
-  .catch(error => {
-    console.error('Error making POST request:', error);
-  });
-   
+  const handleSubmit = async (values, actions) => {
+    try {
+  
+      setSubmitted(true);
+      actions.setSubmitting(true);
+      
+      const newFormData = { ...formData, ...values };
+      // setFormData(newFormData);
+      console.log(newFormData);
+  
+      const response = await axios.post(`http://localhost:4000/property/addproperty/${userId}`, newFormData, {
+        headers: {
+          'Authorization': localStorage.getItem("token")
+        }
+      });
+  
+      console.log('POST request successful!');
+      console.log('Response data:', response.data);
+      alert('Property suceessFully Added')
+      setFormData({});
+      setStep(1);
+      navigate("/property-list");
+    } catch (error) {
+      console.error('Error making POST request:', error);
+    
+      setError(error); 
+
   };
+
+  }
+
+
+   
 
   return (
     <div style={{ width: 1201, height: 656, background: 'white', boxShadow: '10px 14px 70px rgba(0, 0, 0, 0.03)', borderRadius: 20, margin: '48px 0px 0px 40px' }}>

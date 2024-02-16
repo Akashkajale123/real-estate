@@ -5,6 +5,6 @@ const propertyControllers = require('../Controllers/propertyControllers.js'); //
 
 // Define the route for creating a new property
 router.post('/addproperty/:id',validateUser,propertyControllers.addProperty);
-router.get('/getAllProperties',propertyControllers.getAllProperties);
+router.get('/getAllProperties/:id', propertyControllers.getAllProperties);
 
 module.exports = router;
