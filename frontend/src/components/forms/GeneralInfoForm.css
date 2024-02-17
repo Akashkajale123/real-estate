@@ -30,7 +30,8 @@
   
   .input > div select,
   .input > div input[type="text"],
-  .input > div input[type="number"]{
+  .input > div input[type="number"]
+  .input > div input[type="textarea"]{
     width: 520px; /* Set width of inputs */
     height: 60px; /* Set height of inputs */
     padding: 10px; /* Add padding for better appearance */

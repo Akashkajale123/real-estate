@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const propertySchema = new mongoose.Schema({
-  basicInfo: {
+
     propertyType: String,
     negotiable: String,
     price: Number,
@@ -10,8 +10,6 @@ const propertySchema = new mongoose.Schema({
     propertyApproved: String,
     propertyDescription: String,
     bankLoan: Number,
-  },
-  propertyDetails: {
     length: Number,
     breath: Number,
     totalArea: Number,
@@ -25,17 +23,13 @@ const propertySchema = new mongoose.Schema({
     lift: String,
     electricity: String,
     facing: String,
-  },
-  generalInfo: {
     name: String,
     mobile: Number,
     postedBy: String,
     saleType: String,
     featuredPackage: String,
     ppdPackage: String,
-    photo: String, // Store the URL of the photo
-  },
-  locationInfo: {
+    photo: String, 
     email: String,
     city: String,
     area: String,
@@ -44,9 +38,11 @@ const propertySchema = new mongoose.Schema({
     landmark: String,
     latitude: String,
     longitude: String,
-  },
+      // Modify the postedBy field to store the user's ObjectId
+      postedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' } // Reference to User model
+
 });
 
-const Property = mongoose.model('Property', propertySchema);
+const Property = mongoose.model('Property list', propertySchema);
 
 module.exports = Property;

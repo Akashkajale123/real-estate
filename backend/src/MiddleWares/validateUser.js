@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-const validateUser = (res, req, next) => {
+const validateUser = (req, res, next) => { // Corrected order of parameters
   // Extract the token from the Authorization header
   const token = req.header("Authorization");
 
@@ -16,7 +16,7 @@ const validateUser = (res, req, next) => {
     const decoded = jwt.verify(token, process.env.key); // Replace 'your-secret-key' with your actual secret key
 
     // Attach user ID to the request object
-    req.user({ userId: decoded.userId });
+    req.user = { userId: decoded.userId }; // Corrected assignment
     next();
   } catch (error) {
     console.error(error);
@@ -25,3 +25,5 @@ const validateUser = (res, req, next) => {
       .json({ status: "error", message: "Unauthorized - Invalid token" });
   }
 };
+
+module.exports = validateUser;

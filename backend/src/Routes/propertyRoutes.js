@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router(); // Create a router
-
-const propertyController = require('../Controllers/propertyControllers.js'); // Import the controller
+const validateUser = require('../MiddleWares/validateUser.js')
+const propertyControllers = require('../Controllers/propertyControllers.js'); // Import the controller
 
 // Define the route for creating a new property
-router.post('/properties',propertyController.createProperty);
+router.post('/addproperty/:id',validateUser,propertyControllers.addProperty);
+router.get('/getAllProperties/:id', propertyControllers.getAllProperties);
 
 module.exports = router;

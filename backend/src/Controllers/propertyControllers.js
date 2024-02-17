@@ -1,30 +1,41 @@
-const Property = require('../Models/propertySchema.js'); // Import the Property model
 
-// Controller function to handle POST request for creating a new property
-const createProperty = async (req, res) => {
-  const {
-    basicInfo,
-    propertyDetails,
-    generalInfo,
-    locationInfo
-  } = req.body;
+const Property = require('../Models/propertySchema.js');
+const User = require('../Models/User.js')
 
+ exports.addProperty=async(req, res)=>{
   try {
-    const property = new Property({
-      basicInfo,
-      propertyDetails,
-      generalInfo,
-      locationInfo
-    });
+      const propertyData = req.body; // Assuming request body contains property data
+      
+      const userId = req.params.id;
+      // Create a new property document
+      const property = new Property({
+          ...propertyData,
+          postedBy: userId // Assign the user's ObjectId to the postedBy field
+      });
 
-    const newProperty = await property.save();
-    res.status(201).json(newProperty);
+      // Save the property document to the database
+      await property.save();
+       // Update the user's property array in the User model
+    await User.findByIdAndUpdate(userId, { $push: { properties: property._id } });
+
+      res.status(201).json({ status: 'success', message: 'Property saved successfully' });
   } catch (error) {
-    res.status(400).json({ message: error.message });
+      console.error(error);
+      res.status(500).json({ status: 'error', message: 'Failed to save property' });
   }
 };
 
+exports.getAllProperties=async(req,res)=>{
+  try {
+    // Retrieve all properties from the database
+    const properties = await Property.find();
+    res.status(200).json(properties);
+  } catch (error) {
+    console.error('Error getting properties:', error);
+    res.status(500).json({ message: 'Failed to get properties' });
+  }
+}
 
-module.exports = {
-  createProperty
-};
+
+
+
