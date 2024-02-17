@@ -8,7 +8,7 @@ import "./SignIN.css";
 import { useUserData } from "../../ContextApi/UserContext";
 
 const SignIn = () => {
-  const {setUserId,setUserName} = useUserData();
+  const {setUserId,setUserName,setId} = useUserData();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
@@ -29,7 +29,9 @@ const SignIn = () => {
       const response = await axios.post("http://localhost:4000/auth/signIn", values);
       console.log(response.data);
       const { UserData,Token } = response.data;
-      const userId=UserData.Id;
+     setId(UserData.Id);
+      // console.log(UserData.userId);
+      const userId=UserData.userId;
       const email = UserData.email_Id;
       const userName = email.substring(0, email.indexOf('@')); // Extract username from email
       setUserName(userName);

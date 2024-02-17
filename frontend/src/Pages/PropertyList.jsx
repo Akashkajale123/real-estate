@@ -8,9 +8,10 @@ const PropertyList = () => {
   const navigate = useNavigate();
 // Define state to hold property data
 const [properties, setProperties] = useState([]);
-const {userId}=useUserData();
+const {userId,ppdId}=useUserData();
 // Function to fetch property data from the backend
 const fetchPropertyData = async () => {
+  console.log(ppdId);
   if(!userId){
     navigate("/")
   }
@@ -25,6 +26,7 @@ const fetchPropertyData = async () => {
     console.error('Error fetching property data:', error);
   }
 };
+
 
 // Load property data from the backend when the component mounts
 useEffect(() => {
@@ -72,7 +74,7 @@ placeholder="Search PPD ID"
          {properties.map(property => (
             <tr key={property._id} style={{backgroundColor:'#FFFFFF'}}>
               {/* Render property details */}
-              <td>{property._id}</td>
+              <td>{property.propertyID}</td>
               <td>{property.photo}</td>
               <td>{property.propertyType}</td>
               <td>{property.mobile}</td>

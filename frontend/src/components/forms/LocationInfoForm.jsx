@@ -41,14 +41,13 @@ const initialValues = {
 
 const LocationInfoForm = () => {
   const navigate = useNavigate();
-  const { prevStep, step, setStep, userId } = useUserData();
+  const { prevStep, setStep,id,setPPDId} = useUserData();
   const { formData, setFormData } = FormData();
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(null);
-
   const handleSubmit = async (values, actions) => {
     try {
-  
+      console.log(id);
       setSubmitted(true);
       actions.setSubmitting(true);
       
@@ -56,7 +55,7 @@ const LocationInfoForm = () => {
       // setFormData(newFormData);
       console.log(newFormData);
   
-      const response = await axios.post(`http://localhost:4000/property/addproperty/${userId}`, newFormData, {
+      const response = await axios.post(`http://localhost:4000/property/addproperty/${id}`, newFormData, {
         headers: {
           'Authorization': localStorage.getItem("token")
         }
@@ -64,12 +63,15 @@ const LocationInfoForm = () => {
   
       console.log('POST request successful!');
       console.log('Response data:', response.data);
-      alert('Property suceessFully Added')
+      const {propertyID} =response.data;
+      // console.log(propertyID);
+      setPPDId(propertyID);
+      alert('Property suceessFully Added');
       setFormData({});
       setStep(1);
       navigate("/property-list");
     } catch (error) {
-      console.error('Error making POST request:', error);
+      console.error('Error making POST request :-', error);
     
       setError(error); 
 

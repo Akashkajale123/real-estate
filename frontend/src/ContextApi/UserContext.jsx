@@ -10,6 +10,8 @@ export const UserProvider = ({ children }) => {
   const [userName,setUserName]=useState('Please sign in');
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({});
+  const [id,setId]=useState(1);
+  const [pppId,setPPDId]=useState(null);
 
   const nextStep = () => {
     setStep(step + 1);
@@ -24,7 +26,7 @@ export const UserProvider = ({ children }) => {
 
   return (
     <UserContext.Provider value={{ userId, setUserId, userName, setUserName,prevStep,nextStep,step,setStep,
-    formData,setFormData }}>
+    formData,setFormData,id,setId,pppId,setPPDId }}>
       {children}
     </UserContext.Provider>
   );
