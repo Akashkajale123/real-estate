@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const propertySchema = new mongoose.Schema({
-
+  PPDID: { type: String, unique: true },
     propertyType: String,
     negotiable: String,
     price: Number,

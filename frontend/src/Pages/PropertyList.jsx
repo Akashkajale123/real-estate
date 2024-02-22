@@ -8,7 +8,7 @@ const PropertyList = () => {
   const navigate = useNavigate();
 // Define state to hold property data
 const [properties, setProperties] = useState([]);
-const {userId}=useUserData();
+const {userId,PPDId}=useUserData();
 // Function to fetch property data from the backend
 const fetchPropertyData = async () => {
   if(!userId){
@@ -26,7 +26,7 @@ const fetchPropertyData = async () => {
   }
 };
 
-// Load property data from the backend when the component mounts
+
 useEffect(() => {
   fetchPropertyData();
 }, []); // Empty dependency array ensures the effect runs only once after the initial render
@@ -72,7 +72,7 @@ placeholder="Search PPD ID"
          {properties.map(property => (
             <tr key={property._id} style={{backgroundColor:'#FFFFFF'}}>
               {/* Render property details */}
-              <td>{property._id}</td>
+              <td>{property.PPDID}</td>
               <td>{property.photo}</td>
               <td>{property.propertyType}</td>
               <td>{property.mobile}</td>
