@@ -61,10 +61,9 @@ const LocationInfoForm = () => {
         }
       });
   
-      console.log('POST request successful!');
+      console.log('POST request successful!'); 
       console.log('Response data:', response.data);
       const {propertyID} =response.data;
-      // console.log(propertyID);
       setPPDId(propertyID);
       alert('Property suceessFully Added');
       setFormData({});

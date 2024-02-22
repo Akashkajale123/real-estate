@@ -11,7 +11,7 @@ export const UserProvider = ({ children }) => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({});
   const [id,setId]=useState(1);
-  const [pppId,setPPDId]=useState(null);
+  const [PPDId,setPPDId]=useState(1);
 
   const nextStep = () => {
     setStep(step + 1);
@@ -26,7 +26,7 @@ export const UserProvider = ({ children }) => {
 
   return (
     <UserContext.Provider value={{ userId, setUserId, userName, setUserName,prevStep,nextStep,step,setStep,
-    formData,setFormData,id,setId,pppId,setPPDId }}>
+    formData,setFormData,id,setId,PPDId,setPPDId }}>
       {children}
     </UserContext.Provider>
   );

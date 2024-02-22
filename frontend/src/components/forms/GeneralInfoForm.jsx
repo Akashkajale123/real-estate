@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import axios from 'axios';
 import * as Yup from "yup";
 import './GeneralInfoForm.css'
 import { useUserData } from "../../ContextApi/UserContext";
@@ -32,12 +33,35 @@ const GeneralInfoForm = () => {
 
   const { prevStep, nextStep } = useUserData();
   const { formData, setFormData } = FormData();
-  const handleSubmit = (values) => {
-    setFormData({...formData, ...values});
-    nextStep();
+  const [selectedFile, setSelectedFile] = useState(null);
+  const handleSubmit = async (values) => { // Make the handleSubmit function asynchronous
+    try {
+      const formData = new window.FormData();
+      formData.append('name', values.name);
+      formData.append('mobile', values.mobile);
+      formData.append('postedBy', values.postedBy);
+      formData.append('saleType', values.saleType);
+      formData.append('featuredPackage', values.featuredPackage);
+      formData.append('ppdPackage', values.ppdPackage);
+      formData.append('photo', selectedFile);
 
+      await axios.post('http://localhost:4000/property/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+
+      setFormData({...formData, ...values , photo: selectedFile});
+      nextStep();
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      // Handle error
+    }
   };
 
+  const handleFileChange = (event, setFieldValue) => {
+    setFieldValue("photo", event.currentTarget.files[0]);
+  };
 
   return (
 
@@ -48,7 +72,7 @@ const GeneralInfoForm = () => {
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({ errors, touched }) => (
+        {({ errors, touched,values, setFieldValue  }) => (
           <Form>
             <div className="input" id="row1">
               <div>
@@ -125,8 +149,12 @@ const GeneralInfoForm = () => {
 
             </div>
             <div id="lastrow" style={{ width: 105, height: 105, background: '#6AB4F8', boxShadow: '0px 10px 25px rgba(0, 0, 0, 0.13)', border: '1px solid black', borderRadius: 9999, position: 'relative', marginRight: '400px' }}>
-              <input type="file" id="photoUpload" accept="image/*" style={{ position: 'absolute', width: '100%', height: '100%', opacity: 0, zIndex: 1, cursor: 'pointer' }} />
-              <div style={{ width: '80px', color: '#7D7D7D', fontSize: 18, fontFamily: 'Source Sans Pro', fontWeight: '400', wordWrap: 'break-word', position: 'absolute', top: '35px', left: '130px' }}>Add Photo</div>
+              <input id="photo"
+                  name="photo"
+                  type="file"
+                  onChange={(event) => handleFileChange(event, setFieldValue)}
+                  accept="image/*" style={{ position: 'absolute', width: '100%', height: '100%', opacity: 0, zIndex: 1, cursor: 'pointer' }} />
+              <label htmlFor="photo" style={{ width: '80px', color: '#7D7D7D', fontSize: 18, fontFamily: 'Source Sans Pro', fontWeight: '400', wordWrap: 'break-word', position: 'absolute', top: '35px', left: '130px' }}>  {values.photo ? values.photo.name : "Choose a photo"}</label>
               <span id="camera-svg">
                 <svg xmlns="http://www.w3.org/2000/svg" width="39" height="39" viewBox="0 0 39 39" fill="none" >
                   <g clipPath="url(#clip0_0_433)">
