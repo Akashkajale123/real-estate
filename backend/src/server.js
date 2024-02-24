@@ -1,16 +1,16 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotEnv = require("dotenv");
-const authRoutes = require('./Routes/authRoutes.js')
-const propertyRoutes = require('./Routes/propertyRoutes.js')
-const cors = require('cors');
+const authRoutes = require("./Routes/authRoutes.js");
+const propertyRoutes = require("./Routes/propertyRoutes.js");
+const cors = require("cors");
 dotEnv.config();
 
 const app = express();
 const PORT = 4000;
 
-const URI ="mongodb+srv://akashkajale125:BuzgMLM7KAsGVGix@cluster1.fnodolx.mongodb.net/Real_Estate_properties?retryWrites=true&w=majority";
-
+const URI =
+  "mongodb+srv://akashkajale125:BuzgMLM7KAsGVGix@cluster1.fnodolx.mongodb.net/Real_Estate_properties?retryWrites=true&w=majority";
 
 // Database connection
 const connectDB = async () => {
@@ -34,7 +34,7 @@ app.use(cors());
 app.use("/auth", authRoutes);
 
 // Property Routes
-app.use('/property',propertyRoutes);
+app.use("/property", propertyRoutes);
 
 // Start the server
 app.listen(PORT, () => {
