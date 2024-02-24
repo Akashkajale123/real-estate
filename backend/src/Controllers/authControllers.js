@@ -11,21 +11,22 @@ function generateUserID() {
   return prefix + randomString;
 }
 
-
 exports.signIn = async (req, res) => {
   try {
     const { email, password } = req.body;
     // Check if the user exists
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(401)
+      return res
+        .status(401)
         .json({ status: "error", message: "Invalid email or password" });
     }
 
     // Verify the password
     const passwordMatch = await bcrypt.compare(password, user.password);
     if (!passwordMatch) {
-      return res.status(401)
+      return res
+        .status(401)
         .json({ status: "error", message: "Invalid email or password" });
     }
 
@@ -39,30 +40,32 @@ exports.signIn = async (req, res) => {
       status: "success",
       message: "Login successful",
       Token: token,
-      UserData: { Id: user._id, email_Id: user.email ,userId:user.userID},
+      UserData: { Id: user._id, email_Id: user.email, userId: user.userID },
     });
   } catch (error) {
     console.error(error);
-    return res.status(500)
+    return res
+      .status(500)
       .json({ status: "error", message: "Internal Server Error" });
   }
 };
-
 
 exports.signUp = async (req, res) => {
   try {
     const { email, password } = req.body;
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(409).json({ status: "error", message: "Email already registered" });
+      return res
+        .status(409)
+        .json({ status: "error", message: "Email already registered" });
     }
-    
+
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Generate unique user ID
     const userID = generateUserID();
-    console.log(userID)
+    console.log(userID);
 
     const newUser = new User({ email, password: hashedPassword, userID });
     await newUser.save();
@@ -73,7 +76,8 @@ exports.signUp = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ status: "error", message: "Internal Server Error" });
+    return res
+      .status(500)
+      .json({ status: "error", message: "Internal Server Error" });
   }
 };
-

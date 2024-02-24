@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 
-const validateUser = (req, res, next) => { // Corrected order of parameters
+const validateUser = (req, res, next) => {
+  // Corrected order of parameters
   // Extract the token from the Authorization header
   const token = req.header("Authorization");
 
@@ -12,7 +13,7 @@ const validateUser = (req, res, next) => { // Corrected order of parameters
   }
   try {
     // Verify the token
-    console.log(process.env.key);
+    // console.log(process.env.key);
     const decoded = jwt.verify(token, process.env.key); // Replace 'your-secret-key' with your actual secret key
 
     // Attach user ID to the request object
