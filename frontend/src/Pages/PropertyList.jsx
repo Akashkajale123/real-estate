@@ -73,7 +73,13 @@ placeholder="Search PPD ID"
             <tr key={property._id} style={{backgroundColor:'#FFFFFF'}}>
               {/* Render property details */}
               <td>{property.PPDID}</td>
-              <td>{property.photo}</td>
+              <td>
+              <img
+                  src={property.photo} // Assuming property.photo contains the image URL
+                  alt={`Property ${property.PPDID}`}
+                  style={{ width: '50px', height: '50px' }} // Adjust the width and height as needed
+                />
+              </td>
               <td>{property.propertyType}</td>
               <td>{property.mobile}</td>
               <td>{property.totalArea}</td>

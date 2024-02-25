@@ -43,6 +43,7 @@ const PropertyDetailsForm = () => {
   const { formData, setFormData } = FormData();
   const handleSubmit = (values) => {
     setFormData({ ...formData, ...values });
+    console.log(formData)
     nextStep();
   };
 

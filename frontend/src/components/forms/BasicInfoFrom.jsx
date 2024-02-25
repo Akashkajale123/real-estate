@@ -40,8 +40,8 @@ const BasicInfoForm = () => {
   const { nextStep } = useUserData();
   const { formData, setFormData } = FormData();
   const handleSubmit = (values) => {
-    setFormData({ ...formData, ...values });
-
+    setFormData({ ...formData,...values} );
+    console.log(formData)
     nextStep();
   };
   return (
