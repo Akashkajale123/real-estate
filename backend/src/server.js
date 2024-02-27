@@ -10,16 +10,16 @@ const app = express();
 const PORT = 4000;
 
 const URI =
-  "mongodb+srv://akashkajale125:BuzgMLM7KAsGVGix@cluster1.fnodolx.mongodb.net/Real_Estate_properties?retryWrites=true&w=majority";
+	"mongodb+srv://akashkajale125:BuzgMLM7KAsGVGix@cluster1.fnodolx.mongodb.net/Real_Estate_properties?retryWrites=true&w=majority";
 
 // Database connection
 const connectDB = async () => {
-  try {
-    await mongoose.connect(URI);
-    console.log("Connected to MongoDB");
-  } catch (error) {
-    console.error("MongoDB Connection Error:", error.message);
-  }
+	try {
+		await mongoose.connect(URI);
+		console.log("Connected to MongoDB");
+	} catch (error) {
+		console.error("MongoDB Connection Error:", error.message);
+	}
 };
 
 connectDB();
@@ -38,5 +38,5 @@ app.use("/property", propertyRoutes);
 
 // Start the server
 app.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}/`);
+	console.log(`Server is running at http://localhost:${PORT}/`);
 });
