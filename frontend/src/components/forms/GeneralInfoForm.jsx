@@ -4,7 +4,7 @@ import axios from "axios";
 import * as Yup from "yup";
 import "./GeneralInfoForm.css";
 import { useUserData } from "../../ContextApi/UserContext";
-import { FormData } from "../../ContextApi/FormContext";
+import { UseForm } from "../../ContextApi/FormContext";
 const validationSchema = Yup.object().shape({
   name: Yup.string()
     .min(3, "Name must be at least 3 characters")
@@ -31,29 +31,25 @@ const initialValues = {
 const GeneralInfoForm = () => {
 
   const { prevStep, nextStep } = useUserData();
-  const {  setFormData } = FormData();
+  const { formData, setFormData } = UseForm();
   const [selectedFile, setSelectedFile] = useState(null);
 
   const handleSubmit = async (values) => { // Make the handleSubmit function asynchronous
     try {
-      const formData = new window.FormData();
-      formData.append('name', values.name);
-      formData.append('mobile', values.mobile);
-      formData.append('postedBy', values.postedBy);
-      formData.append('saleType', values.saleType);
-      formData.append('featuredPackage', values.featuredPackage);
-      formData.append('ppdPackage', values.ppdPackage);
+      const formData = new FormData();
       formData.append('photo', selectedFile);
 
-      const result=await axios.post('http://localhost:4000/property/upload', formData, {
+      const response = await axios.post('http://localhost:4000/property/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       });
-     
 
-      setFormData({ ...formData, ...values, photo: result.data.url });
+      console.log(response);
+
+      setFormData({ ...formData, ...values, photo: response.data.url });
       console.log(formData)
+
       nextStep();
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -63,9 +59,7 @@ const GeneralInfoForm = () => {
 
   const handleFileChange = (event) => {
     setSelectedFile(event.currentTarget.files[0]);
-    console.log(event.currentTarget.files[0]); // for debugging
   };
-  
 
   return (
 
@@ -158,7 +152,7 @@ const GeneralInfoForm = () => {
                 type="file"
                 onChange={(event) => handleFileChange(event)}
                 accept="image/*" style={{ position: 'absolute', width: '100%', height: '100%', opacity: 0, zIndex: 1, cursor: 'pointer' }} />
-              <label htmlFor="photo" style={{ width: '80px', color: '#7D7D7D', fontSize: 18, fontFamily: 'Source Sans Pro', fontWeight: '400', wordWrap: 'break-word', position: 'absolute', top: '35px', left: '130px' }}>{selectedFile ? selectedFile.name : "Choose a photo"}</label>
+              <label htmlFor="photo" style={{ width: '80px', color: '#7D7D7D', fontSize: 18, fontFamily: 'Source Sans Pro', fontWeight: '400', wordWrap: 'break-word', position: 'absolute', top: '35px', left: '130px' }}>  {values.photo ? values.photo.name : "Choose a photo"}</label>
               <span id="camera-svg">
                 <svg xmlns="http://www.w3.org/2000/svg" width="39" height="39" viewBox="0 0 39 39" fill="none" >
                   <g clipPath="url(#clip0_0_433)">

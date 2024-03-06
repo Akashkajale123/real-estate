@@ -3,7 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "./BasicInfoFrom.css";
 import { useUserData } from "../../ContextApi/UserContext";
-import { FormData } from "../../ContextApi/FormContext";
+import { UseForm } from "../../ContextApi/FormContext";
 import { Link } from "react-router-dom";
 
 const validationSchema = Yup.object().shape({
@@ -38,10 +38,10 @@ const initialValues = {
 
 const BasicInfoForm = () => {
   const { nextStep } = useUserData();
-  const { formData, setFormData } = FormData();
+  const { formData,setFormData } = UseForm();
   const handleSubmit = (values) => {
-    setFormData({ ...formData,...values} );
-    console.log(formData)
+    setFormData({ ...formData, ...values });
+    console.log(formData);
     nextStep();
   };
   return (

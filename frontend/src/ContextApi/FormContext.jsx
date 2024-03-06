@@ -8,8 +8,17 @@ const FormContext = createContext();
 
 export const FormProvider = ({ children }) => {
     const [formData, setFormData] = useState([]);
-
+    
+    const form = new FormData();
     const submitForm = () => {
+        for (const keys in formData) {
+            form.append(keys, formData[keys])
+        }
+
+        for (const [key, value] of form.entries()) {
+            console.log(`${key}: ${value}`);
+        }
+
         console.log(formData);
     }
 
@@ -25,5 +34,4 @@ FormProvider.propTypes = {
 };
 
 
-export const FormData = () => useContext(FormContext);
-
+export const UseForm = () => useContext(FormContext);
