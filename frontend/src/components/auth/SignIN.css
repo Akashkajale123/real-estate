@@ -1,13 +1,14 @@
+
 .signin_page {
-  width: 1440px;
-  height: 1024px;
+  width: 100vw;
+  height: 100%;
+  box-sizing: border-box;
   background: #e1f9f4;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: auto; 
 }
 .form_box {
   width: 564px;
@@ -18,7 +19,6 @@
    display: flex;
   flex-direction: column;
   align-items: center; 
-  /* position: relative; */
 }
 
 #logo {
@@ -55,7 +55,7 @@ font-family: "Open Sans";
 font-size: 15px;
 font-style: normal;
 font-weight: 400;
-line-height: 18px; /* 120% */
+line-height: 18px; 
 letter-spacing: 0.25px;
 padding-left: 10px;
 opacity: 0.4;
@@ -71,7 +71,7 @@ input::placeholder{
   font-size: 15px;
   font-style: normal;
   font-weight: 600;
-  line-height: 18px; /* 120% */
+  line-height: 18px; 
   letter-spacing: 0.25px;
   margin-top:60px ;
 }
@@ -86,7 +86,7 @@ input::placeholder{
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
-  line-height: 22px; /* 122.222% */
+  line-height: 22px; 
   letter-spacing: 0.25px;
   opacity: 0.6;
 } 
@@ -97,7 +97,7 @@ font-family: "Open Sans";
 font-size: 18px;
 font-style: normal;
 font-weight: 600;
-line-height: 22px; /* 122.222% */
+line-height: 22px;
 letter-spacing: 0.25px;
 }
 
@@ -108,7 +108,7 @@ letter-spacing: 0.25px;
 
 .password {
   margin-top: 25px;
-  padding-right: 30px; /* Adjust as needed to accommodate the eye icon */
+  padding-right: 30px; 
 }
 
 

@@ -15,14 +15,16 @@ const LogoutDropdown = () => {
     
   };
   const dropdownToggleStyle = {
-    fontSize: '1.5rem', // Adjust the font size to reduce the arrow size
-    marginLeft: '0.5rem', // Adjust the margin as needed
-    width:'50px',
-    color:'black',
+    fontSize: '0.85rem', // Adjust the font size to reduce the arrow size
+    marginLeft: '0.2rem', // Adjust the margin as needed
+    width: '20px',
+    color: 'black',
     backgroundColor: '#f5f5f5',
-    border:'none'
-     
-  };
+    border: 'none',
+    minWidth: 'unset', // Allow the button to adjust its width based on content
+    maxWidth: 'unset', // Allow the button to adjust its width based on content
+};
+
   
 
   

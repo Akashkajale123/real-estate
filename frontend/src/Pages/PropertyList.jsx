@@ -51,7 +51,6 @@ placeholder="Search PPD ID"
 </div>
 
    <Link to='/property-form'> <button id="add-property-btn"> <BiPlus /> Add Property</button></Link>
-   
    </div>
    <table>
     <thead>
