@@ -4,7 +4,7 @@ import axios from "axios";
 import * as Yup from "yup";
 import "./GeneralInfoForm.css";
 import { useUserData } from "../../ContextApi/UserContext";
-import { UseForm } from "../../ContextApi/FormContext";
+import { useForm } from "../../ContextApi/FormContext";
 const validationSchema = Yup.object().shape({
   name: Yup.string()
     .min(3, "Name must be at least 3 characters")
@@ -31,7 +31,7 @@ const initialValues = {
 const GeneralInfoForm = () => {
 
   const { prevStep, nextStep } = useUserData();
-  const { formData, setFormData } = UseForm();
+  const { formData, setFormData } = useForm();
   const [selectedFile, setSelectedFile] = useState(null);
 
   const handleSubmit = async (values) => { // Make the handleSubmit function asynchronous
@@ -46,8 +46,11 @@ const GeneralInfoForm = () => {
       });
 
       console.log(response);
-
-      setFormData({ ...formData, ...values, photo: response.data.url });
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        ...values,
+        photo: response.data.url
+      }));
       console.log(formData)
 
       nextStep();

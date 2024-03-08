@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import axios from "axios";
 import "./LocationInfoForm.css";
 import { useUserData } from "../../ContextApi/UserContext";
-import { UseForm } from "../../ContextApi/FormContext";
+import { useForm } from "../../ContextApi/FormContext";
 import { useNavigate } from 'react-router-dom';
 
 const validationSchema = Yup.object().shape({
@@ -42,7 +42,7 @@ const initialValues = {
 const LocationInfoForm = () => {
   const navigate = useNavigate();
   const { prevStep, setStep, id, setPPDId } = useUserData();
-  const { formData, setFormData } = UseForm();
+  const { formData, setFormData } = useForm();
 
   const [error, setError] = useState(null);
   const handleSubmit = async (values, actions) => {

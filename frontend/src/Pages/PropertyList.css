@@ -49,7 +49,8 @@ table {
 }
 
 thead tr th {
-    color: #284E91;
+    /* color: #284E91; */
+    color:black;
     font-family: "Source Sans Pro";
     font-size: 20px;
     font-style: normal;
