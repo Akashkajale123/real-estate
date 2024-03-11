@@ -1,15 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState,useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./PropertyList.css";
 import { BiPlus } from "react-icons/bi";
+import { FaEye} from "react-icons/fa";
+import { BsFillPencilFill } from "react-icons/bs";
+import { MdDelete } from "react-icons/md";
+import { FaImage } from "react-icons/fa";
 import axios from "axios";
 import { useUserData } from "../ContextApi/UserContext";
+import PropertyDetailsModal from "./PropertyDetailsModal"; 
+
+
 const PropertyList = () => {
   const navigate = useNavigate();
   // Define state to hold property data
+  const {id}=useUserData();
   const [properties, setProperties] = useState([]);
-  const { userId, PPDId } = useUserData();
+  const { userId} = useUserData();
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedProperty, setSelectedProperty] = useState(null); // State to track selected property for modal display
+  
   // Function to fetch property data from the backend
   const fetchPropertyData = async () => {
     if (!userId) {
@@ -46,6 +56,19 @@ const PropertyList = () => {
       fetchPropertyData();
     }
   };
+
+  const deleteProperty=()=>{
+    
+  }
+
+  const openPropertyDetails = (property) => {
+    setSelectedProperty(property);
+  };
+
+  const closePropertyDetails = () => {
+    setSelectedProperty(null);
+  };
+  
 
   return (
     <div className="main-content">
@@ -112,28 +135,43 @@ const PropertyList = () => {
         <tbody>
           {/* Map over properties array to render each property */}
           {properties.map((property) => (
-            <tr key={property._id} style={{ backgroundColor: "#FFFFFF" }}>
+            <tr key={property._id}>
               {/* Render property details */}
               <td>{property.PPDID}</td>
-              <td>
-                <img
-                  src={property.photo} // Assuming property.photo contains the image URL
-                  alt={`Property ${property.PPDID}`}
-                  style={{ width: "50px", height: "50px" }} // Adjust the width and height as needed
-                />
-              </td>
+              <td><FaImage/></td>
               <td>{property.propertyType}</td>
               <td>{property.mobile}</td>
               <td>{property.totalArea}</td>
               <td>{2}</td>
-              <td>{5}</td>
+              <td>Sold</td>
               <td>{12}</td>
-              <td>Action</td>
+              <td>
+                <FaEye
+                  onClick={() => openPropertyDetails(property)}
+                  style={{ cursor: "pointer",color:'blue' }}
+                />
+                   {/* Render pencil icon only if the logged-in user posted this property */}
+                   {id === property.postedBy && (
+                  <BsFillPencilFill style={{ marginLeft: "15px" ,color:'green'}} />
+               
+                )}
+                {id === property.postedBy&& (
+                    <MdDelete style={{color:'red',marginLeft: "15px" }} />
+                )}
+              
+              </td>
             </tr>
           ))}
-          <br />
         </tbody>
       </table>
+      {/* Render Property Details Modal */}
+      {selectedProperty && (
+        <PropertyDetailsModal
+          property={selectedProperty}
+          onClose={closePropertyDetails}
+        />
+      )}
+
     </div>
   );
 };
