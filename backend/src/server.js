@@ -7,10 +7,9 @@ const cors = require("cors");
 dotEnv.config();
 
 const app = express();
-const PORT = 4000;
+const PORT = process.env.PORT;
 
-const URI =
-  "mongodb+srv://akashkajale125:BuzgMLM7KAsGVGix@cluster1.fnodolx.mongodb.net/Real_Estate_properties?retryWrites=true&w=majority";
+const URI =process.env.secrete_uri;
 
 // Database connection
 const connectDB = async () => {

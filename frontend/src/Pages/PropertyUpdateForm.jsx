@@ -42,14 +42,15 @@ const PropertyUpdateForm = ({ property, onClose }) => {
         {Object.entries(property).map(
           ([key, value]) =>
             !excludedFields.includes(key) && (
-              <div key={key}>
-                <label htmlFor={key}>{key}</label>
+              <div key={key} className="row">
+                <label className="label1" htmlFor={key}>{key}</label >
                 {/* Use conditional rendering to check if the field should be a select input */}
                 {key === "propertyType" ||
                 key === "negotiable" ||
                 key === "ownership" ||
                 key === "propertyApproved" ? (
                   <select
+                  className="select1"
                     id={key}
                     name={key}
                     value={updatedData[key] || value} // Use updated value if available
@@ -88,20 +89,26 @@ const PropertyUpdateForm = ({ property, onClose }) => {
                 ) : (
                   // Render a text input for other fields
                   <input
+                  className="input1"
                     type="text"
                     id={key}
                     name={key}
                     value={updatedData[key] || ""} // Use updated value if available
                     onChange={handleChange}
                   />
-                )}
+                
+                )
+                }
+              
               </div>
             )
         )}
-        <button type="submit">Update</button>
-        <button type="button" onClick={onClose}>
-          Close
-        </button>
+       
+       <div className="btns">
+       <button className="btn1" type="submit">Update</button>
+        <button className="btn2" type="button" onClick={onClose}>  Close</button>
+       </div>
+        
       </form>
     </div>
   );
