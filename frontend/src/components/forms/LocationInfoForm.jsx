@@ -1,10 +1,10 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import "./LocationInfoForm.css";
 import { useUserData } from "../../ContextApi/UserContext";
-import { FormData } from "../../ContextApi/FormContext";
+import { useForm } from "../../ContextApi/FormContext";
 import { useNavigate } from 'react-router-dom';
 
 const validationSchema = Yup.object().shape({
@@ -41,29 +41,28 @@ const initialValues = {
 
 const LocationInfoForm = () => {
   const navigate = useNavigate();
-  const { prevStep, setStep,id,setPPDId} = useUserData();
-  const { formData, setFormData } = FormData();
-  const [submitted, setSubmitted] = useState(false);
+  const { prevStep, setStep, id, setPPDId } = useUserData();
+  const { formData, setFormData } = useForm();
+
   const [error, setError] = useState(null);
   const handleSubmit = async (values, actions) => {
     try {
-      console.log(id);
-      setSubmitted(true);
       actions.setSubmitting(true);
-      
-      const newFormData = { ...formData, ...values };
-      // setFormData(newFormData);
-      console.log(newFormData);
-  
-      const response = await axios.post(`http://localhost:4000/property/addproperty/${id}`, newFormData, {
+
+      const finalFormData = { ...formData, ...values };
+      setFormData(finalFormData);
+
+      console.log(finalFormData);
+
+      const response = await axios.post(`http://localhost:4000/property/addproperty/${id}`, finalFormData, {
         headers: {
           'Authorization': localStorage.getItem("token")
         }
       });
-  
-      console.log('POST request successful!'); 
+
+      console.log('POST request successful!');
       console.log('Response data:', response.data);
-      const {propertyID} =response.data;
+      const { propertyID } = response.data;
       setPPDId(propertyID);
       alert('Property suceessFully Added');
       setFormData({});
@@ -71,15 +70,14 @@ const LocationInfoForm = () => {
       navigate("/property-list");
     } catch (error) {
       console.error('Error making POST request :-', error);
-    
-      setError(error); 
 
-  };
+      setError(error);
 
+    }
   }
 
 
-   
+
 
   return (
     <div style={{ width: 1201, height: 656, background: 'white', boxShadow: '10px 14px 70px rgba(0, 0, 0, 0.03)', borderRadius: 20, margin: '48px 0px 0px 40px' }}>
@@ -184,7 +182,7 @@ const LocationInfoForm = () => {
               <button id="btn2" type="submit">
                 Add Property
               </button>
-              {error && <div style={{color:'red'}}>{error.message}</div>}
+              {error && <div style={{ color: 'red' }}>{error.message}</div>}
             </div>
           </Form>
         )}

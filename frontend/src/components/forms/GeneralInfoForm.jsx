@@ -4,7 +4,7 @@ import axios from "axios";
 import * as Yup from "yup";
 import "./GeneralInfoForm.css";
 import { useUserData } from "../../ContextApi/UserContext";
-import { FormData } from "../../ContextApi/FormContext";
+import { useForm } from "../../ContextApi/FormContext";
 const validationSchema = Yup.object().shape({
   name: Yup.string()
     .min(3, "Name must be at least 3 characters")
@@ -31,27 +31,32 @@ const initialValues = {
 const GeneralInfoForm = () => {
 
   const { prevStep, nextStep } = useUserData();
-  const { formData, setFormData } = FormData();
+  const { formData, setFormData } = useForm();
   const [selectedFile, setSelectedFile] = useState(null);
 
   const handleSubmit = async (values) => { // Make the handleSubmit function asynchronous
     try {
-      const formData = new window.FormData();
-      formData.append('name', values.name);
-      formData.append('mobile', values.mobile);
-      formData.append('postedBy', values.postedBy);
-      formData.append('saleType', values.saleType);
-      formData.append('featuredPackage', values.featuredPackage);
-      formData.append('ppdPackage', values.ppdPackage);
+
+      const formData = new FormData();
       formData.append('photo', selectedFile);
 
-      await axios.post('http://localhost:4000/property/upload', formData, {
+      const response = await axios.post('http://localhost:4000/property/upload', formData, {
+
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       });
 
-      setFormData({ ...formData, ...values, photo: selectedFile });
+
+      console.log(response);
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        ...values,
+        photo: response.data.url
+      }));
+      console.log(formData)
+
+
       nextStep();
     } catch (error) {
       console.error('Error submitting form:', error);

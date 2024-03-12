@@ -1,17 +1,16 @@
 // FormContext.js
-import { useContext } from 'react';
-import { useState } from 'react';
-import { createContext } from 'react';
-import propTypes from "prop-types"
+import { createContext, useContext, useState } from 'react';
+import PropTypes from "prop-types";
 
 const FormContext = createContext();
 
 export const FormProvider = ({ children }) => {
-    const [formData, setFormData] = useState([]);
+    const [formData, setFormData] = useState({});
 
     const submitForm = () => {
         console.log(formData);
-    }
+        // You can perform any further actions here, such as submitting the form data
+    };
 
     return (
         <FormContext.Provider value={{ formData, setFormData, submitForm }}>
@@ -21,9 +20,7 @@ export const FormProvider = ({ children }) => {
 };
 
 FormProvider.propTypes = {
-    children: propTypes.node.isRequired,
+    children: PropTypes.node.isRequired,
 };
 
-
-export const FormData = () => useContext(FormContext);
-
+export const useForm = () => useContext(FormContext);

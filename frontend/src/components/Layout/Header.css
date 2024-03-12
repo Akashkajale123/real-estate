@@ -14,3 +14,10 @@ margin: 20px;
    align-items: center;
     margin-right: 30px;
 }
+.navbar-container{
+    position: fixed;
+    top: 0;
+    background-color:#FAFBFC;
+    height: 100px;
+    z-index: 1;
+}
