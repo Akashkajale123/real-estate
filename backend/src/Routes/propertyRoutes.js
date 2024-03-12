@@ -7,9 +7,11 @@ const cloudinary = require("cloudinary").v2;
 
 // Configure Cloudinary
 cloudinary.config({
+
 	cloud_name: "dfigkhihk",
 	api_key: "546981989443856",
 	api_secret: "6CeEnnAqTxB4Bu1qD_sM-xZMlGE",
+
 });
 
 // Configure multer
