@@ -36,14 +36,17 @@ const GeneralInfoForm = () => {
 
   const handleSubmit = async (values) => { // Make the handleSubmit function asynchronous
     try {
+
       const formData = new FormData();
       formData.append('photo', selectedFile);
 
       const response = await axios.post('http://localhost:4000/property/upload', formData, {
+
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       });
+
 
       console.log(response);
       setFormData((prevFormData) => ({
@@ -52,6 +55,7 @@ const GeneralInfoForm = () => {
         photo: response.data.url
       }));
       console.log(formData)
+
 
       nextStep();
     } catch (error) {
