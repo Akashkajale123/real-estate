@@ -1,25 +1,27 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./PropertyList.css";
 import { BiPlus } from "react-icons/bi";
-import { FaEye} from "react-icons/fa";
+import { FaEye } from "react-icons/fa";
 import { BsFillPencilFill } from "react-icons/bs";
 import { MdDelete } from "react-icons/md";
 import { FaImage } from "react-icons/fa";
 import axios from "axios";
 import { useUserData } from "../ContextApi/UserContext";
-import PropertyDetailsModal from "./PropertyDetailsModal"; 
-
+import PropertyDetailsModal from "./PropertyDetailsModal";
+import PropertyUpdateForm from "./PropertyUpdateForm";
 
 const PropertyList = () => {
   const navigate = useNavigate();
   // Define state to hold property data
-  const {id}=useUserData();
+  const { id } = useUserData();
   const [properties, setProperties] = useState([]);
-  const { userId} = useUserData();
+  const { userId } = useUserData();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedProperty, setSelectedProperty] = useState(null); // State to track selected property for modal display
-  
+  const [showUpdateForm, setShowUpdateForm] = useState(false);
+  const [updatedProperty, setUpdatedProperty] = useState(null);
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
   // Function to fetch property data from the backend
   const fetchPropertyData = async () => {
     if (!userId) {
@@ -57,18 +59,45 @@ const PropertyList = () => {
     }
   };
 
-  const deleteProperty=()=>{
-    
-  }
+  const deleteProperty = async (propertyId) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:4000/property/deleteProperty/${propertyId}`,
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
+        }
+      );
+      console.log(response.data); // Log the response data
+      // If the property is successfully deleted, remove it from the properties state
+      setProperties(
+        properties.filter((property) => property._id !== propertyId)
+      );
+    } catch (error) {
+      console.error("Error deleting property:", error);
+    }
+  };
 
   const openPropertyDetails = (property) => {
     setSelectedProperty(property);
+    setShowDetailsModal(true);
   };
 
   const closePropertyDetails = () => {
     setSelectedProperty(null);
+    setShowDetailsModal(false);
   };
-  
+
+  const openUpdateForm = (property) => {
+    setUpdatedProperty(property);
+    setShowUpdateForm(true);
+  };
+
+  const closeUpdateForm = () => {
+    setShowUpdateForm(false);
+    setUpdatedProperty(null);
+  };
 
   return (
     <div className="main-content">
@@ -118,7 +147,21 @@ const PropertyList = () => {
           </Link>
         </button>
       </div>
-      <table>
+         {/* Render Property Update Form */}
+         {showUpdateForm && (
+        <PropertyUpdateForm
+          property={updatedProperty}
+          onClose={closeUpdateForm}
+        />
+      )}
+      {/* Render Property Details Modal */}
+      {showDetailsModal && (
+        <PropertyDetailsModal
+          property={selectedProperty}
+          onClose={closePropertyDetails}
+        />
+      )}
+      <table style={{ display: !showUpdateForm && !showDetailsModal ? "table" : "none" }}>
         <thead>
           <tr>
             <th>PPD ID</th>
@@ -138,7 +181,9 @@ const PropertyList = () => {
             <tr key={property._id}>
               {/* Render property details */}
               <td>{property.PPDID}</td>
-              <td><FaImage/></td>
+              <td>
+                <FaImage />
+              </td>
               <td>{property.propertyType}</td>
               <td>{property.mobile}</td>
               <td>{property.totalArea}</td>
@@ -148,30 +193,34 @@ const PropertyList = () => {
               <td>
                 <FaEye
                   onClick={() => openPropertyDetails(property)}
-                  style={{ cursor: "pointer",color:'blue' }}
+                  style={{ cursor: "pointer", color: "blue" }}
                 />
-                   {/* Render pencil icon only if the logged-in user posted this property */}
-                   {id === property.postedBy && (
-                  <BsFillPencilFill style={{ marginLeft: "15px" ,color:'green'}} />
-               
+                {/* Render pencil icon only if the logged-in user posted this property */}
+                {id === property.postedBy && (
+                  <BsFillPencilFill
+                    style={{
+                      marginLeft: "15px",
+                      color: "green",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => openUpdateForm(property)}
+                  />
                 )}
-                {id === property.postedBy&& (
-                    <MdDelete style={{color:'red',marginLeft: "15px" }} />
+                {id === property.postedBy && (
+                  <MdDelete
+                    style={{
+                      color: "red",
+                      marginLeft: "15px",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => deleteProperty(property._id)}
+                  />
                 )}
-              
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      {/* Render Property Details Modal */}
-      {selectedProperty && (
-        <PropertyDetailsModal
-          property={selectedProperty}
-          onClose={closePropertyDetails}
-        />
-      )}
-
     </div>
   );
 };

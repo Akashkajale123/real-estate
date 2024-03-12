@@ -1,0 +1,10 @@
+/* PropertyUpdateForm.css */
+
+.update-form-container {
+    max-height: 400px;
+    width: 1250px;
+    overflow-y: auto;
+    border: 1px solid black;
+  }
+  
+  
