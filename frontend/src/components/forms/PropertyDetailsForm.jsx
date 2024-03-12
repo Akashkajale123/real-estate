@@ -3,7 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import './PropertyDetailsForm.css'
 import { useUserData } from '../../ContextApi/UserContext';
-import { UseForm } from '../../ContextApi/FormContext';
+import { useForm } from '../../ContextApi/FormContext';
 
 const validationSchema = Yup.object().shape({
   length: Yup.number().positive("Length must be positive").required("Required"),
@@ -40,11 +40,16 @@ const initialValues = {
 const PropertyDetailsForm = () => {
 
   const { prevStep, nextStep } = useUserData();
-  const { formData, setFormData } = UseForm();
+  const { formData, setFormData } = useForm();
   const handleSubmit = (values) => {
-    setFormData({ ...formData, ...values });
-    console.log(formData)
-    nextStep();
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      ...values,
+    }));
+    console.log(values); // Form data for the current step
+    // Proceed to the next step
+    nextStep()
+
   };
 
   return (

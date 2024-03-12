@@ -14,7 +14,6 @@ const Layout = ({ children }) => {
   const displayHeader = !["/", "/signup"].includes(pathname);
 
   return (
-    <div className="container">
       <div className="sidebar-navbar-container">
         {displaySidebar && <Sidebar />}
         <div className="main-content">
@@ -22,7 +21,6 @@ const Layout = ({ children }) => {
           {children}
         </div>
       </div>
-    </div>
   );
 };
 

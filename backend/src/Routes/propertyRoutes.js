@@ -31,5 +31,8 @@ router.post("/upload", upload.single("photo"), async (req, res) => {
 
 router.post("/addproperty/:id", validateUser, propertyControllers.addProperty);
 router.get("/getAllProperties/:id", propertyControllers.getAllProperties);
+router.delete("/deleteProperty/:_id",validateUser,propertyControllers.deleteProperty);
+router.patch("/updateProperty/:id",propertyControllers.updateProperty);
+
 
 module.exports = router;
