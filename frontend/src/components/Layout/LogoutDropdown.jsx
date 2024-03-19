@@ -15,28 +15,29 @@ const LogoutDropdown = () => {
     
   };
   const dropdownToggleStyle = {
-    fontSize: '0.85rem', // Adjust the font size to reduce the arrow size
-    marginLeft: '0.2rem', // Adjust the margin as needed
-    width: '20px',
-    color: 'black',
-    backgroundColor: '#FAFBFC',
-    border: 'none',
-    minWidth: 'unset', // Allow the button to adjust its width based on content
-    maxWidth: 'unset', // Allow the button to adjust its width based on content
-    marginRight:'40px',
+    width:'20px',
+    height:'30px',
+    color:'black',
+    backgroundColor:'lightCyan',
+    border:'none'
+
+    
+
+};
+
+const dropdownMenuStyle = {
+  minWidth: '10px'
 };
 
   
-
-  
   return (
-    <Dropdown show={showDropdown} onToggle={setShowDropdown}  style={{marginRight:'50px' ,width:'25px'}}>
+    <Dropdown show={showDropdown} onToggle={setShowDropdown}  >
       <Dropdown.Toggle id="dropdown-basic"  style={dropdownToggleStyle}  >
   
       </Dropdown.Toggle>
 
-      <Dropdown.Menu  style={{minWidth:'unset',maxWidth:'unset'}}>
-        <Dropdown.Item onClick={handleLogout} style={{color:'red'}} >Logout</Dropdown.Item>
+      <Dropdown.Menu  style={dropdownMenuStyle}>
+        <Dropdown.Item onClick={handleLogout} style={{color:'red',fontSize:'10px'}} >Logout</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );

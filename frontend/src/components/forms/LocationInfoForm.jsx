@@ -5,7 +5,7 @@ import axios from "axios";
 import "./LocationInfoForm.css";
 import { useUserData } from "../../ContextApi/UserContext";
 import { useForm } from "../../ContextApi/FormContext";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -54,33 +54,43 @@ const LocationInfoForm = () => {
 
       console.log(finalFormData);
 
-      const response = await axios.post(`http://localhost:4000/property/addproperty/${id}`, finalFormData, {
-        headers: {
-          'Authorization': localStorage.getItem("token")
+      const response = await axios.post(
+        `https://real-estate-backend.up.railway.app/property/addproperty/${id}`,
+        finalFormData,
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
         }
-      });
+      );
 
-      console.log('POST request successful!');
-      console.log('Response data:', response.data);
+      console.log("POST request successful!");
+      console.log("Response data:", response.data);
       const { propertyID } = response.data;
       setPPDId(propertyID);
-      alert('Property suceessFully Added');
+      alert("Property suceessFully Added");
       setFormData({});
       setStep(1);
       navigate("/property-list");
     } catch (error) {
-      console.error('Error making POST request :-', error);
+      console.error("Error making POST request :-", error);
 
       setError(error);
-
     }
-  }
-
-
-
+  };
 
   return (
-    <div style={{ width: 1201, height: 656, background: 'white', boxShadow: '10px 14px 70px rgba(0, 0, 0, 0.03)', borderRadius: 20, margin: '48px 0px 0px 40px' }}>
+    <div
+      style={{
+        width: "850px",
+        height: "500px",
+        background: "lightGray",
+        boxShadow: "10px 14px 70px rgba(0, 0, 0, 0.03)",
+        borderRadius: 20,
+        margin: "48px 0px 0px 300px",
+        border:'1px solid black'
+      }}
+    >
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -91,7 +101,12 @@ const LocationInfoForm = () => {
             <div className="input" id="row1">
               <div>
                 <label htmlFor="email">Email</label>
-                <Field type="email" id="email" name="email" placeholder="Email" />
+                <Field
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="Email"
+                />
                 <ErrorMessage name="email" component="div" className="error" />
               </div>
               <div>
@@ -105,7 +120,7 @@ const LocationInfoForm = () => {
                 <ErrorMessage name="city" component="div" className="error" />
               </div>
             </div>
-            <div className="input">
+            <div className="input" id="row2">
               <div>
                 <label htmlFor="area">Area</label>
                 <Field as="select" id="area" name="area">
@@ -124,10 +139,14 @@ const LocationInfoForm = () => {
                   name="pincode"
                   placeholder="Pincode"
                 />
-                <ErrorMessage name="pincode" component="div" className="error" />
+                <ErrorMessage
+                  name="pincode"
+                  component="div"
+                  className="error"
+                />
               </div>
             </div>
-            <div className="input">
+            <div className="input" id="row3">
               <div>
                 <label htmlFor="address">Address</label>
                 <Field
@@ -136,7 +155,11 @@ const LocationInfoForm = () => {
                   name="address"
                   placeholder="Address"
                 />
-                <ErrorMessage name="address" component="div" className="error" />
+                <ErrorMessage
+                  name="address"
+                  component="div"
+                  className="error"
+                />
               </div>
               <div>
                 <label htmlFor="landmark">Landmark</label>
@@ -146,7 +169,11 @@ const LocationInfoForm = () => {
                   name="landmark"
                   placeholder="Landmark"
                 />
-                <ErrorMessage name="landmark" component="div" className="error" />
+                <ErrorMessage
+                  name="landmark"
+                  component="div"
+                  className="error"
+                />
               </div>
             </div>
             <div className="input" id="row4">
@@ -158,7 +185,11 @@ const LocationInfoForm = () => {
                   name="latitude"
                   placeholder="Latitude"
                 />
-                <ErrorMessage name="latitude" component="div" className="error" />
+                <ErrorMessage
+                  name="latitude"
+                  component="div"
+                  className="error"
+                />
               </div>
               <div>
                 <label htmlFor="longitude">Longitude</label>
@@ -175,14 +206,14 @@ const LocationInfoForm = () => {
                 />
               </div>
             </div>
-            <div>
+            <div style={{marginTop:'10px'}}>
               <button id="btn1" type="button" onClick={prevStep}>
                 Previous
               </button>
               <button id="btn2" type="submit">
                 Add Property
               </button>
-              {error && <div style={{ color: 'red' }}>{error.message}</div>}
+              {error && <div style={{ color: "red" }}>{error.message}</div>}
             </div>
           </Form>
         )}

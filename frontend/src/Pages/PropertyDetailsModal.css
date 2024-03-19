@@ -1,9 +1,9 @@
 .modal-overlay {
     position: fixed;
     top:100px;
-    left: 100;
-    width: 1250px;
-    height: 650px;
+    left: 270px;
+    width: 1000px;
+    height: 480px;
     background-color:lightcyan; /* Semi-transparent background */
     display: flex;
     align-items: center;
@@ -15,8 +15,9 @@
     background-color: #fff;
     border-radius: 8px;
     padding: 20px;
-    max-width: 600px;
+    max-width: 400px;
     width: 100%;
+   
    
   }
   
@@ -26,11 +27,13 @@
     align-items: center;
     /* background-color: aquamarine; */
     color: blueviolet;
+  
   }
-  h2{
+  h3{
     position: absolute;
-    top: -180px;
+    top: -145px;
     text-decoration: underline;
+   
   }
 
   
@@ -41,8 +44,9 @@
     position: absolute;
     color:red;
     font-size: xx-large;
-    top: -180px;
-    right: -700px;
+    top:-160px;
+    left: 900px;
+ 
   }
   
   .modal-body {
@@ -50,28 +54,31 @@
   }
   .property-image{
     position: relative;
-    top: -140px;
-    border-radius:125px ;
+    top: -115px;
+    border-radius:60px ;
   }
   .form{
     color:blue;
     position: absolute;
-    top: 130px;
+    font-size: 13px;
+    top: 20px;
     list-style-type: square;
   }
   .form2{
     color:blue;
     position: absolute;
+    font-size: 13px;
     left: 350px;
-    top:130px;
+    top:0px;
     width: 300px;
     list-style-type: square;
   }
   .form3{
     color:blue;
     position: absolute;
+    font-size: 13px;
     left: 600px;
-    top:130px;
+    top:20px;
     width: 300px;
     list-style-type: square;
   }

@@ -1,88 +1,9 @@
-.input {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 30px; /* Adjust spacing between each input group */
-    /* height: 80px;  */
-    box-sizing: border-box;
-  }
-  
-  .input > div {
-    flex: 0 1 45%; /* Adjust width of input fields */
-    margin-right: 50px; /* Add space between horizontal inputs */
-  }
-  
-  .input > div:last-child {
-    margin-right: 10; /* Remove margin from the last input to avoid extra space */
-  }
-  
-  .input > div label {
-    display: block;
-    margin-bottom: 8px; /* Adjust spacing between label and input */
-    color: #7d7d7d;
-    font-family: "Source Sans Pro";
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    margin-bottom: 5px;
-  }
-  
-  .input > div select,
-  .input > div input[type="text"],
-  .input > div input[type="number"],
-  .input > div input[type="email"]{
-    width: 520px; /* Set width of inputs */
-    height: 60px; /* Set height of inputs */
-    padding: 10px; /* Add padding for better appearance */
-    font-size: 16px; /* Adjust font size if needed */
-    border: 1px solid #c3c3c3; /* Add border for better visibility */
-    box-sizing: border-box; /* Ensure padding and border are included in width */
-    border-radius: 8px;
-    background: #fff;
-    box-shadow: 10px 14px 70px 0px rgba(0, 0, 0, 0.03);
-  }
-  
-  /* Placeholder styling for input fields */
-  ::placeholder {
-    color: #7d7d7d;
-    font-family: "Source Sans Pro";
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-  }
-  #row1 {
-    margin-top: 50px;
-  }
-  #lastrow{
-    margin-left: -545px;
-      margin-bottom: 50px;
-     
-  }
-  button {
-    display: flexbox;
-    width: 187px;
-    height: 60px;
-    flex-shrink: 0;
-    /* margin-top: 100px; */
-  }
-   #btn1{
-      border-radius: 500px;
-  background: #6AB4F8;
-  box-shadow: 0px 13px 25px 0px rgba(0, 0, 0, 0.15);
-  }
-  
-  #btn2{
-      border-radius: 500px;
-  background: #4C57B6;
-  box-shadow: 0px 13px 25px 0px rgba(0, 0, 0, 0.15);
-  margin-left: 19px;
-  }
-  
-  .input .error {
-      color: red; /* Change error message color */
-      margin-top: 2px; /* Adjust spacing between input and error message */
-      position: absolute;
-    }
-  
+#row2{
+
+}
+#row3{
+
+}
+#row4{
+  margin-left: 20px;
+}

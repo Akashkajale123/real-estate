@@ -11,8 +11,8 @@
   align-items: center;
 }
 .form_box {
-  width: 564px;
-  height: 583px;
+  width: 400px;
+  height: 450px;
   flex-shrink: 0;
   border-radius: 10px;
   background: #fff;
@@ -24,12 +24,12 @@
 #logo {
   color: #4c57b6;
   font-family: "Open Sans";
-  font-size: 40px;
+  font-size: 30px;
   font-style: normal;
   font-weight: 400;
-  line-height: 18px;
-  letter-spacing: 0.25px;
-  margin-top: 80px;
+  line-height: 15px;
+  letter-spacing: 0.20px;
+  margin-top: 60px;
 }
 #para_line {
   color: #000000;
@@ -38,31 +38,38 @@
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
-  line-height: 22px; 
-  letter-spacing: 0.25px;
+  line-height: 20px;
+  letter-spacing: 0.22px;
   opacity: 0.6;
-  margin-top: 30px;
+  margin-top: 25px;
 }
 input {
-  width: 450px;
-  height: 54px;
+  width: 250px;
+  height: 40px;
   flex-shrink: 0;
   border-radius: 5px;
   border: 1px solid #E2E2E2;
-  background: var(--Colors-Neutral-White, #fff);
+  background: var(--Colors-Neutral-White, #e7d4d4);
   color:#000000;
 font-family: "Open Sans";
-font-size: 15px;
+font-size: 12px;
 font-style: normal;
 font-weight: 400;
-line-height: 18px; 
-letter-spacing: 0.25px;
+line-height: 16x; 
+letter-spacing: 0.22px;
 padding-left: 10px;
-opacity: 0.4;
+opacity: 0.8;
 
 }
 input::placeholder{
   color: #000;
+  font-family: "Open Sans";
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 15px; /* 120% */
+  letter-spacing: 0.22px;
+  opacity: 0.8;
 }
 
 #signup{
@@ -88,7 +95,7 @@ input::placeholder{
   font-weight: 400;
   line-height: 22px; 
   letter-spacing: 0.25px;
-  opacity: 0.6;
+  opacity: 0.8;
 } 
 #signup-btn{
   color: #352D66;
@@ -121,8 +128,8 @@ form{
 
 }
 #btn{
-  width: 450px;
-  height: 54px;
+  width: 150px;
+  height: 30px;
   flex-shrink: 0;
 font-family: "Open Sans";
 font-size: 15px;
@@ -135,28 +142,30 @@ background-color: #4C57B6;
 margin-top: 50px;
 }
 .inputs-box{
-  margin-top: 30px;
+  margin-top: 25px;
   position: relative;
 }
    
 #email_id{
-  margin-top: 30px;
+  margin-top: 20px;
 }
 .password_toggle {
+  font-size: 15px;
   position: absolute;
-  width: 20px;
-  height: 14.294px;
+  width: 10px;
+  height: 8px;
   flex-shrink: 0;
   top: 50%;
-  right: 10px; /* Adjust as needed */
+  right: 12px; /* Adjust as needed */
   transform: translateY(-50%);
   cursor: pointer;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 .email-input{
   position: relative;
 }
 .email-error{
+  font-size: 13px;
   color: red;
   position: absolute;
   bottom: -25px;
@@ -167,6 +176,7 @@ margin-top: 50px;
   /* background-color: lightgray; */
 }
 .error-password{
+  font-size: 13px;
 position: absolute;
 bottom: -25px;
 color: red;
@@ -177,6 +187,7 @@ color: red;
   position: absolute;
   left:100px;
   bottom: -20px;
+  font-size: 12px;
 }
 
 

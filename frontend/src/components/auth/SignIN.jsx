@@ -25,8 +25,9 @@ const SignIn = () => {
   });
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+    console.log(values)
     try {
-      const response = await axios.post("http://localhost:4000/auth/signIn", values);
+      const response = await axios.post("https://real-estate-backend.up.railway.app/auth/signIn", values);
       console.log(response.data);
       const { UserData,Token } = response.data;
      setId(UserData.Id);
@@ -100,9 +101,7 @@ const SignIn = () => {
             </Form>
           )}
         </Formik>
-        <Link to="/signup" style={{ textDecoration: "none" }}>
-          <h2 id="signup">Sign Up</h2>
-        </Link>
+        
       </div>
       <div className="signup_link">
         <p>

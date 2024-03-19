@@ -1,14 +1,15 @@
 .main-content{
-    background-color: #FAFBFC;
+    background-color:#fff;
 }
 .search{
-    margin:61px 0px 0px 42px;
+    margin:100px 0px 0px 270px;
 
 }
 #search-input{
-    height: 64px;
-    width: 320px;
-    border-radius: 32px;
+    height: 45px;
+    width: 200px;
+    border-radius: 22.5px;
+    background-color: #fff;
 
 }
 #search-input::placeholder{
@@ -16,72 +17,90 @@
 }
 #vertical-line{
     position: relative;
-    right: 77px;
+    left: -48px;
+    bottom: 3px;
+    z-index: 1;
+
 }
 #glass{
     position: relative;
-    right: 60px;
+    left: -40px;
+    bottom: 3px;
+    font-size: 10px;
 }
 #add-property-btn {
-  width: 182px;
-  height: 64px;
+  width: 120px;
+  height: 45px;
   flex-shrink: 0;
   background-color: #6ab4f8;
-  border-radius: 32px;
+  border-radius: 22.5px;
   font-family: "Source Sans Pro";
-  font-size: 20px;
+  font-size: 15px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   line-height: normal;
   filter: drop-shadow(0px 13px 25px rgba(0, 0, 0, 0.15));
-  margin:61px 0px 0px 650px;
+  margin:100px 0px 0px 630px;
 }
 .search-input-and-btn{
     display: flex;
 
 }
+
+/* Table styling */
 table {
-    
-    margin:0px 42px;
-    margin-top: 60px;
-    width: 1201px; /* Set the width of the table */
-    border-collapse: collapse; /* Collapse borders to prevent double borders */
+    margin-top: 50px;
+    margin-left:280px ;
+    width: 1000px;
+    border-collapse: collapse;
 }
 
-thead tr th {
-    /* color: #284E91; */
-    color:black;
-    font-family: "Source Sans Pro";
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    padding: 10px; /* Add padding for better spacing */
-    background-color: #FAFBFC;
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+thead th {
+    color: #fff;
     background-color: #6ab4f8;
+    font-weight: bold;
 }
 
-tbody tr {
-    background-color: #FAFBFC; /* Set background color for each row */
-}
-tbody tr td {
-    color: #284E91;
-    font-family: "Source Sans Pro";
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    padding: 10px; /* Add padding for better spacing */
-    background-color:#FFFFFF;
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
 }
 
-/* Adjust the width of each table header cell */
-thead tr th:nth-child(1) { width: 150px; }
-thead tr th:nth-child(2) { width: 150px; }
-thead tr th:nth-child(3) { width: 180px; }
-thead tr th:nth-child(4) { width: 150px; }
-thead tr th:nth-child(5) { width: 100px; }
-thead tr th:nth-child(6) { width: 100px; }
-thead tr th:nth-child(7) { width: 100px; }
-thead tr th:nth-child(8) { width: 100px; }
-thead tr th :nth-child(9) { width: 150px;  }
+tbody tr:hover {
+    background-color: #e2e2e2;
+}
+
+/* Adjust column widths */
+thead th:nth-child(1),
+tbody td:nth-child(1) { width: 10%;  }
+
+thead th:nth-child(2),
+tbody td:nth-child(2) { width: 10%; text-align: center; }
+
+thead th:nth-child(3),
+tbody td:nth-child(3) { width: 15%; text-align: center; }
+
+thead th:nth-child(4),
+tbody td:nth-child(4) { width: 10%;  }
+
+thead th:nth-child(5),
+tbody td:nth-child(5) { width: 10%; text-align: center; }
+
+thead th:nth-child(6),
+tbody td:nth-child(6) { width: 10%; text-align: center; }
+
+thead th:nth-child(7),
+tbody td:nth-child(7) { width: 10%;text-align: center;  }
+
+thead th:nth-child(8),
+tbody td:nth-child(8) { width: 10%; text-align: center;}
+
+thead th:nth-child(9){text-align: center; }
+tbody td:nth-child(9) { width: 15%; padding-left: 40px; }
+/* 
+thead th:nth-child(1),
+tbody td:nth-child(1) { width: 5%;  border: 1px solid black;} */

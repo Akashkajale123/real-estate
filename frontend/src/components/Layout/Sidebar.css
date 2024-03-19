@@ -1,23 +1,30 @@
 aside {
-  width: 320px;
-  height: 140vh;
+  width: 250px;
+  height: 100%;
   flex-shrink: 0;
   background-color: #e1f9f4;
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* z-index: 1; */
+  /* border: 1px solid black; */
 }
 
 #sidebar-conatiner{
-    width: 172px;
-    height: 385px;
+    width: 140px;
+    height: 400px;
     position: relative;
     /* border: 1px solid black; */
-    margin:81px 0px 0px 96px;
+    margin:81px 0px 0px 70px;
 }
 #house_icon{
+    
     position: absolute;
-    right: 50px;
+    right: 42px;
+    
 }
 #gray-sidebar-icon span {
     position: absolute;
-    right: 120px;
+    right: 100px;
 }
 

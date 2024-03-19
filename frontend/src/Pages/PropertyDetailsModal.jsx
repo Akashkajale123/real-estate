@@ -6,7 +6,7 @@ const PropertyDetailsModal = ({ property, onClose }) => {
     <div className="modal-overlay">
       <div className="modal-content">
         <div className="modal-header">
-          <h2>Property Details</h2>
+          <h3>Property Details</h3>
           <button className="close-button" onClick={onClose}>
             X
           </button>
@@ -16,7 +16,7 @@ const PropertyDetailsModal = ({ property, onClose }) => {
             className="property-image"
             src={property.photo}
             alt="property-image"
-            style={{ width: "250px", height: "250px", border: "border-boxing" }}
+            style={{ width: "120px", height: "120px", border: "border-boxing" }}
           />
 
           <ul className="form">

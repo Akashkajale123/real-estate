@@ -53,12 +53,13 @@ const BasicInfoForm = () => {
   return (
     <div
       style={{
-        width: 1201,
-        height: 656,
-        background: "white",
+        width: '880px',
+        height: '500px',
+        background: "lightGray",
         boxShadow: "10px 14px 70px rgba(0, 0, 0, 0.03)",
         borderRadius: 20,
-        margin: "61px 0 0 40px",
+        margin: "45px 0 0 300px",
+        border:'1px solid black'
       }}
     >
       <Formik
@@ -98,10 +99,10 @@ const BasicInfoForm = () => {
                 />
               </div>
             </div>
-            <div className="input">
+            <div className="input" >
               <div>
-                <label htmlFor="price">Price</label>
-                <Field type="number" id="price" name="price" />
+                <label htmlFor="price" style={{display:'block'}}>Price</label>
+                <Field type="number" id="price" name="price" style={{marginRight:'72px'}} />
                 <ErrorMessage name="price" component="div" className="error" />
               </div>
               <div>
@@ -121,8 +122,8 @@ const BasicInfoForm = () => {
             </div>
             <div className="input">
               <div>
-                <label htmlFor="propertyAge">Property Age</label>
-                <Field type="number" id="propertyAge" name="propertyAge" />
+                <label htmlFor="propertyAge" style={{display:'block'}}>Property Age</label>
+                <Field type="number" id="propertyAge" name="propertyAge"  style={{marginRight:'47px'}}/>
                 <ErrorMessage
                   name="propertyAge"
                   component="div"
@@ -156,6 +157,7 @@ const BasicInfoForm = () => {
                   as="textarea"
                   id="propertyDescription"
                   name="propertyDescription"
+                  style={{marginRight:'48px'}}
                 />
                 <ErrorMessage
                   name="propertyDescription"
@@ -164,7 +166,7 @@ const BasicInfoForm = () => {
                 />
               </div>
               <div>
-                <label htmlFor="bankLoan">Bank Loan</label>
+                <label htmlFor="bankLoan" style={{display:'block'}}>Bank Loan</label>
                 <Field type="number" id="bankLoan" name="bankLoan" />
                 <ErrorMessage
                   name="bankLoan"
@@ -173,7 +175,7 @@ const BasicInfoForm = () => {
                 />
               </div>
             </div>
-            <div>
+            <div id="basicInfoBtn">
               <Link to="/property-list">
                 <button id="btn1" type="button">
                   Cancel

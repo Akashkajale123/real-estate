@@ -4,7 +4,7 @@ import "./PropertyUpdateForm.css";
 
 const excludedFields = ["_id", "PPDID", "__v", "photo", "postedBy"];
 
-const PropertyUpdateForm = ({ property, onClose }) => {
+const PropertyUpdateForm = ({ property, onClose ,updateList}) => {
   // Initialize updatedData state with the existing property data
   const [updatedData, setUpdatedData] = useState(property);
 
@@ -18,7 +18,7 @@ const PropertyUpdateForm = ({ property, onClose }) => {
     try {
       // Send updated data to the backend
       const response = await axios.patch(
-        `http://localhost:4000/property/updateProperty/${property._id}`,
+        `https://real-estate-backend.up.railway.app/property/updateProperty/${property._id}`,
         updatedData,
         {
           headers: {
@@ -27,10 +27,13 @@ const PropertyUpdateForm = ({ property, onClose }) => {
         }
       );
       console.log(response.data);
-      onClose(); // Close the update form after successful update
+     onClose();  // Close the update form after successful update
+     updateList();
+
     } catch (error) {
       console.error("Error updating property:", error);
     }
+
   };
 
   return (

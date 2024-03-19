@@ -65,7 +65,7 @@ exports.signUp = async (req, res) => {
 
     // Generate unique user ID
     const userID = generateUserID();
-    console.log(userID);
+    // console.log(userID);
 
     const newUser = new User({ email, password: hashedPassword, userID });
     await newUser.save();

@@ -8,17 +8,16 @@ const cloudinary = require("cloudinary").v2;
 // Configure Cloudinary
 cloudinary.config({
 
-	cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-	api_key: process.env.CLOUDINARY_API_KEY,
-	api_secret: process.env.CLOUDINARY_API_SECRET,
-
+	cloud_name: "dfigkhihk",
+	api_key:"546981989443856",
+	api_secret:"6CeEnnAqTxB4Bu1qD_sM-xZMlGE6CeEnnAqTxB4Bu1qD_sM-xZMlGE",
 });
 
 // Configure multer
 const upload = multer({ dest: "uploads/" }); // Set upload destination
 
 // Route for handling file uploads
-router.post("/upload", upload.single("photo"), async (req, res) => {
+router.post("/upload", async (req, res) => {
 	try {
 		// Upload file to Cloudinary
 		const result = await cloudinary.uploader.upload(req.file.path);
@@ -34,7 +33,7 @@ router.post("/upload", upload.single("photo"), async (req, res) => {
 router.post("/addproperty/:id", validateUser, propertyControllers.addProperty);
 router.get("/getAllProperties/:id", propertyControllers.getAllProperties);
 router.delete("/deleteProperty/:_id",validateUser,propertyControllers.deleteProperty);
-router.patch("/updateProperty/:id",propertyControllers.updateProperty);
+router.patch("/updateProperty/:id",validateUser,propertyControllers.updateProperty);
 
 
 module.exports = router;

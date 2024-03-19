@@ -29,49 +29,52 @@ const initialValues = {
 };
 
 const GeneralInfoForm = () => {
-
   const { prevStep, nextStep } = useUserData();
   const { formData, setFormData } = useForm();
   const [selectedFile, setSelectedFile] = useState(null);
 
-  const handleSubmit = async (values) => { // Make the handleSubmit function asynchronous
+  const handleSubmit = async (values) => {
+    // Make the handleSubmit function asynchronous
+    // console.log(selectedFile);
     try {
+      // const formData = new FormData();
+      // formData.append("photo", selectedFile);
+      // formData.append("upload_preset","akashdemoapp");
+      // formData.append("cloud_name","dfigkhihk")
 
-      const formData = new FormData();
-      formData.append('photo', selectedFile);
+      // fetch("https://api.cloudnary.com/v1_1/")
 
-      const response = await axios.post('http://localhost:4000/property/upload', formData, {
-
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      });
-
-
-      console.log(response);
+      // console.log(response);
       setFormData((prevFormData) => ({
         ...prevFormData,
         ...values,
-        photo: response.data.url
+        // photo: response.data.url,
       }));
-      console.log(formData)
-
+      // console.log(formData);
 
       nextStep();
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error("Error submitting form:", error);
       // Handle error
     }
   };
 
   const handleFileChange = (event) => {
-    setSelectedFile(event.currentTarget.files[0]);
+    setSelectedFile(event.target.files[0]);
   };
 
   return (
-
-
-    <div style={{ width: 1201, height: 656, background: 'white', boxShadow: '10px 14px 70px rgba(0, 0, 0, 0.03)', borderRadius: 20, margin: '47px 0px 0px 40px' }} >
+    <div
+      style={{
+        width: "880px",
+        height: "500px",
+        background: "lightGray",
+        boxShadow: "10px 14px 70px rgba(0, 0, 0, 0.03)",
+        borderRadius: 20,
+        margin: "47px 0px 0px 300px",
+        border: "1px solid black",
+      }}
+    >
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -79,9 +82,8 @@ const GeneralInfoForm = () => {
       >
         {({ errors, touched, values, setFieldValue }) => (
           <Form>
-            <div className="input" id="row1">
+            <div className="input" id="roww1">
               <div>
-
                 <label htmlFor="name">Name</label>
                 <Field type="text" id="name" name="name" placeholder="Owner" />
                 <ErrorMessage name="name" component="div" className="error" />
@@ -97,9 +99,11 @@ const GeneralInfoForm = () => {
                 <ErrorMessage name="mobile" component="div" className="error" />
               </div>
             </div>
-            <div className="input">
+            <div className="input" id="row2">
               <div>
-                <label htmlFor="postedBy">Posted By</label>
+                <label htmlFor="postedBy" style={{ marginLeft: "5px" }}>
+                  Posted By
+                </label>
                 <Field as="select" id="postedBy" name="postedBy">
                   <option value="">Select Posted By</option>
                   <option value="individual owner">Individual Owner</option>
@@ -107,7 +111,11 @@ const GeneralInfoForm = () => {
                   <option value="builder/developer">Builder/Developer</option>
                   <option value="tenant">Tenant</option>
                 </Field>
-                <ErrorMessage name="postedBy" component="div" className="error" />
+                <ErrorMessage
+                  name="postedBy"
+                  component="div"
+                  className="error"
+                />
               </div>
               <div>
                 <label htmlFor="saleType">Sale Type</label>
@@ -117,13 +125,22 @@ const GeneralInfoForm = () => {
                   <option value="For Rent">For Rent</option>
                   <option value="For Lease">For Lease</option>
                 </Field>
-                <ErrorMessage name="saleType" component="div" className="error" />
+                <ErrorMessage
+                  name="saleType"
+                  component="div"
+                  className="error"
+                />
               </div>
             </div>
-            <div className="input">
+            <div className="input" id="row3">
               <div>
                 <label htmlFor="featuredPackage">Featured Package</label>
-                <Field as="select" id="featuredPackage" name="featuredPackage">
+                <Field
+                  as="select"
+                  id="featuredPackage"
+                  name="featuredPackage"
+                  style={{ marginLeft: "10px" }}
+                >
                   <option value="">Please Select Featured Package</option>
                   <option value="swimming pool">Swimming Pool</option>
                   <option value="garden yard">Garden Yard</option>
@@ -151,20 +168,70 @@ const GeneralInfoForm = () => {
                   className="error"
                 />
               </div>
-
             </div>
-            <div id="lastrow" style={{ width: 105, height: 105, background: '#6AB4F8', boxShadow: '0px 10px 25px rgba(0, 0, 0, 0.13)', border: '1px solid black', borderRadius: 9999, position: 'relative', marginRight: '400px' }}>
-              <input id="photo"
+            <div
+              id="lastrow"
+              style={{
+                width: "90px",
+                height: "90px",
+                background: "#6AB4F8",
+                boxShadow: "0px 10px 25px rgba(0, 0, 0, 0.13)",
+                border: "1px solid black",
+                borderRadius: "45px",
+                position: "relative",
+                marginRight: "500px",
+                marginTop: "20px",
+              }}
+            >
+              <input
+                id="photo"
                 name="photo"
                 type="file"
                 onChange={(event) => handleFileChange(event)}
-                accept="image/*" style={{ position: 'absolute', width: '100%', height: '100%', opacity: 0, zIndex: 1, cursor: 'pointer' }} />
-              <label htmlFor="photo" style={{ width: '80px', color: '#7D7D7D', fontSize: 18, fontFamily: 'Source Sans Pro', fontWeight: '400', wordWrap: 'break-word', position: 'absolute', top: '35px', left: '130px' }}>  {values.photo ? values.photo.name : "Choose a photo"}</label>
+                accept="image/*"
+                style={{
+                  position: "absolute",
+                  width: "100%",
+                  height: "100%",
+                  opacity: 0,
+                  zIndex: 1,
+                  cursor: "pointer",
+                }}
+              />
+              <label
+                htmlFor="photo"
+                style={{
+                  width: "80px",
+                  color: "#7D7D7D",
+                  fontSize: 15,
+                  fontFamily: "Source Sans Pro",
+                  fontWeight: "400",
+                  wordWrap: "break-word",
+                  position: "absolute",
+                  top: "35px",
+                  left: "100px",
+                }}
+              >
+                {" "}
+                {values.photo !== null ? values.photo.name : "Choose a photo"}
+              </label>
               <span id="camera-svg">
-                <svg xmlns="http://www.w3.org/2000/svg" width="39" height="39" viewBox="0 0 39 39" fill="none" >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="39"
+                  height="39"
+                  viewBox="0 0 39 39"
+                  fill="none"
+                >
                   <g clipPath="url(#clip0_0_433)">
-                    <path d="M19.5 24.7C22.3719 24.7 24.7 22.3719 24.7 19.5C24.7 16.6281 22.3719 14.3 19.5 14.3C16.6282 14.3 14.3 16.6281 14.3 19.5C14.3 22.3719 16.6282 24.7 19.5 24.7Z" fill="white" />
-                    <path d="M14.625 3.25L11.6512 6.5H6.5C4.7125 6.5 3.25 7.9625 3.25 9.75V29.25C3.25 31.0375 4.7125 32.5 6.5 32.5H32.5C34.2875 32.5 35.75 31.0375 35.75 29.25V9.75C35.75 7.9625 34.2875 6.5 32.5 6.5H27.3487L24.375 3.25H14.625ZM19.5 27.625C15.015 27.625 11.375 23.985 11.375 19.5C11.375 15.015 15.015 11.375 19.5 11.375C23.985 11.375 27.625 15.015 27.625 19.5C27.625 23.985 23.985 27.625 19.5 27.625Z" fill="white" />
+                    <path
+                      d="M19.5 24.7C22.3719 24.7 24.7 22.3719 24.7 19.5C24.7 16.6281 22.3719 14.3 19.5 14.3C16.6282 14.3 14.3 16.6281 14.3 19.5C14.3 22.3719 16.6282 24.7 19.5 24.7Z"
+                      fill="white"
+                    />
+                    <path
+                      d="M14.625 3.25L11.6512 6.5H6.5C4.7125 6.5 3.25 7.9625 3.25 9.75V29.25C3.25 31.0375 4.7125 32.5 6.5 32.5H32.5C34.2875 32.5 35.75 31.0375 35.75 29.25V9.75C35.75 7.9625 34.2875 6.5 32.5 6.5H27.3487L24.375 3.25H14.625ZM19.5 27.625C15.015 27.625 11.375 23.985 11.375 19.5C11.375 15.015 15.015 11.375 19.5 11.375C23.985 11.375 27.625 15.015 27.625 19.5C27.625 23.985 23.985 27.625 19.5 27.625Z"
+                      fill="white"
+                    />
                   </g>
                   <defs>
                     <clipPath id="clip0_0_433">
@@ -176,16 +243,17 @@ const GeneralInfoForm = () => {
             </div>
 
             <div>
-
-              <button id="btn1" type="button" onClick={prevStep}>Previous</button>
-              <button id='btn2' type="submit">Save & Continue</button>
-
+              <button id="btn1" type="button" onClick={prevStep}>
+                Previous
+              </button>
+              <button id="btn2" type="submit">
+                Save & Continue
+              </button>
             </div>
           </Form>
         )}
       </Formik>
     </div>
-
   );
 };
 

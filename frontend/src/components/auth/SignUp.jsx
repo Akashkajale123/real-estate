@@ -6,7 +6,9 @@ import axios from "axios";
 import "./SignUp.css";
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string().email("Invalid email address").required("Email is required"),
+  email: Yup.string()
+    .email("Invalid email address")
+    .required("Email is required"),
   password: Yup.string()
     .matches(/^(?=.*[!@#$%^&*₹])/, "at least one special character required")
     .min(6, "at least 6 characters required")
@@ -22,7 +24,10 @@ const SignUp = () => {
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
-      const response = await axios.post("http://localhost:4000/auth/signUp", values);
+      const response = await axios.post(
+        "https://real-estate-backend.up.railway.app/auth/signUp",
+        values
+      );
       console.log(response.data);
       navigate("/"); // Navigate to sign-in page
     } catch (error) {
@@ -53,27 +58,63 @@ const SignUp = () => {
             <Form>
               <div className="inputs">
                 <div className="email_input">
-                <Field type="text" name="email" placeholder="Mail ID" id="mail-id" />
-                <ErrorMessage name="email" component="div" className="email-error" />
+                  <Field
+                    type="text"
+                    name="email"
+                    placeholder="Mail ID"
+                    id="mail-id"
+                  />
+                  <ErrorMessage
+                    name="email"
+                    component="div"
+                    className="email-error"
+                  />
                 </div>
-               <div className="password-input">
-               <Field type="password" name="password" placeholder="Password" id="password" />
-                <ErrorMessage name="password" component="div" className="password-error" />
-               </div>
+                <div className="password-input">
+                  <Field
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    id="password"
+                  />
+                  <ErrorMessage
+                    name="password"
+                    component="div"
+                    className="password-error"
+                  />
+                </div>
                 <div className="conf-pass-input">
-                <Field type="password" name="confirmPassword" placeholder="Confirm Password" id="confirm-password" />
-                <ErrorMessage name="confirmPassword" component="div" className="conf-pass-error" />
+                  <Field
+                    type="password"
+                    name="confirmPassword"
+                    placeholder="Confirm Password"
+                    id="confirm-password"
+                  />
+                  <ErrorMessage
+                    name="confirmPassword"
+                    component="div"
+                    className="conf-pass-error"
+                  />
                 </div>
-                <button type="submit" id="btn">Sign up</button>
-                {errorMessage && <div className="error-message">{errorMessage}</div>} {/* Render error message if it exists */}
+                <button type="submit" id="btn5">
+                  Sign up
+                </button>
+                {errorMessage && (
+                  <div className="error-message">{errorMessage}</div>
+                )}{" "}
+                {/* Render error message if it exists */}
               </div>
             </Form>
           )}
         </Formik>
       </div>
-      <Link style={{ textDecoration: "none" }} to="/">
-        <h2 id="sign-in-link">Sign in</h2>
-      </Link>
+      <p style={{marginTop:'20px', fontSize:'18px'}} id="signInLink">
+      I already have an account?
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <span id="signIn-btn" style={{marginTop:'20px', fontSize:'18px'}}>  Sign In</span>
+          </Link>
+        </p>
+     
     </div>
   );
 };

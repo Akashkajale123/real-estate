@@ -6,7 +6,7 @@ const ProgressBar = () => {
     const steps = ['BasicInfo', 'PropertyDetail', 'GeneralInfo', 'LocationInfo'];
   return (
     <nav>
-      <div className="progress" style={{height:'22px'}}>
+      <div className="progress" style={{height:'18px',marginLeft:'300px'}}>
         <div 
           className={`progress-bar ${step > 1 ? 'bg-success' : ''}`}
           role="progressbar"

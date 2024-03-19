@@ -29,7 +29,7 @@ const PropertyList = () => {
     }
     try {
       const response = await axios.get(
-        `http://localhost:4000/property/getAllProperties/${userId}`,
+        `https://real-estate-backend.up.railway.app/property/getAllProperties/${userId}`,
         {
           headers: {
             Authorization: localStorage.getItem("token"),
@@ -62,7 +62,7 @@ const PropertyList = () => {
   const deleteProperty = async (propertyId) => {
     try {
       const response = await axios.delete(
-        `http://localhost:4000/property/deleteProperty/${propertyId}`,
+        `https://real-estate-backend.up.railway.app/property/deleteProperty/${propertyId}`,
         {
           headers: {
             Authorization: localStorage.getItem("token"),
@@ -152,6 +152,7 @@ const PropertyList = () => {
         <PropertyUpdateForm
           property={updatedProperty}
           onClose={closeUpdateForm}
+          updateList={fetchPropertyData}
         />
       )}
       {/* Render Property Details Modal */}

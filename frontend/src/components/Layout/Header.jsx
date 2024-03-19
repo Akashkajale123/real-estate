@@ -9,12 +9,13 @@ import { useUserData } from '../../ContextApi/UserContext';
 const Header = () => {
   const {userId,userName} = useUserData();
   return (
-    <Navbar bg="light" expand="lg" style={{ height: '127px'}}>
+    <Navbar style={{width:'1045px',height:'60px',position:'fixed',top:'0' ,left:'250px',zIndex:'1',background:'lightCyan'}}>
       <Container className="navbar-container">
-        <Navbar.Brand>USER ID :- {userId}</Navbar.Brand>
-        <Navbar.Brand id='user'><span style={{ marginRight: '10px',  fontSize:'25px',paddingBottom:'10px'}}> 
+        <Navbar.Brand id='userId'>USER ID :- {userId}</Navbar.Brand>
+        <Navbar.Brand id='user'><span > 
         <BsFillPersonFill /> 
-      </span> {userName}
+   
+      </span > {userName}
         <LogoutDropdown/>
         </Navbar.Brand>
       </Container>

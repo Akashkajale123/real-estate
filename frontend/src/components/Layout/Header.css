@@ -1,23 +1,19 @@
-h2{
-    color: #B4B4C6;
-font-family: "Source Sans Pro";
-font-size: 20px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-margin: 20px;
-
+/* .navbar-container{
+    background-color:#FAFBFC;
+    height: 90px;
+    border: 1px solid black;
+} */
+#userId{
+    font-size: 15px;
+    font-family:'Times New Roman', Times, serif;
+    font-weight: 700;
 }
 #user{
     display: flex;
    justify-content: center;
    align-items: center;
-    margin-right: 30px;
-}
-.navbar-container{
-    position: fixed;
-    top: 0;
-    background-color:#FAFBFC;
-    height: 100px;
-    z-index: 1;
+    margin-right:40px;
+    font-size: 18px;
+    font-family:'Times New Roman', Times, serif;
+    font-weight: 700;
 }
