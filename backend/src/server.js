@@ -8,9 +8,9 @@ const fileupload=require("express-fileupload")
 dotEnv.config();
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = 3000;
 
-const URI =process.env.URI;
+const URI ="mongodb+srv://akashkajale125:" + encodeURIComponent("Akash@123") + "@cluster1.fnodolx.mongodb.net/Real_Estate_properties?retryWrites=true&w=majority";
 ;
 
 // Database connection
@@ -37,7 +37,7 @@ app.use("/auth", authRoutes);
 // Property Routes
 app.use("/property", propertyRoutes);
 
-//file upload
+// //file upload
 app.use(fileupload({
   useTempFiles:true
 }));
