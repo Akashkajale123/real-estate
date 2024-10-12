@@ -5,7 +5,7 @@
   align-items: flex-start;
   margin-bottom: 25px;
   box-sizing: border-box;
-  position: relative; /* Set position relative for error message positioning */
+  position: relative; /* Set position relative for error message positioning  pr*/
 }
 
 label {
